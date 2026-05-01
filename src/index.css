@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, sans-serif;
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #fafaf7;
+  color: #181d1a;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+html[dir='rtl'] body {
+  font-family: 'Tajawal', sans-serif;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.shadow-soft {
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.04);
+}
+
+.shadow-interactive {
+  transition: all 0.2s ease-out;
+}
+
+.shadow-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px 0 rgba(15, 110, 86, 0.08);
+}
+
+.active-scale:active {
+  transform: scale(0.98);
+}
