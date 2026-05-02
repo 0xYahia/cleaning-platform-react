@@ -9,18 +9,18 @@ interface Props {
 export function SubscriptionSection({ lang }: Props) {
   const isAr = lang === 'ar'
   return (
-    <section className="max-w-7xl mx-auto px-6 py-xl" id="subscriptions">
-      <div className="text-center mb-xl">
-        <h2 className="text-display-md font-display-md text-primary mb-4">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-xl" id="subscriptions">
+      <div className="text-center mb-12 sm:mb-xl">
+        <h2 className="text-2xl sm:text-3xl md:text-display-md font-display-md text-primary mb-4">
           {isAr ? 'باقات الاشتراك' : 'Subscription Plans'}
         </h2>
-        <p className="text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+        <p className="text-base sm:text-body-lg text-on-surface-variant max-w-2xl mx-auto">
           {isAr
             ? 'وفّر أكثر بزيارات منتظمة وأولوية الحجز وخدمات إضافية مجانية.'
             : 'Save more with regular visits, priority booking and free extras.'}
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-md">
         {subscriptionPlans.map((plan) => {
           const benefits = isAr ? plan.benefitsAr : plan.benefitsEn
           const title = isAr ? plan.titleAr : plan.titleEn
@@ -29,7 +29,7 @@ export function SubscriptionSection({ lang }: Props) {
           return (
             <div
               key={plan.id}
-              className={`rounded-3xl p-md md:p-lg shadow-soft transition-all relative overflow-hidden ${
+              className={`rounded-3xl p-6 sm:p-md md:p-lg shadow-soft transition-all relative overflow-hidden ${
                 plan.highlight
                   ? 'bg-primary-container text-white'
                   : 'bg-white border border-surface-variant/50'

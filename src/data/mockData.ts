@@ -16,7 +16,9 @@ export interface Service {
 export interface ServicePackage {
   id: string
   titleAr: string
+  titleEn: string
   descriptionAr: string
+  descriptionEn: string
   icon: string
   price: number
   popular?: boolean
@@ -25,13 +27,16 @@ export interface ServicePackage {
 export interface AddOn {
   id: string
   titleAr: string
+  titleEn: string
   price: number
   icon: string
 }
 
 export interface ServiceFeature {
   titleAr: string
+  titleEn: string
   descriptionAr: string
+  descriptionEn: string
   icon: string
 }
 
@@ -115,7 +120,7 @@ export const services: Service[] = [
     startingPrice: 350,
     badgeEn: 'Featured',
     badgeAr: 'عرض مميز',
-    image: '/landing.png',
+    image: '/landing-fullwidth.png',
     span: 'wide',
   },
   {
@@ -242,22 +247,30 @@ export const loyaltyProgram = {
 export const serviceFeatures: ServiceFeature[] = [
   {
     titleAr: 'تنظيف الأرضيات العميق',
+    titleEn: 'Deep Floor Cleaning',
     descriptionAr: 'شفط الغبار ومسح وتلميع كافة أنواع الأرضيات (رخام، باركيه، سيراميك).',
+    descriptionEn: 'Vacuuming, mopping and polishing for marble, parquet and ceramic floors.',
     icon: 'vacuum',
   },
   {
     titleAr: 'تلميع النوافذ والزجاج',
+    titleEn: 'Window & Glass Polishing',
     descriptionAr: 'تنظيف شامل للنوافذ الداخلية والخارجية والمرايا بمنتجات مضادة للبقع.',
+    descriptionEn: 'Streak-free cleaning of interior and exterior windows and mirrors.',
     icon: 'window',
   },
   {
     titleAr: 'تعقيم المطبخ والحمامات',
+    titleEn: 'Kitchen & Bathroom Sanitization',
     descriptionAr: 'استخدام معقمات عالية الجودة لضمان بيئة صحية لعائلتك.',
+    descriptionEn: 'Hospital-grade disinfectants to keep your family safe.',
     icon: 'kitchen',
   },
   {
     titleAr: 'تعطير وتنقية الهواء',
+    titleEn: 'Air Freshening & Purifying',
     descriptionAr: 'رش زيوت عطرية فاخرة تعطي انطباعاً بالنظافة المتميزة.',
+    descriptionEn: 'Premium aromatic oils for a lasting clean impression.',
     icon: 'air',
   },
 ]
@@ -266,7 +279,9 @@ export const servicePackages: ServicePackage[] = [
   {
     id: 'bundle-home-sanitize',
     titleAr: 'باقة المنزل + تعقيم شامل',
+    titleEn: 'Home + Full Sanitization Bundle',
     descriptionAr: 'تنظيف منزل كامل مع تعقيم شامل للأسطح والأرضيات بسعر خاص.',
+    descriptionEn: 'Complete home cleaning paired with full surface and floor sanitization.',
     icon: 'home_repair_service',
     price: 450,
     popular: true,
@@ -274,31 +289,37 @@ export const servicePackages: ServicePackage[] = [
   {
     id: 'home-cleaning',
     titleAr: 'تنظيف منازل شامل',
+    titleEn: 'Comprehensive Home Cleaning',
     descriptionAr: 'تنظيف عميق ومتكامل للمنازل والشقق مع منتجات آمنة.',
+    descriptionEn: 'Deep, end-to-end cleaning for homes and apartments using safe products.',
     icon: 'cleaning_services',
     price: 280,
   },
   {
     id: 'tanks-full',
     titleAr: 'خزان: غسيل + تعقيم + عزل',
+    titleEn: 'Tank: Washing + Sanitization + Sealing',
     descriptionAr: 'باقة شاملة لتنظيف وتعقيم وعزل وتبطين الخزانات الأرضية والسطحية.',
+    descriptionEn: 'Full-package cleaning, sanitization, sealing and lining for ground and surface tanks.',
     icon: 'water_drop',
     price: 600,
   },
   {
     id: 'ac-bundle',
     titleAr: 'صيانة وغسيل المكيفات',
+    titleEn: 'AC Maintenance & Washing',
     descriptionAr: 'غسيل احترافي لجميع المكيفات (سبليت / شباك / مركزي).',
+    descriptionEn: 'Professional washing for split, window and central AC units.',
     icon: 'ac_unit',
     price: 220,
   },
 ]
 
 export const addOns: AddOn[] = [
-  { id: 'sanitize', titleAr: 'تعقيم إضافي شامل', price: 120, icon: 'sanitizer' },
-  { id: 'carpet', titleAr: 'تنظيف سجاد بالبخار', price: 120, icon: 'cleaning_bucket' },
-  { id: 'pest', titleAr: 'مكافحة حشرات', price: 100, icon: 'pest_control' },
-  { id: 'curtains', titleAr: 'غسيل ستائر بالبخار', price: 90, icon: 'blinds' },
+  { id: 'sanitize', titleAr: 'تعقيم إضافي شامل', titleEn: 'Extra Full Sanitization', price: 120, icon: 'sanitizer' },
+  { id: 'carpet', titleAr: 'تنظيف سجاد بالبخار', titleEn: 'Carpet Steam Cleaning', price: 120, icon: 'cleaning_bucket' },
+  { id: 'pest', titleAr: 'مكافحة حشرات', titleEn: 'Pest Control', price: 100, icon: 'pest_control' },
+  { id: 'curtains', titleAr: 'غسيل ستائر بالبخار', titleEn: 'Curtain Steam Cleaning', price: 90, icon: 'blinds' },
 ]
 
 export const trustBadges = [
@@ -308,7 +329,7 @@ export const trustBadges = [
   { icon: 'engineering', titleAr: 'عمالة مدربة', titleEn: 'Trained Staff' },
 ]
 
-export const heroBanner = '/landing.png'
+export const heroBanner = '/landing-fullwidth.png'
 
 export const heroImage =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC'

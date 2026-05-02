@@ -10,18 +10,18 @@ export function PaymentSection({ lang }: Props) {
   const options = paymentOptions[lang]
   return (
     <section className="bg-surface-container-low py-xl">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-lg items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-8 md:gap-lg items-center">
         <div className="md:col-span-1">
-          <h2 className="text-display-md font-display-md text-primary mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-display-md font-display-md text-primary mb-4">
             {isAr ? 'راحة في الدفع' : 'Flexible Payment'}
           </h2>
-          <p className="text-body-lg text-on-surface-variant">
+          <p className="text-base sm:text-body-lg text-on-surface-variant">
             {isAr
               ? 'قسّط خدماتك بسهولة بدون ضغط — اختر طريقة الدفع التي تناسبك.'
               : 'Split your payments without pressure — pick whichever method suits you.'}
           </p>
         </div>
-        <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-md">
+        <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-md">
           {options.map((opt) => (
             <div
               key={opt.id}
