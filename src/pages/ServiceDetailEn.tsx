@@ -10,7 +10,7 @@ export function ServiceDetailEn() {
     <>
       <section className="relative min-h-[480px] sm:min-h-[600px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src={service.image} alt="" />
+          <img className="w-full h-full object-cover" src={service.imageEn ?? service.image ?? service.imageAr} alt={service.titleEn} />
           <div className="absolute inset-0 bg-gradient-to-l from-[#0F6E56]/80 via-[#0F6E56]/40 to-transparent" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full py-12">

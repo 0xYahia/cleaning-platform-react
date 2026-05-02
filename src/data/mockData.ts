@@ -9,7 +9,9 @@ export interface Service {
   startingPrice: number
   badgeAr?: string
   badgeEn?: string
-  image: string
+  imageAr?: string
+  imageEn?: string
+  image?: string
   span?: 'large' | 'wide' | 'small'
 }
 
@@ -120,7 +122,8 @@ export const services: Service[] = [
     startingPrice: 350,
     badgeEn: 'Featured',
     badgeAr: 'عرض مميز',
-    image: '/landing-fullwidth.png',
+    imageEn: '/landing-fullwidth-en.png',
+    imageAr: '/landing-fullwidth-ar.png',
     span: 'wide',
   },
   {
@@ -132,7 +135,9 @@ export const services: Service[] = [
     descriptionAr: 'مكافحة آمنة وفعّالة لجميع أنواع الحشرات والقوارض للمنازل والمنشآت.',
     icon: 'pest_control',
     startingPrice: 180,
-    image:
+    imageAr:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC',
+    imageEn:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC',
     span: 'small',
   },
@@ -145,7 +150,9 @@ export const services: Service[] = [
     descriptionAr: 'غسيل بالبخار للكنب والسجاد والستائر لإزالة البقع والروائح والجراثيم.',
     icon: 'dry_cleaning',
     startingPrice: 200,
-    image:
+    imageAr:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuB-GIqxH169sGpYzeSK1um5ZMvlIskh4Zlc8c5YPZyrfjyVFJyB5z1Ys9raOG5k2y-6XEzw4ssQyoxXL5cEQePZ5jhDY3TSFHmPA4YkUSiMtw5Pe8QV4kll_3sK9dnedBV4RfSEmYiVW6l4Gyp2wVh-zbJfoqq5ug3A-PPQot6eGtaTzm7NQHaL9Bsgb8GDVHmtCtk1BOBqWvTiz4G5mTeYXUGAg_gTtWF2c1ncUCWbo5L1nOXe1h5XGL5A9ylAMawUge1kPCHnUnDb',
+    imageEn:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuB-GIqxH169sGpYzeSK1um5ZMvlIskh4Zlc8c5YPZyrfjyVFJyB5z1Ys9raOG5k2y-6XEzw4ssQyoxXL5cEQePZ5jhDY3TSFHmPA4YkUSiMtw5Pe8QV4kll_3sK9dnedBV4RfSEmYiVW6l4Gyp2wVh-zbJfoqq5ug3A-PPQot6eGtaTzm7NQHaL9Bsgb8GDVHmtCtk1BOBqWvTiz4G5mTeYXUGAg_gTtWF2c1ncUCWbo5L1nOXe1h5XGL5A9ylAMawUge1kPCHnUnDb',
     span: 'small',
   },
@@ -158,7 +165,9 @@ export const services: Service[] = [
     descriptionAr: 'تعقيم شامل بمعايير طبية للمنازل والمكاتب والمنشآت التجارية.',
     icon: 'sanitizer',
     startingPrice: 220,
-    image:
+    imageAr:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC',
+    imageEn:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC',
     span: 'small',
   },
@@ -329,7 +338,10 @@ export const trustBadges = [
   { icon: 'engineering', titleAr: 'عمالة مدربة', titleEn: 'Trained Staff' },
 ]
 
-export const heroBanner = '/landing-fullwidth.png'
+export const heroBanner = {
+  ar: '/landing-fullwidth-ar.png',
+  en: '/landing-fullwidth-en.png',
+}
 
 export const heroImage =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC'

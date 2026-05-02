@@ -1,422 +1,488 @@
 <!DOCTYPE html>
 
-<html dir="rtl" lang="ar"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>SADA Luxury Clean - حجز موعد</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "surface-dim": "#d7dbd7",
-                      "surface-container": "#ebefeb",
-                      "secondary-fixed": "#ffdcbb",
-                      "secondary-fixed-dim": "#ffb869",
-                      "tertiary": "#78352b",
-                      "on-background": "#181d1a",
-                      "on-primary-fixed-variant": "#00513e",
-                      "on-primary-container": "#9aedcf",
-                      "primary-container": "#0f6e56",
-                      "on-error": "#ffffff",
-                      "on-primary-fixed": "#002117",
-                      "on-surface": "#181d1a",
-                      "error": "#ba1a1a",
-                      "on-error-container": "#93000a",
-                      "inverse-surface": "#2d312f",
-                      "inverse-on-surface": "#eef2ee",
-                      "on-secondary": "#ffffff",
-                      "outline-variant": "#bec9c3",
-                      "on-surface-variant": "#3f4944",
-                      "surface-tint": "#086b53",
-                      "primary-fixed": "#a0f3d4",
-                      "tertiary-fixed-dim": "#ffb4a8",
-                      "tertiary-container": "#954c41",
-                      "tertiary-fixed": "#ffdad4",
-                      "on-tertiary-fixed-variant": "#743329",
-                      "on-tertiary-fixed": "#3b0804",
-                      "surface-bright": "#f7faf6",
-                      "surface": "#f7faf6",
-                      "inverse-primary": "#84d6b9",
-                      "on-secondary-fixed-variant": "#673d00",
-                      "on-tertiary-container": "#ffd3cc",
-                      "outline": "#6f7a74",
-                      "background": "#f7faf6",
-                      "error-container": "#ffdad6",
-                      "secondary-container": "#fdad4e",
-                      "surface-container-highest": "#e0e3e0",
-                      "on-secondary-fixed": "#2b1700",
-                      "on-primary": "#ffffff",
-                      "surface-container-low": "#f1f4f1",
-                      "primary": "#005440",
-                      "on-secondary-container": "#704200",
-                      "secondary": "#885200",
-                      "surface-container-high": "#e5e9e5",
-                      "on-tertiary": "#ffffff",
-                      "surface-variant": "#e0e3e0",
-                      "surface-container-lowest": "#ffffff"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "xs": "4px",
-                      "sm": "12px",
-                      "md": "24px",
-                      "lg": "40px",
-                      "xl": "80px"
-              },
-              "fontFamily": {
-                      "label-caps": ["Inter"],
-                      "display-lg": ["Tajawal"],
-                      "display-md": ["Tajawal"],
-                      "body-lg": ["Inter"],
-                      "heading-sm": ["Tajawal"],
-                      "body-md": ["Inter"]
-              },
-              "fontSize": {
-                      "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                      "display-lg": ["64px", {"lineHeight": "1.1", "fontWeight": "700"}],
-                      "display-md": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                      "heading-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
-                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
-              }
-            },
+<html dir="rtl" lang="ar">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Medi Clean - حجز موعد</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-dim": "#d7dbd7",
+            "surface-container": "#ebefeb",
+            "secondary-fixed": "#ffdcbb",
+            "secondary-fixed-dim": "#ffb869",
+            "tertiary": "#78352b",
+            "on-background": "#181d1a",
+            "on-primary-fixed-variant": "#00513e",
+            "on-primary-container": "#9aedcf",
+            "primary-container": "#0f6e56",
+            "on-error": "#ffffff",
+            "on-primary-fixed": "#002117",
+            "on-surface": "#181d1a",
+            "error": "#ba1a1a",
+            "on-error-container": "#93000a",
+            "inverse-surface": "#2d312f",
+            "inverse-on-surface": "#eef2ee",
+            "on-secondary": "#ffffff",
+            "outline-variant": "#bec9c3",
+            "on-surface-variant": "#3f4944",
+            "surface-tint": "#086b53",
+            "primary-fixed": "#a0f3d4",
+            "tertiary-fixed-dim": "#ffb4a8",
+            "tertiary-container": "#954c41",
+            "tertiary-fixed": "#ffdad4",
+            "on-tertiary-fixed-variant": "#743329",
+            "on-tertiary-fixed": "#3b0804",
+            "surface-bright": "#f7faf6",
+            "surface": "#f7faf6",
+            "inverse-primary": "#84d6b9",
+            "on-secondary-fixed-variant": "#673d00",
+            "on-tertiary-container": "#ffd3cc",
+            "outline": "#6f7a74",
+            "background": "#f7faf6",
+            "error-container": "#ffdad6",
+            "secondary-container": "#fdad4e",
+            "surface-container-highest": "#e0e3e0",
+            "on-secondary-fixed": "#2b1700",
+            "on-primary": "#ffffff",
+            "surface-container-low": "#f1f4f1",
+            "primary": "#005440",
+            "on-secondary-container": "#704200",
+            "secondary": "#885200",
+            "surface-container-high": "#e5e9e5",
+            "on-tertiary": "#ffffff",
+            "surface-variant": "#e0e3e0",
+            "surface-container-lowest": "#ffffff"
           },
-        }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: #FAFAF7;
-        }
-        .step-active { color: #005440; }
-        .step-inactive { color: #9daea5; }
-        .booking-card-shadow {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        }
-    </style>
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "xs": "4px",
+            "sm": "12px",
+            "md": "24px",
+            "lg": "40px",
+            "xl": "80px"
+          },
+          "fontFamily": {
+            "label-caps": ["Inter"],
+            "display-lg": ["Tajawal"],
+            "display-md": ["Tajawal"],
+            "body-lg": ["Inter"],
+            "heading-sm": ["Tajawal"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "display-lg": ["64px", { "lineHeight": "1.1", "fontWeight": "700" }],
+            "display-md": ["48px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "heading-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #FAFAF7;
+    }
+
+    .step-active {
+      color: #005440;
+    }
+
+    .step-inactive {
+      color: #9daea5;
+    }
+
+    .booking-card-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+  </style>
 </head>
+
 <body class="antialiased text-on-surface">
-<header class="fixed top-0 w-full z-50 bg-[#FAFAF7]/80 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
-<div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-<div class="flex items-center gap-8">
-<span class="text-2xl font-bold tracking-tight text-[#0F6E56]">SADA Luxury Clean</span>
-<nav class="hidden md:flex gap-6 items-center">
-<a class="text-gray-600 hover:text-[#0F6E56] transition-colors font-medium" href="#">Services</a>
-<a class="text-gray-600 hover:text-[#0F6E56] transition-colors font-medium" href="#">Loyalty</a>
-<a class="text-gray-600 hover:text-[#0F6E56] transition-colors font-medium" href="#">About Us</a>
-</nav>
-</div>
-<div class="flex items-center gap-4">
-<button class="text-gray-600 font-medium">EN/AR</button>
-<div class="flex items-center gap-2 px-4 py-2 bg-primary-container text-white rounded-full hover:opacity-90 transition-opacity active:scale-95 duration-200 cursor-pointer">
-<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span>
-<span class="font-bold">Book Now</span>
-</div>
-</div>
-</div>
-</header>
-<main class="mt-24 pb-xl px-6 max-w-7xl mx-auto">
-<div class="mb-lg">
-<div class="flex items-center justify-between mb-8 max-w-3xl">
-<div class="flex flex-col items-center gap-2 group cursor-default">
-<div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center shadow-lg">
-<span class="material-symbols-outlined" data-icon="cleaning_services">cleaning_services</span>
-</div>
-<span class="font-heading-sm text-sm font-bold text-primary">الخدمة</span>
-</div>
-<div class="h-[2px] flex-1 bg-surface-dim mx-4 -mt-8"></div>
-<div class="flex flex-col items-center gap-2 opacity-50">
-<div class="w-10 h-10 rounded-full bg-surface-container text-outline flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="person">person</span>
-</div>
-<span class="font-heading-sm text-sm">التفاصيل</span>
-</div>
-<div class="h-[2px] flex-1 bg-surface-dim mx-4 -mt-8"></div>
-<div class="flex flex-col items-center gap-2 opacity-50">
-<div class="w-10 h-10 rounded-full bg-surface-container text-outline flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="payments">payments</span>
-</div>
-<span class="font-heading-sm text-sm">الدفع</span>
-</div>
-<div class="h-[2px] flex-1 bg-surface-dim mx-4 -mt-8"></div>
-<div class="flex flex-col items-center gap-2 opacity-50">
-<div class="w-10 h-10 rounded-full bg-surface-container text-outline flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="task_alt">task_alt</span>
-</div>
-<span class="font-heading-sm text-sm">تأكيد</span>
-</div>
-</div>
-<h1 class="font-display-md text-primary mb-4">اختر الخدمة والوقت</h1>
-<p class="text-body-lg text-outline-variant max-w-2xl">اختر من بين باقات التنظيف الفاخرة التي تناسب احتياجاتك وحدد الموعد الأنسب لزيارة فريقنا.</p>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
-<div class="lg:col-span-8 space-y-xl">
-<section>
-<div class="flex items-center gap-3 mb-6">
-<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
-<h2 class="font-heading-sm text-primary">باقات التنظيف</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-<div class="bg-surface-container-lowest p-6 rounded-xl booking-card-shadow border-2 border-primary ring-4 ring-primary/5 transition-all cursor-pointer">
-<div class="flex justify-between items-start mb-4">
-<span class="material-symbols-outlined text-primary text-3xl" data-icon="home_repair_service">home_repair_service</span>
-<span class="bg-secondary-container/10 text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">الأكثر طلباً</span>
-</div>
-<h3 class="font-heading-sm mb-2">التنظيف العميق (سكني)</h3>
-<p class="text-body-md text-outline-variant mb-6 h-12 overflow-hidden">تنظيف شامل ودقيق لكافة غرف المنزل مع تعقيم الأسطح.</p>
-<div class="flex justify-between items-end border-t border-surface-container pt-4">
-<div>
-<span class="block text-xs text-outline-variant">يبدأ من</span>
-<span class="text-xl font-bold text-primary">٤٥٠ ر.س</span>
-</div>
-<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-6 rounded-xl booking-card-shadow border border-surface-variant/50 hover:border-primary transition-all cursor-pointer group">
-<div class="flex justify-between items-start mb-4">
-<span class="material-symbols-outlined text-outline group-hover:text-primary text-3xl transition-colors" data-icon="sanitizer">sanitizer</span>
-</div>
-<h3 class="font-heading-sm mb-2">تعقيم وقائي ممتاز</h3>
-<p class="text-body-md text-outline-variant mb-6 h-12 overflow-hidden">خدمة مخصصة لتعقيم الفلل والقصور باستخدام مواد معتمدة عالمياً.</p>
-<div class="flex justify-between items-end border-t border-surface-container pt-4">
-<div>
-<span class="block text-xs text-outline-variant">يبدأ من</span>
-<span class="text-xl font-bold text-on-surface">٦٨٠ ر.س</span>
-</div>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-6 rounded-xl booking-card-shadow border border-surface-variant/50 hover:border-primary transition-all cursor-pointer group">
-<div class="flex justify-between items-start mb-4">
-<span class="material-symbols-outlined text-outline group-hover:text-primary text-3xl transition-colors" data-icon="apartment">apartment</span>
-</div>
-<h3 class="font-heading-sm mb-2">تنظيف المكاتب والشركات</h3>
-<p class="text-body-md text-outline-variant mb-6 h-12 overflow-hidden">باقات تنظيف دورية مخصصة لبيئات العمل الاحترافية.</p>
-<div class="flex justify-between items-end border-t border-surface-container pt-4">
-<div>
-<span class="block text-xs text-outline-variant">يبدأ من</span>
-<span class="text-xl font-bold text-on-surface">١٢٠٠ ر.س</span>
-</div>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-6 rounded-xl booking-card-shadow border border-surface-variant/50 hover:border-primary transition-all cursor-pointer group">
-<div class="flex justify-between items-start mb-4">
-<span class="material-symbols-outlined text-outline group-hover:text-primary text-3xl transition-colors" data-icon="weekend">weekend</span>
-</div>
-<h3 class="font-heading-sm mb-2">تأثيث وعناية بالمفروشات</h3>
-<p class="text-body-md text-outline-variant mb-6 h-12 overflow-hidden">تنظيف الستائر، السجاد، والكنب بتقنيات البخار الجاف.</p>
-<div class="flex justify-between items-end border-t border-surface-container pt-4">
-<div>
-<span class="block text-xs text-outline-variant">يبدأ من</span>
-<span class="text-xl font-bold text-on-surface">٣٥٠ ر.س</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section>
-<div class="flex items-center justify-between mb-6">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
-<h2 class="font-heading-sm text-primary">تحديد التاريخ والوقت</h2>
-</div>
-<div class="flex bg-surface-container p-1 rounded-full">
-<button class="px-4 py-1.5 rounded-full text-sm font-bold bg-white shadow-sm text-primary">ميلادي</button>
-<button class="px-4 py-1.5 rounded-full text-sm font-medium text-outline">هجري</button>
-</div>
-</div>
-<div class="bg-white rounded-xl booking-card-shadow p-8 overflow-hidden">
-<div class="flex justify-between items-center mb-8">
-<h4 class="text-xl font-bold">نوفمبر ٢٠٢٤</h4>
-<div class="flex gap-2">
-<button class="w-10 h-10 flex items-center justify-center rounded-full border border-surface-container hover:bg-surface-container transition-colors">
-<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-full border border-surface-container hover:bg-surface-container transition-colors">
-<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
-</button>
-</div>
-</div>
-<div class="grid grid-cols-7 gap-y-4 text-center mb-4">
-<div class="text-outline text-sm font-bold">الأحد</div>
-<div class="text-outline text-sm font-bold">الاثنين</div>
-<div class="text-outline text-sm font-bold">الثلاثاء</div>
-<div class="text-outline text-sm font-bold">الأربعاء</div>
-<div class="text-outline text-sm font-bold">الخميس</div>
-<div class="text-outline text-sm font-bold">الجمعة</div>
-<div class="text-outline text-sm font-bold">السبت</div>
-<div class="py-3 text-surface-dim">٢٧</div>
-<div class="py-3 text-surface-dim">٢٨</div>
-<div class="py-3 text-surface-dim">٢٩</div>
-<div class="py-3 text-surface-dim">٣٠</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٢</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٣</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٤</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٥</div>
-<div class="py-3 bg-primary-container text-white rounded-lg font-bold shadow-md cursor-pointer relative">٦
-                                <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-white rounded-full"></span>
-</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٧</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٨</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٩</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٠</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١١</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٢</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٣</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٤</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٥</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٦</div>
-<div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٧</div>
-</div>
-<div class="mt-xl pt-lg border-t border-surface-container">
-<h5 class="font-bold text-on-surface mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
-                                الأوقات المتاحة
-                            </h5>
-<div class="space-y-8">
-<div>
-<span class="text-xs font-bold text-outline uppercase tracking-wider block mb-4">الفترة الصباحية</span>
-<div class="flex flex-wrap gap-3">
-<div class="px-6 py-3 rounded-full border border-primary bg-primary/5 text-primary font-bold cursor-pointer transition-all">٠٨:٠٠ ص</div>
-<div class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">٠٩:٣٠ ص</div>
-<div class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">١١:٠٠ ص</div>
-</div>
-</div>
-<div>
-<span class="text-xs font-bold text-outline uppercase tracking-wider block mb-4">فترة بعد الظهر</span>
-<div class="flex flex-wrap gap-3">
-<div class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">٠١:٣٠ م</div>
-<div class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">٠٣:٠٠ م</div>
-<div class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">٠٤:٣٠ م</div>
-</div>
-</div>
-<div>
-<span class="text-xs font-bold text-outline uppercase tracking-wider block mb-4">الفترة المسائية</span>
-<div class="flex flex-wrap gap-3">
-<div class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">٠٦:٠٠ م</div>
-<div class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">٠٧:٣٠ م</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
-<div class="lg:col-span-4 sticky top-28">
-<div class="bg-white rounded-xl booking-card-shadow overflow-hidden">
-<div class="bg-primary-container p-6 text-white">
-<h3 class="font-heading-sm">ملخص الحجز</h3>
-<p class="text-sm opacity-80">يتم تحديث البيانات تلقائياً</p>
-</div>
-<div class="p-6 space-y-6">
-<div class="space-y-4">
-<div class="flex justify-between items-start">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-outline" data-icon="cleaning_services">cleaning_services</span>
-<div>
-<span class="block font-bold text-on-surface">التنظيف العميق (سكني)</span>
-<span class="text-xs text-outline">باقة التميز الفندقية</span>
-</div>
-</div>
-<span class="font-bold text-on-surface">٤٥٠ ر.س</span>
-</div>
-<div class="flex justify-between items-start">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-outline" data-icon="event_available">event_available</span>
-<div>
-<span class="block font-bold text-on-surface">الأربعاء، ٦ نوفمبر</span>
-<span class="text-xs text-outline text-primary font-medium">الساعة ٠٨:٠٠ صباحاً</span>
-</div>
-</div>
-</div>
-</div>
-<div class="bg-secondary-container/5 rounded-xl p-4 border border-secondary-container/10">
-<div class="flex items-center justify-between mb-1">
-<span class="text-sm text-on-secondary-container flex items-center gap-2">
-<span class="material-symbols-outlined text-sm" data-icon="loyalty">loyalty</span>
-                                    نقاط الولاء المكتسبة
-                                </span>
-<span class="font-bold text-on-secondary-container">+ ٤٥ نقطة</span>
-</div>
-<p class="text-[10px] text-outline">يمكنك استخدام النقاط للحصول على خصومات في الحجوزات القادمة.</p>
-</div>
-<div class="pt-6 border-t border-surface-container space-y-3">
-<div class="flex justify-between text-on-surface">
-<span>المجموع الفرعي</span>
-<span>٤٥٠ ر.س</span>
-</div>
-<div class="flex justify-between text-on-surface">
-<span>ضريبة القيمة المضافة (١٥٪)</span>
-<span>٦٧.٥ ر.س</span>
-</div>
-<div class="flex justify-between items-center text-xl font-bold text-primary pt-2">
-<span>الإجمالي</span>
-<span>٥١٧.٥ ر.س</span>
-</div>
-</div>
-<button class="w-full py-4 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-95 duration-200">
-<span>متابعة للدفع</span>
-<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
-</button>
-<div class="flex items-center justify-center gap-6 pt-4 grayscale opacity-40">
-<img alt="Visa" class="h-4" data-alt="visa credit card payment network logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHY8QNJcxPMQK0eVblirIcpW-EQcTtjOLv5VNrRwLuVE6J6XebA4GUNGcc0HHar1Aa24hp5vvfBjD561SJpzAuyxPXGO-pNKfduylErt8ZGaqbkk3KGrJvO8R_smHO2Vr3jfC-EX6FWeW2bQzMR62qIqCHqeePJfM_YRgljeKyAHYK47nOV1TrLzT5fkX91fZ9PO7mVUAjJkSTK_48y4Qkpe0kFmhmciVLJ2hyS1_FcVn6nsOaSjHJ_5JqUBFspiVv706uQL2Zw8Fj"/>
-<img alt="Mastercard" class="h-6" data-alt="mastercard payment network logo symbol" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkQiFGhinz2Zb35QNFWSoefERgiQyxZsKgY3maCpx5bTTze1FcXkfLWySDE-rfB2j0MawuOPnnGXlyIcegjXTmMmQPcfj-J4Jt0TNl5y7f3FmgZRY-z90uRKSPcmQQLwBagVFwga9iYMr1HxywP0Tx0iwKimL8kFYbUbooKmMsN1Za1S8AbSrDUId5F2ZU1odG2EkS6fOhK804n-nqCfPqB3JXbFaMvRrCc5Y19NWiLPeLEQ24txZHvBUfwJ0cTRMMY0GbarsU7PqB"/>
-<img alt="Mada" class="h-4" data-alt="mada payment network saudi arabia local scheme logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1kL83Cqmux7XbxkihfRGX0Tw-V3vZvIl7NopAmnyclY4SH-V2Y5i3syCIJ9m4lwMXdhCz9fZRwLvfkiczVikJwh_9Fa4Wwv4kvsR454jIx308wAs5H6eUILJkuWxXLs0EttVm-3-kTkGa-dbis4nBMQ7zRSuEev2n1kBNnbpY2So7y1o8FHw22wUFJm4SOPGIgfYbUSwehGjpS-MnR7ND73L9PORyLBOgeLfbpPyATfPklM8rHbVf4QWt3ehR2d5UAJl9DUcMl8UE"/>
-</div>
-</div>
-</div>
-<div class="mt-6 flex items-start gap-4 p-4 bg-primary/5 rounded-xl border border-primary/10">
-<span class="material-symbols-outlined text-primary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
-<div>
-<h4 class="text-sm font-bold text-primary mb-1">ضمان SADA للجودة</h4>
-<p class="text-xs text-outline-variant leading-relaxed">نحن نضمن رضاك التام عن الخدمة. في حال وجود أي ملاحظة، سنقوم بإعادة التنظيف مجاناً.</p>
-</div>
-</div>
-</div>
-</div>
-</main>
-<footer class="w-full border-t border-gray-100 bg-white">
-<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8 py-20 px-8">
-<div class="flex flex-col gap-4">
-<span class="text-xl font-bold text-[#0F6E56]">SADA Luxury Clean</span>
-<p class="max-w-xs text-gray-500 text-sm">حلول تنظيف فاخرة صممت خصيصاً لتناسب أسلوب حياتك الراقي في المملكة العربية السعودية.</p>
-</div>
-<div class="grid grid-cols-2 md:grid-cols-3 gap-12 flex-1">
-<div class="flex flex-col gap-4">
-<span class="font-semibold text-gray-900">الشركة</span>
-<a class="text-sm text-gray-500 hover:text-[#0F6E56] transition-all" href="#">عن سديم</a>
-<a class="text-sm text-gray-500 hover:text-[#0F6E56] transition-all" href="#">الوظائف</a>
-<a class="text-sm text-gray-500 hover:text-[#0F6E56] transition-all" href="#">المدونة</a>
-</div>
-<div class="flex flex-col gap-4">
-<span class="font-semibold text-gray-900">الدعم</span>
-<a class="text-sm text-gray-500 hover:text-[#0F6E56] transition-all" href="#">مركز المساعدة</a>
-<a class="text-sm text-gray-500 hover:text-[#0F6E56] transition-all" href="#">سياسة الخصوصية</a>
-<a class="text-sm text-gray-500 hover:text-[#0F6E56] transition-all" href="#">شروط الخدمة</a>
-</div>
-<div class="flex flex-col gap-4">
-<span class="font-semibold text-gray-900">تواصل معنا</span>
-<span class="text-sm text-gray-500">0554918518</span>
-<a class="text-sm text-[#0F6E56] font-bold" href="#">WhatsApp Support</a>
-</div>
-</div>
-</div>
-<div class="max-w-7xl mx-auto px-8 py-6 border-t border-gray-50">
-<p class="text-sm text-gray-500">© 2024 SADA Cleaning Services. All rights reserved.</p>
-</div>
-</footer>
-</body></html>
+  <header class="fixed top-0 w-full z-50 bg-[#FAFAF7]/80 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <div class="flex items-center gap-8">
+        <span class="text-2xl font-bold tracking-tight text-[#0F6E56]">Medi Clean</span>
+        <nav class="hidden md:flex gap-6 items-center">
+          <a class="text-gray-600 hover:text-[#0F6E56] transition-colors font-medium" href="#">Services</a>
+          <a class="text-gray-600 hover:text-[#0F6E56] transition-colors font-medium" href="#">Loyalty</a>
+          <a class="text-gray-600 hover:text-[#0F6E56] transition-colors font-medium" href="#">About Us</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="text-gray-600 font-medium">EN/AR</button>
+        <div
+          class="flex items-center gap-2 px-4 py-2 bg-primary-container text-white rounded-full hover:opacity-90 transition-opacity active:scale-95 duration-200 cursor-pointer">
+          <span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span>
+          <span class="font-bold">Book Now</span>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="mt-24 pb-xl px-6 max-w-7xl mx-auto">
+    <div class="mb-lg">
+      <div class="flex items-center justify-between mb-8 max-w-3xl">
+        <div class="flex flex-col items-center gap-2 group cursor-default">
+          <div
+            class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center shadow-lg">
+            <span class="material-symbols-outlined" data-icon="cleaning_services">cleaning_services</span>
+          </div>
+          <span class="font-heading-sm text-sm font-bold text-primary">الخدمة</span>
+        </div>
+        <div class="h-[2px] flex-1 bg-surface-dim mx-4 -mt-8"></div>
+        <div class="flex flex-col items-center gap-2 opacity-50">
+          <div class="w-10 h-10 rounded-full bg-surface-container text-outline flex items-center justify-center">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+          </div>
+          <span class="font-heading-sm text-sm">التفاصيل</span>
+        </div>
+        <div class="h-[2px] flex-1 bg-surface-dim mx-4 -mt-8"></div>
+        <div class="flex flex-col items-center gap-2 opacity-50">
+          <div class="w-10 h-10 rounded-full bg-surface-container text-outline flex items-center justify-center">
+            <span class="material-symbols-outlined" data-icon="payments">payments</span>
+          </div>
+          <span class="font-heading-sm text-sm">الدفع</span>
+        </div>
+        <div class="h-[2px] flex-1 bg-surface-dim mx-4 -mt-8"></div>
+        <div class="flex flex-col items-center gap-2 opacity-50">
+          <div class="w-10 h-10 rounded-full bg-surface-container text-outline flex items-center justify-center">
+            <span class="material-symbols-outlined" data-icon="task_alt">task_alt</span>
+          </div>
+          <span class="font-heading-sm text-sm">تأكيد</span>
+        </div>
+      </div>
+      <h1 class="font-display-md text-primary mb-4">اختر الخدمة والوقت</h1>
+      <p class="text-body-lg text-outline-variant max-w-2xl">اختر من بين باقات التنظيف الفاخرة التي تناسب احتياجاتك وحدد
+        الموعد الأنسب لزيارة فريقنا.</p>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+      <div class="lg:col-span-8 space-y-xl">
+        <section>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+            <h2 class="font-heading-sm text-primary">باقات التنظيف</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+            <div
+              class="bg-surface-container-lowest p-6 rounded-xl booking-card-shadow border-2 border-primary ring-4 ring-primary/5 transition-all cursor-pointer">
+              <div class="flex justify-between items-start mb-4">
+                <span class="material-symbols-outlined text-primary text-3xl"
+                  data-icon="home_repair_service">home_repair_service</span>
+                <span
+                  class="bg-secondary-container/10 text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">الأكثر
+                  طلباً</span>
+              </div>
+              <h3 class="font-heading-sm mb-2">التنظيف العميق (سكني)</h3>
+              <p class="text-body-md text-outline-variant mb-6 h-12 overflow-hidden">تنظيف شامل ودقيق لكافة غرف المنزل
+                مع تعقيم الأسطح.</p>
+              <div class="flex justify-between items-end border-t border-surface-container pt-4">
+                <div>
+                  <span class="block text-xs text-outline-variant">يبدأ من</span>
+                  <span class="text-xl font-bold text-primary">٤٥٠ ر.س</span>
+                </div>
+                <span class="material-symbols-outlined text-primary" data-icon="check_circle"
+                  style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              </div>
+            </div>
+            <div
+              class="bg-surface-container-lowest p-6 rounded-xl booking-card-shadow border border-surface-variant/50 hover:border-primary transition-all cursor-pointer group">
+              <div class="flex justify-between items-start mb-4">
+                <span class="material-symbols-outlined text-outline group-hover:text-primary text-3xl transition-colors"
+                  data-icon="sanitizer">sanitizer</span>
+              </div>
+              <h3 class="font-heading-sm mb-2">تعقيم وقائي ممتاز</h3>
+              <p class="text-body-md text-outline-variant mb-6 h-12 overflow-hidden">خدمة مخصصة لتعقيم الفلل والقصور
+                باستخدام مواد معتمدة عالمياً.</p>
+              <div class="flex justify-between items-end border-t border-surface-container pt-4">
+                <div>
+                  <span class="block text-xs text-outline-variant">يبدأ من</span>
+                  <span class="text-xl font-bold text-on-surface">٦٨٠ ر.س</span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-surface-container-lowest p-6 rounded-xl booking-card-shadow border border-surface-variant/50 hover:border-primary transition-all cursor-pointer group">
+              <div class="flex justify-between items-start mb-4">
+                <span class="material-symbols-outlined text-outline group-hover:text-primary text-3xl transition-colors"
+                  data-icon="apartment">apartment</span>
+              </div>
+              <h3 class="font-heading-sm mb-2">تنظيف المكاتب والشركات</h3>
+              <p class="text-body-md text-outline-variant mb-6 h-12 overflow-hidden">باقات تنظيف دورية مخصصة لبيئات
+                العمل الاحترافية.</p>
+              <div class="flex justify-between items-end border-t border-surface-container pt-4">
+                <div>
+                  <span class="block text-xs text-outline-variant">يبدأ من</span>
+                  <span class="text-xl font-bold text-on-surface">١٢٠٠ ر.س</span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-surface-container-lowest p-6 rounded-xl booking-card-shadow border border-surface-variant/50 hover:border-primary transition-all cursor-pointer group">
+              <div class="flex justify-between items-start mb-4">
+                <span class="material-symbols-outlined text-outline group-hover:text-primary text-3xl transition-colors"
+                  data-icon="weekend">weekend</span>
+              </div>
+              <h3 class="font-heading-sm mb-2">تأثيث وعناية بالمفروشات</h3>
+              <p class="text-body-md text-outline-variant mb-6 h-12 overflow-hidden">تنظيف الستائر، السجاد، والكنب
+                بتقنيات البخار الجاف.</p>
+              <div class="flex justify-between items-end border-t border-surface-container pt-4">
+                <div>
+                  <span class="block text-xs text-outline-variant">يبدأ من</span>
+                  <span class="text-xl font-bold text-on-surface">٣٥٠ ر.س</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
+              <h2 class="font-heading-sm text-primary">تحديد التاريخ والوقت</h2>
+            </div>
+            <div class="flex bg-surface-container p-1 rounded-full">
+              <button class="px-4 py-1.5 rounded-full text-sm font-bold bg-white shadow-sm text-primary">ميلادي</button>
+              <button class="px-4 py-1.5 rounded-full text-sm font-medium text-outline">هجري</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl booking-card-shadow p-8 overflow-hidden">
+            <div class="flex justify-between items-center mb-8">
+              <h4 class="text-xl font-bold">نوفمبر ٢٠٢٤</h4>
+              <div class="flex gap-2">
+                <button
+                  class="w-10 h-10 flex items-center justify-center rounded-full border border-surface-container hover:bg-surface-container transition-colors">
+                  <span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+                </button>
+                <button
+                  class="w-10 h-10 flex items-center justify-center rounded-full border border-surface-container hover:bg-surface-container transition-colors">
+                  <span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+                </button>
+              </div>
+            </div>
+            <div class="grid grid-cols-7 gap-y-4 text-center mb-4">
+              <div class="text-outline text-sm font-bold">الأحد</div>
+              <div class="text-outline text-sm font-bold">الاثنين</div>
+              <div class="text-outline text-sm font-bold">الثلاثاء</div>
+              <div class="text-outline text-sm font-bold">الأربعاء</div>
+              <div class="text-outline text-sm font-bold">الخميس</div>
+              <div class="text-outline text-sm font-bold">الجمعة</div>
+              <div class="text-outline text-sm font-bold">السبت</div>
+              <div class="py-3 text-surface-dim">٢٧</div>
+              <div class="py-3 text-surface-dim">٢٨</div>
+              <div class="py-3 text-surface-dim">٢٩</div>
+              <div class="py-3 text-surface-dim">٣٠</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٢</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٣</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٤</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٥</div>
+              <div class="py-3 bg-primary-container text-white rounded-lg font-bold shadow-md cursor-pointer relative">٦
+                <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-white rounded-full"></span>
+              </div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٧</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٨</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">٩</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٠</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١١</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٢</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٣</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٤</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٥</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٦</div>
+              <div class="py-3 hover:bg-surface-container rounded-lg cursor-pointer">١٧</div>
+            </div>
+            <div class="mt-xl pt-lg border-t border-surface-container">
+              <h5 class="font-bold text-on-surface mb-6 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+                الأوقات المتاحة
+              </h5>
+              <div class="space-y-8">
+                <div>
+                  <span class="text-xs font-bold text-outline uppercase tracking-wider block mb-4">الفترة
+                    الصباحية</span>
+                  <div class="flex flex-wrap gap-3">
+                    <div
+                      class="px-6 py-3 rounded-full border border-primary bg-primary/5 text-primary font-bold cursor-pointer transition-all">
+                      ٠٨:٠٠ ص</div>
+                    <div
+                      class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">
+                      ٠٩:٣٠ ص</div>
+                    <div
+                      class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">
+                      ١١:٠٠ ص</div>
+                  </div>
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-outline uppercase tracking-wider block mb-4">فترة بعد الظهر</span>
+                  <div class="flex flex-wrap gap-3">
+                    <div
+                      class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">
+                      ٠١:٣٠ م</div>
+                    <div
+                      class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">
+                      ٠٣:٠٠ م</div>
+                    <div
+                      class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">
+                      ٠٤:٣٠ م</div>
+                  </div>
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-outline uppercase tracking-wider block mb-4">الفترة
+                    المسائية</span>
+                  <div class="flex flex-wrap gap-3">
+                    <div
+                      class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">
+                      ٠٦:٠٠ م</div>
+                    <div
+                      class="px-6 py-3 rounded-full border border-surface-variant hover:border-primary transition-all text-on-surface cursor-pointer">
+                      ٠٧:٣٠ م</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="lg:col-span-4 sticky top-28">
+        <div class="bg-white rounded-xl booking-card-shadow overflow-hidden">
+          <div class="bg-primary-container p-6 text-white">
+            <h3 class="font-heading-sm">ملخص الحجز</h3>
+            <p class="text-sm opacity-80">يتم تحديث البيانات تلقائياً</p>
+          </div>
+          <div class="p-6 space-y-6">
+            <div class="space-y-4">
+              <div class="flex justify-between items-start">
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-outline"
+                    data-icon="cleaning_services">cleaning_services</span>
+                  <div>
+                    <span class="block font-bold text-on-surface">التنظيف العميق (سكني)</span>
+                    <span class="text-xs text-outline">باقة التميز الفندقية</span>
+                  </div>
+                </div>
+                <span class="font-bold text-on-surface">٤٥٠ ر.س</span>
+              </div>
+              <div class="flex justify-between items-start">
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-outline"
+                    data-icon="event_available">event_available</span>
+                  <div>
+                    <span class="block font-bold text-on-surface">الأربعاء، ٦ نوفمبر</span>
+                    <span class="text-xs text-outline text-primary font-medium">الساعة ٠٨:٠٠ صباحاً</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-secondary-container/5 rounded-xl p-4 border border-secondary-container/10">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-sm text-on-secondary-container flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sm" data-icon="loyalty">loyalty</span>
+                  نقاط الولاء المكتسبة
+                </span>
+                <span class="font-bold text-on-secondary-container">+ ٤٥ نقطة</span>
+              </div>
+              <p class="text-[10px] text-outline">يمكنك استخدام النقاط للحصول على خصومات في الحجوزات القادمة.</p>
+            </div>
+            <div class="pt-6 border-t border-surface-container space-y-3">
+              <div class="flex justify-between text-on-surface">
+                <span>المجموع الفرعي</span>
+                <span>٤٥٠ ر.س</span>
+              </div>
+              <div class="flex justify-between text-on-surface">
+                <span>ضريبة القيمة المضافة (١٥٪)</span>
+                <span>٦٧.٥ ر.س</span>
+              </div>
+              <div class="flex justify-between items-center text-xl font-bold text-primary pt-2">
+                <span>الإجمالي</span>
+                <span>٥١٧.٥ ر.س</span>
+              </div>
+            </div>
+            <button
+              class="w-full py-4 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-95 duration-200">
+              <span>متابعة للدفع</span>
+              <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+            </button>
+            <div class="flex items-center justify-center gap-6 pt-4 grayscale opacity-40">
+              <img alt="Visa" class="h-4" data-alt="visa credit card payment network logo"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHY8QNJcxPMQK0eVblirIcpW-EQcTtjOLv5VNrRwLuVE6J6XebA4GUNGcc0HHar1Aa24hp5vvfBjD561SJpzAuyxPXGO-pNKfduylErt8ZGaqbkk3KGrJvO8R_smHO2Vr3jfC-EX6FWeW2bQzMR62qIqCHqeePJfM_YRgljeKyAHYK47nOV1TrLzT5fkX91fZ9PO7mVUAjJkSTK_48y4Qkpe0kFmhmciVLJ2hyS1_FcVn6nsOaSjHJ_5JqUBFspiVv706uQL2Zw8Fj" />
+              <img alt="Mastercard" class="h-6" data-alt="mastercard payment network logo symbol"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkQiFGhinz2Zb35QNFWSoefERgiQyxZsKgY3maCpx5bTTze1FcXkfLWySDE-rfB2j0MawuOPnnGXlyIcegjXTmMmQPcfj-J4Jt0TNl5y7f3FmgZRY-z90uRKSPcmQQLwBagVFwga9iYMr1HxywP0Tx0iwKimL8kFYbUbooKmMsN1Za1S8AbSrDUId5F2ZU1odG2EkS6fOhK804n-nqCfPqB3JXbFaMvRrCc5Y19NWiLPeLEQ24txZHvBUfwJ0cTRMMY0GbarsU7PqB" />
+              <img alt="Mada" class="h-4" data-alt="mada payment network saudi arabia local scheme logo"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1kL83Cqmux7XbxkihfRGX0Tw-V3vZvIl7NopAmnyclY4SH-V2Y5i3syCIJ9m4lwMXdhCz9fZRwLvfkiczVikJwh_9Fa4Wwv4kvsR454jIx308wAs5H6eUILJkuWxXLs0EttVm-3-kTkGa-dbis4nBMQ7zRSuEev2n1kBNnbpY2So7y1o8FHw22wUFJm4SOPGIgfYbUSwehGjpS-MnR7ND73L9PORyLBOgeLfbpPyATfPklM8rHbVf4QWt3ehR2d5UAJl9DUcMl8UE" />
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 flex items-start gap-4 p-4 bg-primary/5 rounded-xl border border-primary/10">
+          <span class="material-symbols-outlined text-primary" data-icon="verified"
+            style="font-variation-settings: 'FILL' 1;">verified</span>
+          <div>
+            <h4 class="text-sm font-bold text-primary mb-1">ضمان Medi Clean للجودة</h4>
+            <p class="text-xs text-outline-variant leading-relaxed">نحن نضمن رضاك التام عن الخدمة. في حال وجود أي
+              ملاحظة، سنقوم بإعادة التنظيف مجاناً.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="w-full border-t border-gray-100 bg-white">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8 py-20 px-8">
+      <div class="flex flex-col gap-4">
+        <span class="text-xl font-bold text-[#0F6E56]">Medi Clean</span>
+        <p class="max-w-xs text-gray-500 text-sm">حلول تنظيف فاخرة صممت خصيصاً لتناسب أسلوب حياتك الراقي في المملكة
+          العربية السعودية.</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-12 flex-1">
+        <div class="flex flex-col gap-4">
+          <span class="font-semibold text-gray-900">الشركة</span>
+          <a class="text-sm text-gray-500 hover:text-[#0F6E56] transition-all" href="#">عن سديم</a>
+          <a class="text-sm text-gray-500 hover:text-[#0F6E56] transition-all" href="#">الوظائف</a>
+          <a class="text-sm text-gray-500 hover:text-[#0F6E56] transition-all" href="#">المدونة</a>
+        </div>
+        <div class="flex flex-col gap-4">
+          <span class="font-semibold text-gray-900">الدعم</span>
+          <a class="text-sm text-gray-500 hover:text-[#0F6E56] transition-all" href="#">مركز المساعدة</a>
+          <a class="text-sm text-gray-500 hover:text-[#0F6E56] transition-all" href="#">سياسة الخصوصية</a>
+          <a class="text-sm text-gray-500 hover:text-[#0F6E56] transition-all" href="#">شروط الخدمة</a>
+        </div>
+        <div class="flex flex-col gap-4">
+          <span class="font-semibold text-gray-900">تواصل معنا</span>
+          <span class="text-sm text-gray-500">0554918518</span>
+          <a class="text-sm text-[#0F6E56] font-bold" href="#">WhatsApp Support</a>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-8 py-6 border-t border-gray-50">
+      <p class="text-sm text-gray-500">© 2026 Medi Cleaning Services. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
+</html>

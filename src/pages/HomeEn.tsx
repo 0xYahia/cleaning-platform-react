@@ -17,7 +17,7 @@ export function HomeEn() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-md pb-lg">
         <div className="rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-2xl border border-surface-variant/30 bg-white">
           <img
-            src={heroBanner}
+            src={heroBanner.en}
             alt="Tank cleaning, sanitization & lining"
             className="w-full h-auto block"
             loading="eager"
@@ -97,23 +97,21 @@ export function HomeEn() {
               <Link
                 key={service.id}
                 to={`/services/${service.slug}`}
-                className={`group relative overflow-hidden rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 border border-surface-variant/30 ${
-                  isWide
-                    ? 'md:col-span-2 lg:col-span-3 flex flex-col lg:flex-row'
-                    : ''
-                }`}
+                className={`group relative overflow-hidden rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 border border-surface-variant/30 ${isWide
+                  ? 'md:col-span-2 lg:col-span-3 flex flex-col lg:flex-row'
+                  : ''
+                  }`}
               >
                 <div
-                  className={`overflow-hidden relative ${
-                    isWide
-                      ? 'lg:w-3/5 lg:h-auto h-72 md:h-96'
-                      : 'aspect-video w-full'
-                  }`}
+                  className={`overflow-hidden relative ${isWide
+                    ? 'lg:w-3/5 lg:h-auto h-72 md:h-96'
+                    : 'aspect-video w-full'
+                    }`}
                 >
                   <img
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    src={service.image}
-                    alt=""
+                    src={service.imageEn ?? service.image ?? service.imageAr}
+                    alt={service.titleEn}
                   />
                   {isWide && (
                     <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-primary/60 via-primary/10 to-transparent" />

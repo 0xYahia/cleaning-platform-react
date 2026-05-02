@@ -20,15 +20,15 @@ export function Navigation({ lang }: NavigationProps) {
 
   const links = isAr
     ? [
-        { to: '/ar', label: 'الرئيسية' },
-        { to: '/ar/services/tank-cleaning', label: 'الخدمات' },
-        { to: '/ar/booking', label: 'الحجز' },
-      ]
+      { to: '/ar', label: 'الرئيسية' },
+      { to: '/ar/services/tank-cleaning', label: 'الخدمات' },
+      { to: '/ar/booking', label: 'الحجز' },
+    ]
     : [
-        { to: '/', label: 'Home' },
-        { to: '/services/tank-cleaning', label: 'Services' },
-        { to: '/booking', label: 'Booking' },
-      ]
+      { to: '/', label: 'Home' },
+      { to: '/services/tank-cleaning', label: 'Services' },
+      { to: '/booking', label: 'Booking' },
+    ]
 
   return (
     <header className="fixed top-0 w-full z-50 bg-[#FAFAF7]/80 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
@@ -38,7 +38,7 @@ export function Navigation({ lang }: NavigationProps) {
             to={isAr ? '/ar' : '/'}
             className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#0F6E56] font-display-md whitespace-nowrap"
           >
-            SADA Luxury Clean
+            Medi Clean
           </Link>
           <nav className="hidden md:flex items-center gap-6">
             {links.map((link) => (
@@ -47,10 +47,9 @@ export function Navigation({ lang }: NavigationProps) {
                 to={link.to}
                 end={link.to === '/' || link.to === '/ar'}
                 className={({ isActive }) =>
-                  `transition-colors font-body-md ${
-                    isActive
-                      ? 'text-[#0F6E56] font-bold'
-                      : 'text-gray-600 hover:text-[#0F6E56]'
+                  `transition-colors font-body-md ${isActive
+                    ? 'text-[#0F6E56] font-bold'
+                    : 'text-gray-600 hover:text-[#0F6E56]'
                   }`
                 }
               >
@@ -97,10 +96,9 @@ export function Navigation({ lang }: NavigationProps) {
                 to={link.to}
                 end={link.to === '/' || link.to === '/ar'}
                 className={({ isActive }) =>
-                  `px-3 py-3 rounded-lg transition-colors font-body-md ${
-                    isActive
-                      ? 'bg-[#0F6E56]/10 text-[#0F6E56] font-bold'
-                      : 'text-gray-600 hover:bg-[#0F6E56]/5'
+                  `px-3 py-3 rounded-lg transition-colors font-body-md ${isActive
+                    ? 'bg-[#0F6E56]/10 text-[#0F6E56] font-bold'
+                    : 'text-gray-600 hover:bg-[#0F6E56]/5'
                   }`
                 }
               >

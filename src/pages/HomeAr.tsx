@@ -17,7 +17,7 @@ export function HomeAr() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-md pb-lg">
         <div className="rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-2xl border border-surface-variant/30 bg-white">
           <img
-            src={heroBanner}
+            src={heroBanner.ar}
             alt="نظافة وعزل جميع أنواع الخزانات"
             className="w-full h-auto block"
             loading="eager"
@@ -111,8 +111,8 @@ export function HomeAr() {
                 >
                   <img
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    src={service.image}
-                    alt=""
+                    src={service.imageAr ?? service.image ?? service.imageEn}
+                    alt={service.titleAr}
                   />
                   {isWide && (
                     <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-primary/60 via-primary/10 to-transparent" />

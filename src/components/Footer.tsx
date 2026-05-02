@@ -15,7 +15,7 @@ export function Footer({ lang }: FooterProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-lg mb-xl">
           <div className="md:col-span-1">
             <p className="text-2xl font-bold text-[#0F6E56] font-display-md mb-6">
-              SADA Luxury Clean
+              Medi Clean
             </p>
             <p className="text-sm text-on-surface-variant mb-6">
               {isAr
