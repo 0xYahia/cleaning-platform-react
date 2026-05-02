@@ -3,6 +3,8 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Navigation } from './Navigation'
 import { Footer } from './Footer'
 import { WhatsAppFAB } from './WhatsAppFAB'
+import { CallFAB } from './CallFAB'
+import { MailFAB } from './MailFAB'
 
 interface LayoutProps {
   lang: 'en' | 'ar'
@@ -28,6 +30,8 @@ export function Layout({ lang }: LayoutProps) {
       </main>
       <Footer lang={lang} />
       <WhatsAppFAB />
+      <CallFAB />
+      <MailFAB />
     </div>
   )
 }

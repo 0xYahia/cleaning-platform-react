@@ -19,8 +19,8 @@ export function Footer({ lang }: FooterProps) {
             </p>
             <p className="text-sm text-on-surface-variant mb-6">
               {isAr
-                ? 'إعادة تعريف معايير النظافة في المملكة بالفخامة والدقة والثقة.'
-                : 'Redefining hygiene standards across the Kingdom with luxury, precision, and trust.'}
+                ? 'نظافة... أمان... تعقيم بمعايير احترافية في الدمام والخبر والظهران والجبيل والقطيف وسيهات.'
+                : 'Cleanliness, safety and sanitization with professional standards across the Eastern Province.'}
             </p>
             <div className="flex gap-4">
               {['social_leaderboard', 'share', 'camera'].map((icon) => (
@@ -59,7 +59,11 @@ export function Footer({ lang }: FooterProps) {
               </li>
               <li className="flex items-start gap-2">
                 <Icon name="location_on" className="text-secondary text-sm" />
-                <span>{isAr ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia'}</span>
+                <span>
+                  {isAr
+                    ? 'الدمام، الخبر، الظهران، الجبيل، القطيف، سيهات'
+                    : 'Dammam, Khobar, Dhahran, Jubail, Qatif, Sihat'}
+                </span>
               </li>
             </ul>
           </div>

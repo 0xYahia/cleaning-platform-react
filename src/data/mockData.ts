@@ -35,17 +35,41 @@ export interface ServiceFeature {
   icon: string
 }
 
+export interface SubscriptionPlan {
+  id: string
+  titleAr: string
+  titleEn: string
+  priceAr: string
+  priceEn: string
+  cadenceAr: string
+  cadenceEn: string
+  benefitsAr: string[]
+  benefitsEn: string[]
+  highlight?: boolean
+}
+
+export const cities = {
+  ar: ['الدمام', 'الخبر', 'الظهران', 'الجبيل', 'القطيف', 'سيهات'],
+  en: ['Dammam', 'Khobar', 'Dhahran', 'Jubail', 'Qatif', 'Sihat'],
+}
+
+export const slogan = {
+  ar: 'نظافة... أمان... تعقيم بمعايير احترافية',
+  en: 'Cleanliness. Safety. Sanitization. Professional standards.',
+}
+
 export const services: Service[] = [
   {
-    id: 'home-luxury',
-    slug: 'home-luxury-clean',
-    titleEn: 'Home Luxury Clean',
-    titleAr: 'تنظيف المنازل والفلل',
+    id: 'home-cleaning',
+    slug: 'home-cleaning',
+    titleEn: 'Comprehensive Home Cleaning',
+    titleAr: 'تنظيف منازل شامل',
     descriptionEn:
-      'Deep cleaning for villas and apartments with museum-level care for fine surfaces.',
-    descriptionAr: 'تنظيف دوري وشامل للغرف، المطابخ، والواجهات بخصوصية تامة.',
+      'Deep cleaning for villas and apartments with safe, certified products and advanced equipment.',
+    descriptionAr:
+      'تنظيف عميق ومتكامل للمنازل والشقق بأحدث المعدات ومواد آمنة 100%.',
     icon: 'home',
-    startingPrice: 150,
+    startingPrice: 250,
     badgeEn: 'Most Popular',
     badgeAr: 'الأكثر طلباً',
     image:
@@ -53,46 +77,167 @@ export const services: Service[] = [
     span: 'large',
   },
   {
-    id: 'medical-grade',
-    slug: 'medical-grade',
-    titleEn: 'Medical Grade',
-    titleAr: 'تنظيف طبي',
-    descriptionEn: 'Surgical precision disinfection for clinics and pharmacies.',
-    descriptionAr: 'تعقيم بدقة جراحية للعيادات والصيدليات.',
-    icon: 'medical_services',
-    startingPrice: 350,
+    id: 'mosques',
+    slug: 'mosque-cleaning',
+    titleEn: 'Mosque Cleaning & Sanitization',
+    titleAr: 'تنظيف وتعقيم المساجد',
+    descriptionEn: 'Specialized cleaning and sanitization service for mosques and prayer halls.',
+    descriptionAr: 'خدمة متخصصة لتنظيف وتعقيم المساجد ومصليات الجوامع بعناية تامة.',
+    icon: 'mosque',
+    startingPrice: 400,
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuCEBHnDkVTo0ClA6LeuV_gg4sbiXjDJo5iR1RuLG4ZCLCtDN44X2DgUjWs0o1USWnnfMQmYDWDrfpQiDW9hCJdp7OTaAs5SSlqpIRCBYHLTdow6_wyrlajNoWLgJ0XGTwq14TQjkUwRuN-XutjvLCos-Ax_HTYGfGPMjwLvL4bBd5adIRhrIaHSqJFWc5vjEONklwLeqRINrmFsypK4UxoRCyyAJ0l7H_zwcK1Ndzdqu3EzTCgnptRqUnr1ThWPsF0ZSm6b0W2y7B3f',
     span: 'small',
   },
   {
-    id: 'office-corporate',
-    slug: 'office-corporate',
-    titleEn: 'Office & Corporate',
-    titleAr: 'المكاتب والشركات',
-    descriptionEn: 'Maintaining professional excellence for workspaces.',
-    descriptionAr: 'الحفاظ على التميز المهني لبيئات العمل.',
-    icon: 'corporate_fare',
-    startingPrice: 250,
+    id: 'ac',
+    slug: 'ac-cleaning',
+    titleEn: 'AC Washing (Split / Window / Central)',
+    titleAr: 'غسيل المكيفات (سبليت – شباك – مركزي)',
+    descriptionEn: 'Full deep clean of split, window and central AC units to extend lifetime.',
+    descriptionAr: 'تنظيف عميق وغسيل احترافي لجميع أنواع المكيفات لإطالة عمرها وتحسين أدائها.',
+    icon: 'ac_unit',
+    startingPrice: 120,
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuBZBBI1xitrMDD9qBM8XQtj01Pa1TFDjAQ6er8rKUbjQcQswHHjwtSqNap1xe-YxS7uCm77AZE8yR4-qeBiugA3tp62V8m2Wv7VL70GZcLcJjQUJO-OleGAhID4q2Vv63KSJrggcg9E9kn0bUvtDwmwA5YOHG92HdbOIkIfnYXLfxByYN1EfFCYvUAht_XRkZQMBeAbhM0IWOhYSEyd_-FZJom7E1_t8a4faoxmpx3wTIivb4Hfqby_9IbwT34Arr4D9JxbltsqsgQ7',
     span: 'small',
   },
   {
-    id: 'specialized',
-    slug: 'specialized-services',
-    titleEn: 'Specialized Services',
-    titleAr: 'الخدمات المتخصصة',
+    id: 'tanks',
+    slug: 'tank-cleaning',
+    titleEn: 'Water Tank Cleaning, Sanitization, Sealing & Lining',
+    titleAr: 'تنظيف وغسيل الخزانات + التعقيم + العزل + التبطين',
     descriptionEn:
-      'Carpet deep steaming, chandelier cleaning, and pool maintenance by certified experts.',
-    descriptionAr: 'تنظيف السجاد بالبخار والثريات والمسابح بأيدي خبراء معتمدين.',
-    icon: 'cleaning_services',
-    startingPrice: 200,
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC',
+      'All-in-one service: cleaning, sanitization, leak sealing and food-grade lining for ground and surface tanks.',
+    descriptionAr:
+      'تنظيف وتعقيم وعزل وتبطين الخزانات الأرضية والسطحية بمواد آمنة معتمدة للحفاظ على نقاء المياه.',
+    icon: 'water_drop',
+    startingPrice: 350,
+    badgeEn: 'Featured',
+    badgeAr: 'عرض مميز',
+    image: '/landing.png',
     span: 'wide',
   },
+  {
+    id: 'pest-control',
+    slug: 'pest-control',
+    titleEn: 'Pest Control',
+    titleAr: 'مكافحة الحشرات',
+    descriptionEn: 'Safe and effective pest extermination for homes and businesses.',
+    descriptionAr: 'مكافحة آمنة وفعّالة لجميع أنواع الحشرات والقوارض للمنازل والمنشآت.',
+    icon: 'pest_control',
+    startingPrice: 180,
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC',
+    span: 'small',
+  },
+  {
+    id: 'upholstery',
+    slug: 'upholstery-steam',
+    titleEn: 'Sofa, Carpet & Curtain Steam Cleaning',
+    titleAr: 'غسيل الكنب والسجاد والستائر بالبخار',
+    descriptionEn: 'High-temperature steam cleaning for sofas, carpets and curtains.',
+    descriptionAr: 'غسيل بالبخار للكنب والسجاد والستائر لإزالة البقع والروائح والجراثيم.',
+    icon: 'dry_cleaning',
+    startingPrice: 200,
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuB-GIqxH169sGpYzeSK1um5ZMvlIskh4Zlc8c5YPZyrfjyVFJyB5z1Ys9raOG5k2y-6XEzw4ssQyoxXL5cEQePZ5jhDY3TSFHmPA4YkUSiMtw5Pe8QV4kll_3sK9dnedBV4RfSEmYiVW6l4Gyp2wVh-zbJfoqq5ug3A-PPQot6eGtaTzm7NQHaL9Bsgb8GDVHmtCtk1BOBqWvTiz4G5mTeYXUGAg_gTtWF2c1ncUCWbo5L1nOXe1h5XGL5A9ylAMawUge1kPCHnUnDb',
+    span: 'small',
+  },
+  {
+    id: 'sanitization',
+    slug: 'full-sanitization',
+    titleEn: 'Full Premise Sanitization',
+    titleAr: 'تعقيم شامل للمنازل والمنشآت',
+    descriptionEn: 'Hospital-grade sanitization for homes, offices, and commercial facilities.',
+    descriptionAr: 'تعقيم شامل بمعايير طبية للمنازل والمكاتب والمنشآت التجارية.',
+    icon: 'sanitizer',
+    startingPrice: 220,
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC',
+    span: 'small',
+  },
 ]
+
+export const subscriptionPlans: SubscriptionPlan[] = [
+  {
+    id: 'monthly',
+    titleAr: 'الاشتراك الشهري',
+    titleEn: 'Monthly Plan',
+    priceAr: 'حتى 20%',
+    priceEn: 'Up to 20%',
+    cadenceAr: 'خصم على الزيارات',
+    cadenceEn: 'off every visit',
+    benefitsAr: [
+      'زيارات منتظمة على مدار الشهر',
+      'خصم يصل إلى 20%',
+      'أولوية الحجز عند الطوارئ',
+    ],
+    benefitsEn: [
+      'Regular visits throughout the month',
+      'Up to 20% discount',
+      'Priority booking on demand',
+    ],
+  },
+  {
+    id: 'yearly',
+    titleAr: 'الاشتراك السنوي',
+    titleEn: 'Yearly Plan',
+    priceAr: 'حتى 20%',
+    priceEn: 'Up to 20%',
+    cadenceAr: 'خصم + خدمات مجانية',
+    cadenceEn: 'off + free services',
+    benefitsAr: [
+      'خصم يصل إلى 20% على كافة الخدمات',
+      'تعقيم مجاني دوري',
+      'فحص مكيفات وخزانات مجانًا',
+      'أولوية مطلقة في الحجز',
+    ],
+    benefitsEn: [
+      'Up to 20% off across all services',
+      'Free periodic sanitization',
+      'Free AC & water tank inspection',
+      'Top priority booking',
+    ],
+    highlight: true,
+  },
+]
+
+export const paymentOptions = {
+  ar: [
+    { id: 'account', label: 'الدفع عبر الحساب', icon: 'account_balance' },
+    { id: 'tabby', label: 'تابي - Tabby', icon: 'splitscreen' },
+    { id: 'tamara', label: 'تمارا - Tamara', icon: 'view_week' },
+  ],
+  en: [
+    { id: 'account', label: 'Pay by Account', icon: 'account_balance' },
+    { id: 'tabby', label: 'Tabby', icon: 'splitscreen' },
+    { id: 'tamara', label: 'Tamara', icon: 'view_week' },
+  ],
+}
+
+export const loyaltyProgram = {
+  ar: {
+    title: 'برنامج "عميلنا الذهبي"',
+    tagline: 'كل طلب = نقاط تستبدلها بخدمات وهدايا',
+    benefits: [
+      { icon: 'redeem', text: 'كل طلب = نقاط' },
+      { icon: 'card_giftcard', text: 'استبدل النقاط بخدمات مجانية' },
+      { icon: 'sell', text: 'خصومات حصرية للأعضاء' },
+      { icon: 'celebration', text: 'هدية عند كل 5 طلبات' },
+    ],
+  },
+  en: {
+    title: 'Golden Customer Program',
+    tagline: 'Every order earns points — redeem for free services and gifts.',
+    benefits: [
+      { icon: 'redeem', text: 'Every order earns points' },
+      { icon: 'card_giftcard', text: 'Redeem points for free services' },
+      { icon: 'sell', text: 'Exclusive member-only discounts' },
+      { icon: 'celebration', text: 'Free gift every 5 orders' },
+    ],
+  },
+}
 
 export const serviceFeatures: ServiceFeature[] = [
   {
@@ -107,54 +252,69 @@ export const serviceFeatures: ServiceFeature[] = [
   },
   {
     titleAr: 'تعقيم المطبخ والحمامات',
-    descriptionAr: 'استخدام معقمات طبية عالية الجودة لضمان بيئة صحية لعائلتك.',
+    descriptionAr: 'استخدام معقمات عالية الجودة لضمان بيئة صحية لعائلتك.',
     icon: 'kitchen',
   },
   {
     titleAr: 'تعطير وتنقية الهواء',
-    descriptionAr: 'رش زيوت عطرية فاخرة تعطي انطباعاً بالنظافة الفندقية المتميزة.',
+    descriptionAr: 'رش زيوت عطرية فاخرة تعطي انطباعاً بالنظافة المتميزة.',
     icon: 'air',
   },
 ]
 
 export const servicePackages: ServicePackage[] = [
   {
-    id: 'deep-residential',
-    titleAr: 'التنظيف العميق (سكني)',
-    descriptionAr: 'تنظيف شامل ودقيق لكافة غرف المنزل مع تعقيم الأسطح.',
+    id: 'bundle-home-sanitize',
+    titleAr: 'باقة المنزل + تعقيم شامل',
+    descriptionAr: 'تنظيف منزل كامل مع تعقيم شامل للأسطح والأرضيات بسعر خاص.',
     icon: 'home_repair_service',
     price: 450,
     popular: true,
   },
   {
-    id: 'standard-residential',
-    titleAr: 'التنظيف الدوري',
-    descriptionAr: 'تنظيف منتظم للمنازل والشقق للحفاظ على بيئة نظيفة دائماً.',
+    id: 'home-cleaning',
+    titleAr: 'تنظيف منازل شامل',
+    descriptionAr: 'تنظيف عميق ومتكامل للمنازل والشقق مع منتجات آمنة.',
     icon: 'cleaning_services',
     price: 280,
   },
   {
-    id: 'office',
-    titleAr: 'تنظيف المكاتب',
-    descriptionAr: 'باقة متخصصة للمكاتب وبيئات العمل لضمان الإنتاجية.',
-    icon: 'corporate_fare',
+    id: 'tanks-full',
+    titleAr: 'خزان: غسيل + تعقيم + عزل',
+    descriptionAr: 'باقة شاملة لتنظيف وتعقيم وعزل وتبطين الخزانات الأرضية والسطحية.',
+    icon: 'water_drop',
     price: 600,
   },
   {
-    id: 'post-construction',
-    titleAr: 'ما بعد التشطيب',
-    descriptionAr: 'إزالة الغبار والمخلفات بعد أعمال البناء والتشطيب.',
-    icon: 'construction',
-    price: 750,
+    id: 'ac-bundle',
+    titleAr: 'صيانة وغسيل المكيفات',
+    descriptionAr: 'غسيل احترافي لجميع المكيفات (سبليت / شباك / مركزي).',
+    icon: 'ac_unit',
+    price: 220,
   },
 ]
 
 export const addOns: AddOn[] = [
-  { id: 'windows', titleAr: 'تنظيف نوافذ خارجية', price: 80, icon: 'window' },
+  { id: 'sanitize', titleAr: 'تعقيم إضافي شامل', price: 120, icon: 'sanitizer' },
   { id: 'carpet', titleAr: 'تنظيف سجاد بالبخار', price: 120, icon: 'cleaning_bucket' },
-  { id: 'fridge', titleAr: 'تنظيف داخلي للثلاجة', price: 60, icon: 'kitchen' },
-  { id: 'oven', titleAr: 'تنظيف الفرن العميق', price: 70, icon: 'oven_gen' },
+  { id: 'pest', titleAr: 'مكافحة حشرات', price: 100, icon: 'pest_control' },
+  { id: 'curtains', titleAr: 'غسيل ستائر بالبخار', price: 90, icon: 'blinds' },
 ]
+
+export const trustBadges = [
+  { icon: 'shield', titleAr: 'ضمان الجودة', titleEn: 'Quality Guaranteed' },
+  { icon: 'verified_user', titleAr: 'معدات متطورة', titleEn: 'Advanced Equipment' },
+  { icon: 'eco', titleAr: 'مواد آمنة 100%', titleEn: '100% Safe Products' },
+  { icon: 'engineering', titleAr: 'عمالة مدربة', titleEn: 'Trained Staff' },
+]
+
+export const heroBanner = '/landing.png'
+
+export const heroImage =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC'
+
+export const heroImageAr =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuB-GIqxH169sGpYzeSK1um5ZMvlIskh4Zlc8c5YPZyrfjyVFJyB5z1Ys9raOG5k2y-6XEzw4ssQyoxXL5cEQePZ5jhDY3TSFHmPA4YkUSiMtw5Pe8QV4kll_3sK9dnedBV4RfSEmYiVW6l4Gyp2wVh-zbJfoqq5ug3A-PPQot6eGtaTzm7NQHaL9Bsgb8GDVHmtCtk1BOBqWvTiz4G5mTeYXUGAg_gTtWF2c1ncUCWbo5L1nOXe1h5XGL5A9ylAMawUge1kPCHnUnDb'
 
 export const trustLogos: string[] = [
   'https://lh3.googleusercontent.com/aida-public/AB6AXuBfs-Qtyv-b50aqBGcIfjrgBGCjEbCEhqQrd5MlsPp61ZvSAc8jf3m9ajjm0iR7MgORo_aqM79H2RUP8o19D4xQyw102_DSsVpJbMheptLHlytgmMh6r7VuHyuPcy2VNjA7NKchgQPWTcp6H6j06JNESD4k-2yu019dQb24HMbuR4N7E_RgGPKlrduJkH9gfaJn4j9M5nsKqPAKc-5flxcZbfSKpoTXXDyHV2bpf6ULIrcYwEgJdaNwGVIlQCVlppxkqYqCy4glKkGR',
@@ -162,12 +322,6 @@ export const trustLogos: string[] = [
   'https://lh3.googleusercontent.com/aida-public/AB6AXuBRYy2W7DpuLpBCms-Gn_e5__PRfBALH497wRKw-m_ttXV6dwDdoRvakiYuBMxmVIMDQ6KiIM2hdC83dA-xjpbrUGk3fVXzcXPTnzBXFXcN9cAmhoANsG_sokuKelpAyWulB1fMUtpFAQLgqpRKbAS7XE2s5J33uAvUACmCBe4K_vZdOkV_bD81CXVa33-ZQQ4cu8xzGUOaCgfwF-Ubxi8YC1635zC3i7LMLs3JxBnfDLIyRT5C_7PqYKXWB83CFhmHwWpIcKLyKFuU',
   'https://lh3.googleusercontent.com/aida-public/AB6AXuBNgNSSRfuSnNhM3cHky8WT0ey7KHrBX0VoGg-OqV3qPpwCqmjH-Wt-3xVsEKGc7WZvgMseZxMJEB4tpVbPNhh4S1M9bxfyE9vtMq1l3ajN-I-X2nD71WP7g_VV6MupDw5iZdqqd7GcD3DFW9HoYL8RsvdeUN4PHurO8TyXjgs-eoW_qqCSbSvxLVVqzy1nyS3teFXLAHnRC8fMruz8ebvwruPY7yYOWbM64C4c-jiwgbeXPwHOkyK5MEvav_KUMv-iGjqKPQvtJrY6',
 ]
-
-export const heroImage =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC'
-
-export const heroImageAr =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuB-GIqxH169sGpYzeSK1um5ZMvlIskh4Zlc8c5YPZyrfjyVFJyB5z1Ys9raOG5k2y-6XEzw4ssQyoxXL5cEQePZ5jhDY3TSFHmPA4YkUSiMtw5Pe8QV4kll_3sK9dnedBV4RfSEmYiVW6l4Gyp2wVh-zbJfoqq5ug3A-PPQot6eGtaTzm7NQHaL9Bsgb8GDVHmtCtk1BOBqWvTiz4G5mTeYXUGAg_gTtWF2c1ncUCWbo5L1nOXe1h5XGL5A9ylAMawUge1kPCHnUnDb'
 
 export const testimonialAvatars = [
   'https://lh3.googleusercontent.com/aida-public/AB6AXuDrxX3ZuoDyw_BPUe1-3cY3VT-wBL5ENxCPJagxwnUa3Clf9AiDm88gm69s_AIwelpm_9_9otomHLr3wD89MFdA-1PEf4i0kV0wf_ya0DyeeCcVBy0QrvSnyGADLxAB5N12y34cruud3JrWSMVkNky97Ot92SEQ1nWUiyxZm_vmUYqtMrV_daJcGr9kOfKoK66iW_3P_tNd3tQK4eikq1ohPX1-ToQykxNkdW0UDl1Y9DI9bm23hp2ff9mgFkxx-VJHgW5J0iWR5AHN',

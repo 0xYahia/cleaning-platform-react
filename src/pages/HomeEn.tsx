@@ -1,84 +1,81 @@
 import { Link } from 'react-router-dom'
 import { Icon } from '../components/Icon'
+import { SubscriptionSection } from '../components/SubscriptionSection'
+import { LoyaltySection } from '../components/LoyaltySection'
+import { PaymentSection } from '../components/PaymentSection'
 import {
+  cities,
+  heroBanner,
   services,
-  trustLogos,
-  heroImage,
-  testimonialAvatars,
+  slogan,
+  trustBadges,
 } from '../data/mockData'
 
 export function HomeEn() {
   return (
     <>
-      <section className="max-w-7xl mx-auto px-6 py-xl grid lg:grid-cols-2 gap-lg items-center">
-        <div className="flex flex-col gap-md">
-          <span className="inline-flex items-center gap-2 text-secondary font-label-caps uppercase tracking-widest">
-            <span className="w-8 h-px bg-secondary" /> Luxury Experience
+      <section className="max-w-7xl mx-auto px-6 pt-md pb-lg">
+        <div className="rounded-[2rem] overflow-hidden shadow-2xl border border-surface-variant/30 bg-white">
+          <img
+            src={heroBanner}
+            alt="Tank cleaning, sanitization & lining"
+            className="w-full h-auto block"
+            loading="eager"
+          />
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-6 pb-xl">
+        <div className="text-center max-w-3xl mx-auto">
+          <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full font-label-caps mb-4">
+            <Icon name="verified" className="text-base" filled />
+            {slogan.en}
           </span>
-          <h1 className="text-display-lg font-display-lg text-primary leading-tight">
-            Professional Cleaning at the Click of a Button
+          <h1 className="text-display-md md:text-display-lg font-display-lg text-primary mb-6 leading-tight">
+            Premium Cleaning & Sanitization Across the Eastern Province
           </h1>
-          <p className="text-body-lg text-on-surface-variant max-w-xl">
-            Experience the gold standard of hygiene with SADA. We combine Saudi
-            hospitality with high-tech efficiency for your home, office, and
-            medical facilities.
+          <p className="text-body-lg text-on-surface-variant mb-6">
+            We deliver complete cleaning and sanitization solutions for homes,
+            mosques, AC units, water tanks and upholstery — using advanced
+            equipment and 100% safe materials, fully guaranteed.
           </p>
-          <div className="flex flex-wrap gap-md mt-sm">
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-lg">
+            {cities.en.map((city) => (
+              <span
+                key={city}
+                className="bg-white border border-surface-variant/50 text-primary px-4 py-1.5 rounded-full text-sm font-medium shadow-sm"
+              >
+                <Icon name="location_on" className="text-sm align-text-bottom me-1 text-secondary" />
+                {city}
+              </span>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-4 justify-center">
             <Link
               to="/booking"
-              className="bg-primary text-white px-8 py-4 rounded-full font-bold shadow-lg hover:opacity-95 active-scale flex items-center gap-2"
+              className="bg-primary text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-lg active-scale transition-all"
             >
-              Book Your Service <Icon name="arrow_forward" />
+              Book Your Service
             </Link>
             <a
               href="#services"
-              className="border-2 border-primary text-primary px-8 py-4 rounded-full font-bold hover:bg-primary/5 active-scale transition-all"
+              className="border-2 border-primary text-primary px-10 py-4 rounded-full font-bold text-lg hover:bg-primary/5 transition-all"
             >
-              Discover Our Services
+              Explore Services
             </a>
-          </div>
-          <div className="flex items-center gap-4 mt-lg">
-            <div className="flex -space-x-3">
-              {testimonialAvatars.map((url, i) => (
-                <div
-                  key={i}
-                  className="w-10 h-10 rounded-full border-2 border-white bg-surface-dim overflow-hidden shadow-sm"
-                >
-                  <img className="w-full h-full object-cover" src={url} alt="" />
-                </div>
-              ))}
-            </div>
-            <p className="text-sm font-medium text-on-surface-variant">
-              <span className="text-secondary font-bold">4.9/5</span> from 10k+
-              Happy Clients
-            </p>
-          </div>
-        </div>
-        <div className="relative">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3] bg-surface-container-high">
-            <img className="w-full h-full object-cover" src={heroImage} alt="" />
-          </div>
-          <div className="absolute -bottom-8 -left-8 glass-card p-6 rounded-2xl shadow-soft flex items-center gap-4 max-w-xs">
-            <div className="w-12 h-12 bg-secondary/10 text-secondary rounded-full flex items-center justify-center">
-              <Icon name="verified_user" filled />
-            </div>
-            <div>
-              <p className="font-bold text-primary">SADA Certified</p>
-              <p className="text-xs text-on-surface-variant">
-                Top-tier professionals only
-              </p>
-            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-surface-container-lowest py-lg border-y border-surface-variant/50">
-        <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center gap-lg opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
-          <p className="font-label-caps text-on-surface-variant w-full text-center lg:w-auto mb-4 lg:mb-0">
-            TRUSTED BY LEADING ENTITIES
-          </p>
-          {trustLogos.map((logo, i) => (
-            <img key={i} className="h-8" src={logo} alt="" />
+      <section className="bg-white border-y border-surface-variant/40 py-lg">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-md">
+          {trustBadges.map((b) => (
+            <div key={b.icon} className="flex items-center gap-3">
+              <span className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                <Icon name={b.icon} filled />
+              </span>
+              <span className="font-bold text-primary">{b.titleEn}</span>
+            </div>
           ))}
         </div>
       </section>
@@ -86,170 +83,132 @@ export function HomeEn() {
       <section className="max-w-7xl mx-auto px-6 py-xl" id="services">
         <div className="text-center mb-xl">
           <h2 className="text-display-md font-display-md text-primary mb-4">
-            Our Premium Services
+            Our Services
           </h2>
           <p className="text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-            Tailored cleaning solutions designed for high-standard environments.
+            A full catalog of cleaning and sanitization services for homes,
+            mosques and businesses.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-md">
-          {services.map((service) => {
-            const colSpan =
-              service.span === 'large' || service.span === 'wide'
-                ? 'md:col-span-8'
-                : 'md:col-span-4'
-            return (
-              <Link
-                key={service.id}
-                to={`/services/${service.slug}`}
-                className={`${colSpan} bg-white rounded-3xl p-md shadow-soft shadow-interactive relative overflow-hidden group flex flex-col justify-between min-h-[260px]`}
-              >
-                <div className="relative z-10 h-full flex flex-col justify-between">
-                  <div>
-                    {service.badgeEn && (
-                      <span className="bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-bold mb-4 inline-block">
-                        {service.badgeEn}
-                      </span>
-                    )}
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
-                        <Icon name={service.icon} className="text-2xl" />
-                      </span>
-                      <h3 className="text-heading-sm font-display-md text-primary">
-                        {service.titleEn}
-                      </h3>
-                    </div>
-                    <p className="text-body-md text-on-surface-variant max-w-sm">
-                      {service.descriptionEn}
-                    </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service) => (
+            <Link
+              key={service.id}
+              to={`/services/${service.slug}`}
+              className="group relative overflow-hidden rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 border border-surface-variant/30"
+            >
+              <div className="aspect-video w-full overflow-hidden">
+                <img
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  src={service.image}
+                  alt=""
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="p-3 bg-surface-container rounded-2xl text-primary-container">
+                    <Icon name={service.icon} className="text-3xl" />
                   </div>
-                  <span className="flex items-center gap-2 text-primary font-bold mt-4 group-hover:gap-4 transition-all">
-                    Learn More <Icon name="arrow_forward" />
+                  {service.badgeEn && (
+                    <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold">
+                      {service.badgeEn}
+                    </span>
+                  )}
+                </div>
+                <h3 className="font-display-md text-xl text-primary mb-2">
+                  {service.titleEn}
+                </h3>
+                <p className="text-on-surface-variant text-sm mb-4 min-h-[60px]">
+                  {service.descriptionEn}
+                </p>
+                <div className="flex items-center justify-between border-t border-surface-variant/40 pt-4">
+                  <div>
+                    <span className="block text-xs text-outline">Starting at</span>
+                    <span className="text-lg font-bold text-primary">
+                      SAR {service.startingPrice}
+                    </span>
+                  </div>
+                  <span className="flex items-center gap-2 text-primary font-bold group-hover:gap-3 transition-all">
+                    Learn more <Icon name="arrow_forward" className="text-base" />
                   </span>
                 </div>
-              </Link>
-            )
-          })}
-        </div>
-      </section>
-
-      <section className="bg-surface py-xl" id="how-it-works">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-xl gap-md">
-            <div className="max-w-xl">
-              <h2 className="text-display-md font-display-md text-primary mb-4">
-                Effortless Process
-              </h2>
-              <p className="text-body-lg text-on-surface-variant">
-                Three simple steps to a pristine environment.
-              </p>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-lg relative">
-            <div className="hidden md:block absolute top-10 left-0 w-full h-px bg-gradient-to-r from-transparent via-surface-variant to-transparent" />
-            {[
-              {
-                n: '01',
-                color: 'text-primary',
-                title: 'Select & Schedule',
-                desc: 'Pick your service and preferred time through our intuitive dashboard or app.',
-              },
-              {
-                n: '02',
-                color: 'text-secondary',
-                title: 'Certified Care',
-                desc: 'Our vetted specialists arrive with high-end equipment and eco-friendly products.',
-              },
-              {
-                n: '03',
-                color: 'text-primary',
-                title: 'Pure Comfort',
-                desc: 'Walk into a perfectly cleaned space. Pay securely after full satisfaction.',
-              },
-            ].map((step) => (
-              <div key={step.n} className="relative z-10 flex flex-col gap-md">
-                <div
-                  className={`w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-surface font-display-md text-2xl ${step.color}`}
-                >
-                  {step.n}
-                </div>
-                <div>
-                  <h4 className="text-heading-sm font-display-md text-primary mb-2">
-                    {step.title}
-                  </h4>
-                  <p className="text-on-surface-variant text-body-md">
-                    {step.desc}
-                  </p>
-                </div>
               </div>
-            ))}
-          </div>
+            </Link>
+          ))}
         </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-6 py-lg">
-        <div className="bg-primary-container rounded-[2.5rem] p-md md:p-xl flex flex-col md:flex-row items-center justify-between gap-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32" />
-          <div className="relative z-10 text-center md:text-left">
-            <h3 className="text-display-md font-display-md text-white mb-4">
-              First-Time Booking?
-            </h3>
-            <p className="text-primary-fixed text-body-lg mb-lg">
-              Get{' '}
-              <span className="text-secondary-container font-bold text-3xl">
-                25% OFF
-              </span>{' '}
-              on your first full villa deep clean.
-            </p>
+        <div className="bg-secondary-container/30 border border-secondary-container rounded-[2rem] p-md md:p-lg flex flex-col md:flex-row items-center justify-between gap-md">
+          <div className="flex items-center gap-4 text-center md:text-left">
+            <span className="w-16 h-16 bg-secondary-container rounded-2xl flex items-center justify-center text-on-secondary-container">
+              <Icon name="local_offer" className="text-3xl" filled />
+            </span>
+            <div>
+              <h3 className="text-heading-sm font-display-md text-primary mb-1">
+                Home Cleaning + Full Sanitization Bundle
+              </h3>
+              <p className="text-on-surface-variant">
+                Extra discount when you subscribe monthly or yearly.
+              </p>
+            </div>
           </div>
           <Link
             to="/booking"
-            className="relative z-10 bg-secondary-container text-on-secondary-container px-10 py-5 rounded-full font-bold text-lg shadow-xl hover:scale-105 active-scale transition-all"
+            className="bg-primary text-white px-8 py-4 rounded-full font-bold shadow-lg hover:opacity-95 active-scale transition-all whitespace-nowrap"
           >
-            Claim Offer Now
+            Claim Offer
           </Link>
         </div>
       </section>
 
+      <SubscriptionSection lang="en" />
+
+      <PaymentSection lang="en" />
+
+      <LoyaltySection lang="en" />
+
       <section className="max-w-7xl mx-auto px-6 py-xl">
         <div className="grid md:grid-cols-2 gap-xl items-center">
-          <div className="grid grid-cols-2 gap-md">
-            {[
-              { icon: 'shield', t: 'Insured Service', d: 'Full coverage for your peace of mind.' },
-              { icon: 'schedule', t: 'Punctuality', d: 'We value your time as much as you do.' },
-              { icon: 'eco', t: 'Eco-Friendly', d: 'Non-toxic premium cleaning agents.' },
-              { icon: 'workspace_premium', t: 'Elite Staff', d: 'Professionally trained & background checked.' },
-            ].map((tile) => (
-              <div key={tile.icon} className="bg-white p-md rounded-3xl shadow-soft">
-                <Icon name={tile.icon} className="text-secondary text-4xl mb-4" filled />
-                <h5 className="font-bold text-primary mb-2">{tile.t}</h5>
-                <p className="text-sm text-on-surface-variant">{tile.d}</p>
-              </div>
-            ))}
-          </div>
           <div className="flex flex-col gap-md">
             <h2 className="text-display-md font-display-md text-primary">
-              The SADA Standard
+              Why choose us?
             </h2>
             <p className="text-body-lg text-on-surface-variant">
-              We don't just clean; we restore your environment to its absolute
-              best state. Our teams are trained in the latest global hygiene
-              protocols, ensuring every corner reflects your standard of luxury.
+              We pair the latest equipment with safe, certified materials and
+              fully insured trained crews — so your space gets the highest
+              standard of clean, every time.
             </p>
             <ul className="flex flex-col gap-sm">
               {[
-                '100% Satisfaction Guarantee',
-                'Multi-point Quality Inspection',
-                '24/7 Premium Support',
+                '100% service quality guarantee',
+                'Safe, certified cleaning & sanitization materials',
+                'Full coverage across the Eastern Province',
+                '24/7 premium customer support',
               ].map((item) => (
                 <li
                   key={item}
                   className="flex items-center gap-3 font-medium text-primary"
                 >
-                  <Icon name="check_circle" className="text-secondary" /> {item}
+                  <Icon name="check_circle" className="text-secondary" filled />{' '}
+                  {item}
                 </li>
               ))}
             </ul>
+          </div>
+          <div className="bg-gradient-to-br from-primary to-primary-container rounded-3xl p-md md:p-lg text-white relative overflow-hidden">
+            <div className="absolute inset-0 flex items-center justify-center opacity-15">
+              <Icon name="play_circle" className="text-[200px]" filled />
+            </div>
+            <div className="relative z-10">
+              <Icon name="movie" className="text-4xl text-secondary-container mb-4" />
+              <h3 className="text-heading-sm font-display-md mb-2">
+                See us in action
+              </h3>
+              <p className="text-white/90">
+                Short field videos of our crews cleaning and sanitizing on-site.
+              </p>
+            </div>
           </div>
         </div>
       </section>

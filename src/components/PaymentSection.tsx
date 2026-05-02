@@ -1,0 +1,43 @@
+import { Icon } from './Icon'
+import { paymentOptions } from '../data/mockData'
+
+interface Props {
+  lang: 'en' | 'ar'
+}
+
+export function PaymentSection({ lang }: Props) {
+  const isAr = lang === 'ar'
+  const options = paymentOptions[lang]
+  return (
+    <section className="bg-surface-container-low py-xl">
+      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-lg items-center">
+        <div className="md:col-span-1">
+          <h2 className="text-display-md font-display-md text-primary mb-4">
+            {isAr ? 'راحة في الدفع' : 'Flexible Payment'}
+          </h2>
+          <p className="text-body-lg text-on-surface-variant">
+            {isAr
+              ? 'قسّط خدماتك بسهولة بدون ضغط — اختر طريقة الدفع التي تناسبك.'
+              : 'Split your payments without pressure — pick whichever method suits you.'}
+          </p>
+        </div>
+        <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-md">
+          {options.map((opt) => (
+            <div
+              key={opt.id}
+              className="bg-white rounded-2xl p-md shadow-soft border border-surface-variant/40 flex flex-col items-center gap-3 text-center"
+            >
+              <span className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                <Icon name={opt.icon} className="text-3xl" />
+              </span>
+              <p className="font-bold text-primary">{opt.label}</p>
+              <p className="text-xs text-on-surface-variant">
+                {isAr ? 'قسّط بدون فوائد' : 'Split with no interest'}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
