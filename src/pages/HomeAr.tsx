@@ -185,19 +185,14 @@ export function HomeAr() {
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-xl">
         <div className="grid md:grid-cols-2 gap-12 md:gap-xl items-center">
-          <div className="bg-gradient-to-br from-primary to-primary-container rounded-3xl p-6 sm:p-md md:p-lg text-white relative overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center opacity-15">
-              <Icon name="play_circle" className="text-[200px]" filled />
-            </div>
-            <div className="relative z-10">
-              <Icon name="movie" className="text-4xl text-secondary-container mb-4" />
-              <h3 className="text-heading-sm font-display-md mb-2">
-                شاهدنا في العمل
-              </h3>
-              <p className="text-white/90">
-                فيديوهات قصيرة من ميدان العمل لفرقنا أثناء التنظيف والتعقيم.
-              </p>
-            </div>
+          <div className="rounded-3xl overflow-hidden shadow-lg bg-black aspect-video">
+            <iframe
+              src="https://app.heygen.com/embeds/a74bfba8bb464a30a58b9a5f59252fcd"
+              title="Medi Clean - احترافية النظافة في السعودية"
+              className="w-full h-full border-0"
+              allow="encrypted-media; fullscreen;"
+              allowFullScreen
+            />
           </div>
           <div className="flex flex-col gap-md">
             <h2 className="text-2xl sm:text-3xl md:text-display-md font-display-md text-primary">

@@ -339,8 +339,8 @@ export const trustBadges = [
 ]
 
 export const heroBanner = {
-  ar: '/landing-fullwidth-ar.png',
-  en: '/landing-fullwidth-en.png',
+  ar: '/landing-ar.png',
+  en: '/landing-en.png',
 }
 
 export const heroImage =

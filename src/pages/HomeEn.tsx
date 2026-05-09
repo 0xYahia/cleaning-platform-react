@@ -210,19 +210,14 @@ export function HomeEn() {
               ))}
             </ul>
           </div>
-          <div className="bg-gradient-to-br from-primary to-primary-container rounded-3xl p-md md:p-lg text-white relative overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center opacity-15">
-              <Icon name="play_circle" className="text-[200px]" filled />
-            </div>
-            <div className="relative z-10">
-              <Icon name="movie" className="text-4xl text-secondary-container mb-4" />
-              <h3 className="text-heading-sm font-display-md mb-2">
-                See us in action
-              </h3>
-              <p className="text-white/90">
-                Short field videos of our crews cleaning and sanitizing on-site.
-              </p>
-            </div>
+          <div className="rounded-3xl overflow-hidden shadow-lg bg-black aspect-video">
+            <iframe
+              src="https://app.heygen.com/embeds/a74bfba8bb464a30a58b9a5f59252fcd"
+              title="Medi Clean - Professional Cleaning in Saudi Arabia"
+              className="w-full h-full border-0"
+              allow="encrypted-media; fullscreen;"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>

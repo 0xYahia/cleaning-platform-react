@@ -55,14 +55,14 @@ export function Footer({ lang }: FooterProps) {
               </li>
               <li className="flex items-start gap-2">
                 <Icon name="mail" className="text-secondary text-sm" />
-                <span>concierge@sadaclean.sa</span>
+                <span>ahmedbakre2010@gmail.com</span>
               </li>
               <li className="flex items-start gap-2">
                 <Icon name="location_on" className="text-secondary text-sm" />
                 <span>
                   {isAr
-                    ? 'الدمام، الخبر، الظهران، الجبيل، القطيف، سيهات'
-                    : 'Dammam, Khobar, Dhahran, Jubail, Qatif, Sihat'}
+                    ? 'الدمام، مبنى الفردوس، الطابق الثاني، مكتب رقم ٣'
+                    : 'Dammam, Al-Firdous Building, Second Floor, Office No. 3'}
                 </span>
               </li>
             </ul>
