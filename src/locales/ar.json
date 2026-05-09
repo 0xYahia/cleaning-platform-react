@@ -240,6 +240,24 @@
       "carpet": "تنظيف سجاد بالبخار",
       "pest": "مكافحة حشرات",
       "curtains": "غسيل ستائر بالبخار"
+    },
+    "selectDateTimeFirst": "الرجاء اختيار التاريخ والوقت للمتابعة",
+    "modal": {
+      "title": "تأكيد الحجز",
+      "subtitle": "أدخل بيانات التواصل لنتمكن من تأكيد موعدك.",
+      "fullName": "الاسم الكامل",
+      "fullNamePlaceholder": "مثال: أحمد محمد",
+      "phone": "رقم الجوال",
+      "phonePlaceholder": "05XXXXXXXX",
+      "address": "العنوان بالكامل",
+      "addressPlaceholder": "المدينة، الحي، الشارع، المبنى، الشقة",
+      "notes": "ملاحظات (اختياري)",
+      "notesPlaceholder": "أي تفاصيل تود إخبارنا بها قبل الزيارة",
+      "sendWhatsApp": "إرسال عبر واتساب",
+      "sendEmail": "إرسال عبر الإيميل",
+      "cancel": "إلغاء",
+      "validation": "يرجى تعبئة الاسم ورقم الجوال والعنوان.",
+      "summaryTitle": "ملخص الحجز"
     }
   },
   "notFound": {

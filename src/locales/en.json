@@ -240,6 +240,24 @@
       "carpet": "Carpet Steam Cleaning",
       "pest": "Pest Control",
       "curtains": "Curtain Steam Cleaning"
+    },
+    "selectDateTimeFirst": "Please choose a date and time to continue",
+    "modal": {
+      "title": "Confirm Your Booking",
+      "subtitle": "Enter your contact details so we can confirm your appointment.",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "e.g. Ahmed Mohammed",
+      "phone": "Phone number",
+      "phonePlaceholder": "05XXXXXXXX",
+      "address": "Full address",
+      "addressPlaceholder": "City, district, street, building, unit",
+      "notes": "Notes (optional)",
+      "notesPlaceholder": "Anything we should know before arriving",
+      "sendWhatsApp": "Send via WhatsApp",
+      "sendEmail": "Send via Email",
+      "cancel": "Cancel",
+      "validation": "Please fill in your name, phone, and address.",
+      "summaryTitle": "Booking Summary"
     }
   },
   "notFound": {

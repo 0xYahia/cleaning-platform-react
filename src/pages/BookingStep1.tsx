@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '../components/Icon'
+import { BookingConfirmModal } from '../components/BookingConfirmModal'
 import { addOns, servicePackages } from '../data/mockData'
 import { useLocale, localePath } from '../hooks/useLocale'
 
@@ -24,6 +25,9 @@ export function BookingStep1() {
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([])
   const [date, setDate] = useState<string>('')
   const [time, setTime] = useState<string>(timeSlots[0])
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const canContinue = Boolean(packageId && date && time)
 
   const currentPackage = useMemo(
     () => servicePackages.find((p) => p.id === packageId)!,
@@ -60,18 +64,16 @@ export function BookingStep1() {
             <div key={key} className="flex items-center flex-1 last:flex-initial min-w-0">
               <div className="flex flex-col items-center gap-2 min-w-0">
                 <div
-                  className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shrink-0 ${
-                    idx === 0
+                  className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shrink-0 ${idx === 0
                       ? 'bg-primary-container text-white shadow-lg'
                       : 'bg-surface-container text-outline'
-                  }`}
+                    }`}
                 >
                   <Icon name={STEP_ICONS[key]} />
                 </div>
                 <span
-                  className={`font-heading-sm text-xs sm:text-sm whitespace-nowrap ${
-                    idx === 0 ? 'font-bold text-primary' : 'text-outline'
-                  }`}
+                  className={`font-heading-sm text-xs sm:text-sm whitespace-nowrap ${idx === 0 ? 'font-bold text-primary' : 'text-outline'
+                    }`}
                 >
                   {t(`booking.steps.${key}`)}
                 </span>
@@ -105,11 +107,10 @@ export function BookingStep1() {
                     key={pkg.id}
                     type="button"
                     onClick={() => setPackageId(pkg.id)}
-                    className={`${textAlign} bg-surface-container-lowest p-5 sm:p-6 rounded-xl shadow-soft transition-all cursor-pointer ${
-                      isActive
+                    className={`${textAlign} bg-surface-container-lowest p-5 sm:p-6 rounded-xl shadow-soft transition-all cursor-pointer ${isActive
                         ? 'border-2 border-primary ring-4 ring-primary/5'
                         : 'border border-surface-variant/50 hover:border-primary'
-                    }`}
+                      }`}
                   >
                     <div className="flex justify-between items-start mb-4">
                       <Icon name={pkg.icon} className="text-primary text-3xl" />
@@ -159,11 +160,10 @@ export function BookingStep1() {
                     key={addOn.id}
                     type="button"
                     onClick={() => toggleAddOn(addOn.id)}
-                    className={`flex items-center justify-between bg-white p-5 rounded-xl border transition-all ${textAlign} ${
-                      isActive
+                    className={`flex items-center justify-between bg-white p-5 rounded-xl border transition-all ${textAlign} ${isActive
                         ? 'border-primary bg-primary/5'
                         : 'border-surface-variant/50 hover:border-primary'
-                    }`}
+                      }`}
                   >
                     <span className="flex items-center gap-3">
                       <Icon name={addOn.icon} className="text-primary text-2xl" />
@@ -210,11 +210,10 @@ export function BookingStep1() {
                       key={slot}
                       type="button"
                       onClick={() => setTime(slot)}
-                      className={`py-2 px-3 rounded-lg text-sm font-medium transition-all ${
-                        slot === time
+                      className={`py-2 px-3 rounded-lg text-sm font-medium transition-all ${slot === time
                           ? 'bg-primary text-white'
                           : 'bg-surface-container-low text-on-surface hover:bg-primary/10'
-                      }`}
+                        }`}
                     >
                       {slot}
                     </button>
@@ -265,11 +264,22 @@ export function BookingStep1() {
             </div>
             <button
               type="button"
-              className="w-full bg-primary-container text-white py-4 rounded-xl font-bold shadow-md hover:opacity-95 active:scale-95 transition-all flex items-center justify-center gap-2"
+              disabled={!canContinue}
+              onClick={() => setModalOpen(true)}
+              className={`w-full py-4 rounded-xl font-bold shadow-md transition-all flex items-center justify-center gap-2 ${
+                canContinue
+                  ? 'bg-primary-container text-white hover:opacity-95 active:scale-95 cursor-pointer'
+                  : 'bg-surface-container text-outline cursor-not-allowed'
+              }`}
             >
               {t('booking.continue')}
               <Icon name={isAr ? 'arrow_back' : 'arrow_forward'} />
             </button>
+            {!canContinue && (
+              <p className="text-center mt-2 text-xs text-outline">
+                {t('booking.selectDateTimeFirst')}
+              </p>
+            )}
             <Link
               to={localePath(locale, '/')}
               className="block text-center mt-3 text-sm text-outline hover:text-primary transition-colors"
@@ -279,6 +289,25 @@ export function BookingStep1() {
           </div>
         </aside>
       </div>
+
+      <BookingConfirmModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        booking={{
+          packageTitle: t(`booking.packages.${currentPackage.id}.title`),
+          packagePrice: formatPrice(currentPackage.price),
+          addOns: selectedAddOns.map((id) => {
+            const a = addOns.find((x) => x.id === id)!
+            return {
+              title: t(`booking.addOns.${a.id}`),
+              price: formatPrice(a.price),
+            }
+          }),
+          date,
+          time,
+          total: formatPrice(total),
+        }}
+      />
     </div>
   )
 }
