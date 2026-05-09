@@ -5,18 +5,16 @@ import { Footer } from './Footer'
 import { WhatsAppFAB } from './WhatsAppFAB'
 import { CallFAB } from './CallFAB'
 import { MailFAB } from './MailFAB'
+import { useLocaleSync } from '../hooks/useLocale'
 
-interface LayoutProps {
-  lang: 'en' | 'ar'
-}
-
-export function Layout({ lang }: LayoutProps) {
+export function Layout() {
+  const locale = useLocaleSync()
   const location = useLocation()
 
   useEffect(() => {
-    document.documentElement.lang = lang
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
-  }, [lang])
+    document.documentElement.lang = locale
+    document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr'
+  }, [locale])
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -24,11 +22,11 @@ export function Layout({ lang }: LayoutProps) {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAFAF7]">
-      <Navigation lang={lang} />
+      <Navigation />
       <main className="flex-1 pt-24">
         <Outlet />
       </main>
-      <Footer lang={lang} />
+      <Footer />
       <WhatsAppFAB />
       <CallFAB />
       <MailFAB />

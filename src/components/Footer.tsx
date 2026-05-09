@@ -1,11 +1,8 @@
+import { useTranslation } from 'react-i18next'
 import { Icon } from './Icon'
 
-interface FooterProps {
-  lang: 'en' | 'ar'
-}
-
-export function Footer({ lang }: FooterProps) {
-  const isAr = lang === 'ar'
+export function Footer() {
+  const { t } = useTranslation()
   return (
     <footer
       className="bg-white border-t border-surface-variant/50 pt-xl pb-10"
@@ -18,9 +15,7 @@ export function Footer({ lang }: FooterProps) {
               Medi Clean
             </p>
             <p className="text-sm text-on-surface-variant mb-6">
-              {isAr
-                ? 'نظافة... أمان... تعقيم بمعايير احترافية في الدمام والخبر والظهران والجبيل والقطيف وسيهات.'
-                : 'Cleanliness, safety and sanitization with professional standards across the Eastern Province.'}
+              {t('footer.tagline')}
             </p>
             <div className="flex gap-4">
               {['social_leaderboard', 'share', 'camera'].map((icon) => (
@@ -34,20 +29,16 @@ export function Footer({ lang }: FooterProps) {
             </div>
           </div>
           <div>
-            <h6 className="font-bold text-primary mb-6">
-              {isAr ? 'روابط سريعة' : 'Quick Links'}
-            </h6>
+            <h6 className="font-bold text-primary mb-6">{t('footer.quickLinks')}</h6>
             <ul className="flex flex-col gap-4 text-sm text-on-surface-variant">
-              <li><a className="hover:text-primary transition-colors" href="#">{isAr ? 'خدماتنا' : 'Our Services'}</a></li>
-              <li><a className="hover:text-primary transition-colors" href="#">{isAr ? 'برنامج الولاء' : 'Loyalty Program'}</a></li>
-              <li><a className="hover:text-primary transition-colors" href="#">{isAr ? 'حلول الشركات' : 'Corporate Solutions'}</a></li>
-              <li><a className="hover:text-primary transition-colors" href="#">{isAr ? 'الوظائف' : 'Careers'}</a></li>
+              <li><a className="hover:text-primary transition-colors" href="#">{t('footer.ourServices')}</a></li>
+              <li><a className="hover:text-primary transition-colors" href="#">{t('footer.loyaltyProgram')}</a></li>
+              <li><a className="hover:text-primary transition-colors" href="#">{t('footer.corporate')}</a></li>
+              <li><a className="hover:text-primary transition-colors" href="#">{t('footer.careers')}</a></li>
             </ul>
           </div>
           <div>
-            <h6 className="font-bold text-primary mb-6">
-              {isAr ? 'تواصل معنا' : 'Contact Us'}
-            </h6>
+            <h6 className="font-bold text-primary mb-6">{t('footer.contactUs')}</h6>
             <ul className="flex flex-col gap-4 text-sm text-on-surface-variant">
               <li className="flex items-start gap-2">
                 <Icon name="call" className="text-secondary text-sm" />
@@ -59,24 +50,18 @@ export function Footer({ lang }: FooterProps) {
               </li>
               <li className="flex items-start gap-2">
                 <Icon name="location_on" className="text-secondary text-sm" />
-                <span>
-                  {isAr
-                    ? 'الدمام، مبنى الفردوس، الطابق الثاني، مكتب رقم ٣'
-                    : 'Dammam, Al-Firdous Building, Second Floor, Office No. 3'}
-                </span>
+                <span>{t('footer.address')}</span>
               </li>
             </ul>
           </div>
           <div>
-            <h6 className="font-bold text-primary mb-6">
-              {isAr ? 'حمل التطبيق' : 'Download Our App'}
-            </h6>
+            <h6 className="font-bold text-primary mb-6">{t('footer.downloadApp')}</h6>
             <div className="flex flex-col gap-4">
               <button className="bg-on-background text-white p-3 rounded-xl flex items-center gap-3 active-scale">
                 <Icon name="apple" className="text-3xl" />
                 <span className="text-left">
                   <span className="block text-[10px] uppercase font-label-caps">
-                    {isAr ? 'حمله من' : 'Download on the'}
+                    {t('footer.appStorePrefix')}
                   </span>
                   <span className="block text-sm font-bold -mt-1">App Store</span>
                 </span>
@@ -85,7 +70,7 @@ export function Footer({ lang }: FooterProps) {
                 <Icon name="play_arrow" className="text-3xl" />
                 <span className="text-left">
                   <span className="block text-[10px] uppercase font-label-caps">
-                    {isAr ? 'متوفر على' : 'Get it on'}
+                    {t('footer.playStorePrefix')}
                   </span>
                   <span className="block text-sm font-bold -mt-1">Google Play</span>
                 </span>
@@ -95,14 +80,14 @@ export function Footer({ lang }: FooterProps) {
         </div>
         <div className="pt-lg border-t border-surface-variant/30 flex flex-col md:flex-row justify-between items-center gap-md">
           <p className="text-sm text-on-surface-variant">
-            © 2026 SADA Cleaning Services. {isAr ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
+            © 2026 SADA Cleaning Services. {t('footer.rights')}
           </p>
           <div className="flex gap-6 text-sm text-on-surface-variant">
             <a className="hover:text-primary transition-colors" href="#">
-              {isAr ? 'سياسة الخصوصية' : 'Privacy Policy'}
+              {t('footer.privacy')}
             </a>
             <a className="hover:text-primary transition-colors" href="#">
-              {isAr ? 'شروط الخدمة' : 'Terms of Service'}
+              {t('footer.terms')}
             </a>
           </div>
         </div>

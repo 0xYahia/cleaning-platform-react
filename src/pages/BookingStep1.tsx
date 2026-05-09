@@ -1,29 +1,29 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '../components/Icon'
 import { addOns, servicePackages } from '../data/mockData'
+import { useLocale, localePath } from '../hooks/useLocale'
 
-const TIME_SLOTS = [
-  '08:00 AM',
-  '10:00 AM',
-  '12:00 PM',
-  '02:00 PM',
-  '04:00 PM',
-  '06:00 PM',
-]
+const STEP_KEYS = ['service', 'details', 'payment', 'confirm'] as const
+const STEP_ICONS: Record<(typeof STEP_KEYS)[number], string> = {
+  service: 'cleaning_services',
+  details: 'person',
+  payment: 'payments',
+  confirm: 'task_alt',
+}
 
-const STEPS = [
-  { key: 'service', label: 'Service', icon: 'cleaning_services' },
-  { key: 'details', label: 'Details', icon: 'person' },
-  { key: 'payment', label: 'Payment', icon: 'payments' },
-  { key: 'confirm', label: 'Confirm', icon: 'task_alt' },
-]
+export function BookingStep1() {
+  const { t } = useTranslation()
+  const locale = useLocale()
+  const isAr = locale === 'ar'
 
-export function BookingStep1En() {
+  const timeSlots = t('booking.timeSlots', { returnObjects: true }) as string[]
+
   const [packageId, setPackageId] = useState<string>(servicePackages[0].id)
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([])
   const [date, setDate] = useState<string>('')
-  const [time, setTime] = useState<string>(TIME_SLOTS[0])
+  const [time, setTime] = useState<string>(timeSlots[0])
 
   const currentPackage = useMemo(
     () => servicePackages.find((p) => p.id === packageId)!,
@@ -41,18 +41,23 @@ export function BookingStep1En() {
 
   const total = currentPackage.price + addOnTotal
 
+  const formatPrice = (n: number) =>
+    isAr ? `${n} ${t('common.currency')}` : `${t('common.currency')} ${n}`
+
   const toggleAddOn = (id: string) => {
     setSelectedAddOns((prev) =>
       prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
     )
   }
 
+  const textAlign = isAr ? 'text-right' : 'text-left'
+
   return (
     <div className="px-4 sm:px-6 max-w-7xl mx-auto pb-xl">
       <div className="mb-lg">
         <div className="flex items-center justify-between mb-8 max-w-3xl overflow-x-auto">
-          {STEPS.map((step, idx) => (
-            <div key={step.key} className="flex items-center flex-1 last:flex-initial min-w-0">
+          {STEP_KEYS.map((key, idx) => (
+            <div key={key} className="flex items-center flex-1 last:flex-initial min-w-0">
               <div className="flex flex-col items-center gap-2 min-w-0">
                 <div
                   className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shrink-0 ${
@@ -61,28 +66,27 @@ export function BookingStep1En() {
                       : 'bg-surface-container text-outline'
                   }`}
                 >
-                  <Icon name={step.icon} />
+                  <Icon name={STEP_ICONS[key]} />
                 </div>
                 <span
                   className={`font-heading-sm text-xs sm:text-sm whitespace-nowrap ${
                     idx === 0 ? 'font-bold text-primary' : 'text-outline'
                   }`}
                 >
-                  {step.label}
+                  {t(`booking.steps.${key}`)}
                 </span>
               </div>
-              {idx < STEPS.length - 1 && (
+              {idx < STEP_KEYS.length - 1 && (
                 <div className="h-[2px] flex-1 bg-surface-dim mx-2 sm:mx-4 -mt-8" />
               )}
             </div>
           ))}
         </div>
         <h1 className="font-display-md text-2xl sm:text-3xl md:text-display-md text-primary mb-3 sm:mb-4">
-          Choose your service & time
+          {t('booking.title')}
         </h1>
         <p className="text-base sm:text-body-lg text-outline max-w-2xl">
-          Pick from our luxury cleaning packages that fit your needs and select
-          the most convenient time for our team to visit.
+          {t('booking.description')}
         </p>
       </div>
 
@@ -91,7 +95,7 @@ export function BookingStep1En() {
           <section>
             <div className="flex items-center gap-3 mb-6">
               <Icon name="auto_awesome" className="text-primary" />
-              <h2 className="font-heading-sm text-primary">Cleaning Packages</h2>
+              <h2 className="font-heading-sm text-primary">{t('booking.packagesHeading')}</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
               {servicePackages.map((pkg) => {
@@ -101,32 +105,33 @@ export function BookingStep1En() {
                     key={pkg.id}
                     type="button"
                     onClick={() => setPackageId(pkg.id)}
-                    className={`text-left bg-surface-container-lowest p-5 sm:p-6 rounded-xl shadow-soft transition-all cursor-pointer ${
+                    className={`${textAlign} bg-surface-container-lowest p-5 sm:p-6 rounded-xl shadow-soft transition-all cursor-pointer ${
                       isActive
                         ? 'border-2 border-primary ring-4 ring-primary/5'
                         : 'border border-surface-variant/50 hover:border-primary'
                     }`}
                   >
                     <div className="flex justify-between items-start mb-4">
-                      <Icon
-                        name={pkg.icon}
-                        className="text-primary text-3xl"
-                      />
+                      <Icon name={pkg.icon} className="text-primary text-3xl" />
                       {pkg.popular && (
                         <span className="bg-secondary-container/20 text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">
-                          Most Popular
+                          {t('booking.mostPopular')}
                         </span>
                       )}
                     </div>
-                    <h3 className="font-heading-sm mb-2">{pkg.titleEn}</h3>
+                    <h3 className="font-heading-sm mb-2">
+                      {t(`booking.packages.${pkg.id}.title`)}
+                    </h3>
                     <p className="text-body-md text-outline mb-6 h-12 overflow-hidden">
-                      {pkg.descriptionEn}
+                      {t(`booking.packages.${pkg.id}.description`)}
                     </p>
                     <div className="flex justify-between items-end border-t border-surface-container pt-4">
                       <div>
-                        <span className="block text-xs text-outline">Starting at</span>
+                        <span className="block text-xs text-outline">
+                          {t('common.startingAt')}
+                        </span>
                         <span className="text-xl font-bold text-primary">
-                          SAR {pkg.price}
+                          {formatPrice(pkg.price)}
                         </span>
                       </div>
                       <Icon
@@ -144,7 +149,7 @@ export function BookingStep1En() {
           <section>
             <div className="flex items-center gap-3 mb-6">
               <Icon name="add_circle" className="text-primary" />
-              <h2 className="font-heading-sm text-primary">Optional Add-ons</h2>
+              <h2 className="font-heading-sm text-primary">{t('booking.addOnsHeading')}</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
               {addOns.map((addOn) => {
@@ -154,23 +159,20 @@ export function BookingStep1En() {
                     key={addOn.id}
                     type="button"
                     onClick={() => toggleAddOn(addOn.id)}
-                    className={`flex items-center justify-between bg-white p-5 rounded-xl border transition-all text-left ${
+                    className={`flex items-center justify-between bg-white p-5 rounded-xl border transition-all ${textAlign} ${
                       isActive
                         ? 'border-primary bg-primary/5'
                         : 'border-surface-variant/50 hover:border-primary'
                     }`}
                   >
                     <span className="flex items-center gap-3">
-                      <Icon
-                        name={addOn.icon}
-                        className="text-primary text-2xl"
-                      />
+                      <Icon name={addOn.icon} className="text-primary text-2xl" />
                       <span>
                         <span className="block font-bold text-primary">
-                          {addOn.titleEn}
+                          {t(`booking.addOns.${addOn.id}`)}
                         </span>
                         <span className="block text-sm text-outline">
-                          + SAR {addOn.price}
+                          + {formatPrice(addOn.price)}
                         </span>
                       </span>
                     </span>
@@ -188,11 +190,11 @@ export function BookingStep1En() {
           <section>
             <div className="flex items-center gap-3 mb-6">
               <Icon name="calendar_month" className="text-primary" />
-              <h2 className="font-heading-sm text-primary">Date & Time</h2>
+              <h2 className="font-heading-sm text-primary">{t('booking.dateTimeHeading')}</h2>
             </div>
             <div className="bg-white rounded-xl p-5 sm:p-6 shadow-soft border border-surface-variant/50 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <label className="flex flex-col gap-2 text-left">
-                <span className="font-bold text-primary">Choose date</span>
+              <label className={`flex flex-col gap-2 ${textAlign}`}>
+                <span className="font-bold text-primary">{t('booking.chooseDate')}</span>
                 <input
                   type="date"
                   value={date}
@@ -200,10 +202,10 @@ export function BookingStep1En() {
                   className="bg-surface-container-low rounded-lg px-4 py-3 border border-surface-variant/50 focus:border-primary focus:outline-none"
                 />
               </label>
-              <div className="flex flex-col gap-2 text-left">
-                <span className="font-bold text-primary">Choose time</span>
+              <div className={`flex flex-col gap-2 ${textAlign}`}>
+                <span className="font-bold text-primary">{t('booking.chooseTime')}</span>
                 <div className="grid grid-cols-3 gap-2">
-                  {TIME_SLOTS.map((slot) => (
+                  {timeSlots.map((slot) => (
                     <button
                       key={slot}
                       type="button"
@@ -226,13 +228,13 @@ export function BookingStep1En() {
         <aside className="lg:col-span-4">
           <div className="lg:sticky lg:top-32 bg-white rounded-3xl shadow-soft p-6 sm:p-8 border border-surface-container-high">
             <h3 className="font-display-md text-2xl text-primary mb-6">
-              Order Summary
+              {t('booking.summary')}
             </h3>
             <div className="flex justify-between items-start pb-4 border-b border-surface-variant/50">
-              <span className="text-on-surface-variant">{currentPackage.titleEn}</span>
-              <span className="font-bold text-primary">
-                SAR {currentPackage.price}
+              <span className="text-on-surface-variant">
+                {t(`booking.packages.${currentPackage.id}.title`)}
               </span>
+              <span className="font-bold text-primary">{formatPrice(currentPackage.price)}</span>
             </div>
             {selectedAddOns.length > 0 && (
               <div className="py-4 border-b border-surface-variant/50 space-y-2">
@@ -240,10 +242,8 @@ export function BookingStep1En() {
                   const a = addOns.find((x) => x.id === id)!
                   return (
                     <div key={id} className="flex justify-between text-sm">
-                      <span className="text-outline">{a.titleEn}</span>
-                      <span className="text-primary font-medium">
-                        SAR {a.price}
-                      </span>
+                      <span className="text-outline">{t(`booking.addOns.${a.id}`)}</span>
+                      <span className="text-primary font-medium">{formatPrice(a.price)}</span>
                     </div>
                   )
                 })}
@@ -251,34 +251,30 @@ export function BookingStep1En() {
             )}
             <div className="py-4 text-sm text-outline space-y-2 border-b border-surface-variant/50">
               <div className="flex justify-between">
-                <span>Date</span>
-                <span className="font-medium text-on-surface">
-                  {date || '—'}
-                </span>
+                <span>{t('booking.date')}</span>
+                <span className="font-medium text-on-surface">{date || '—'}</span>
               </div>
               <div className="flex justify-between">
-                <span>Time</span>
+                <span>{t('booking.time')}</span>
                 <span className="font-medium text-on-surface">{time}</span>
               </div>
             </div>
             <div className="flex justify-between items-center pt-6 mb-6">
-              <span className="text-lg font-bold text-primary">Total</span>
-              <span className="text-2xl font-bold text-primary">
-                SAR {total}
-              </span>
+              <span className="text-lg font-bold text-primary">{t('booking.total')}</span>
+              <span className="text-2xl font-bold text-primary">{formatPrice(total)}</span>
             </div>
             <button
               type="button"
               className="w-full bg-primary-container text-white py-4 rounded-xl font-bold shadow-md hover:opacity-95 active:scale-95 transition-all flex items-center justify-center gap-2"
             >
-              Continue to details
-              <Icon name="arrow_forward" />
+              {t('booking.continue')}
+              <Icon name={isAr ? 'arrow_back' : 'arrow_forward'} />
             </button>
             <Link
-              to="/"
+              to={localePath(locale, '/')}
               className="block text-center mt-3 text-sm text-outline hover:text-primary transition-colors"
             >
-              Back to home
+              {t('common.backToHome')}
             </Link>
           </div>
         </aside>

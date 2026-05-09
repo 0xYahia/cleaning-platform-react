@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Icon } from './Icon'
+import { useLocale, localePath } from '../hooks/useLocale'
 
-interface NavigationProps {
-  lang: 'en' | 'ar'
-}
-
-export function Navigation({ lang }: NavigationProps) {
+export function Navigation() {
   const location = useLocation()
+  const { t } = useTranslation()
+  const locale = useLocale()
+  const isAr = locale === 'ar'
   const [menuOpen, setMenuOpen] = useState(false)
-  const isAr = lang === 'ar'
+
   const otherLangPath = isAr
     ? location.pathname.replace(/^\/ar/, '') || '/'
     : `/ar${location.pathname === '/' ? '' : location.pathname}`
@@ -18,24 +19,18 @@ export function Navigation({ lang }: NavigationProps) {
     setMenuOpen(false)
   }, [location.pathname])
 
-  const links = isAr
-    ? [
-      { to: '/ar', label: 'الرئيسية' },
-      { to: '/ar/services/tank-cleaning', label: 'الخدمات' },
-      { to: '/ar/booking', label: 'الحجز' },
-    ]
-    : [
-      { to: '/', label: 'Home' },
-      { to: '/services/tank-cleaning', label: 'Services' },
-      { to: '/booking', label: 'Booking' },
-    ]
+  const links = [
+    { to: localePath(locale, '/'), label: t('nav.home') },
+    { to: localePath(locale, '/services/tank-cleaning'), label: t('nav.services') },
+    { to: localePath(locale, '/booking'), label: t('nav.booking') },
+  ]
 
   return (
     <header className="fixed top-0 w-full z-50 bg-[#FAFAF7]/80 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3 sm:py-4 gap-3">
         <div className="flex items-center gap-4 md:gap-8 min-w-0">
           <Link
-            to={isAr ? '/ar' : '/'}
+            to={localePath(locale, '/')}
             className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#0F6E56] font-display-md whitespace-nowrap"
           >
             Medi Clean
@@ -47,9 +42,10 @@ export function Navigation({ lang }: NavigationProps) {
                 to={link.to}
                 end={link.to === '/' || link.to === '/ar'}
                 className={({ isActive }) =>
-                  `transition-colors font-body-md ${isActive
-                    ? 'text-[#0F6E56] font-bold'
-                    : 'text-gray-600 hover:text-[#0F6E56]'
+                  `transition-colors font-body-md ${
+                    isActive
+                      ? 'text-[#0F6E56] font-bold'
+                      : 'text-gray-600 hover:text-[#0F6E56]'
                   }`
                 }
               >
@@ -63,18 +59,18 @@ export function Navigation({ lang }: NavigationProps) {
             to={otherLangPath}
             className="text-[#0F6E56] font-medium px-2.5 sm:px-3 py-1 border border-[#0F6E56] rounded-lg text-xs sm:text-sm hover:bg-[#0F6E56] hover:text-white transition-all"
           >
-            {isAr ? 'EN' : 'AR'}
+            {t('common.switchLang')}
           </Link>
           <button className="text-gray-600 font-medium hidden lg:block">
-            {isAr ? 'تسجيل الدخول' : 'Login'}
+            {t('common.login')}
           </button>
           <Link
-            to={isAr ? '/ar/booking' : '/booking'}
+            to={localePath(locale, '/booking')}
             className="bg-[#0F6E56] text-white px-3 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full font-bold shadow-md hover:opacity-90 active-scale transition-all flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base"
           >
             <Icon name="verified_user" className="text-sm" />
-            <span className="hidden sm:inline">{isAr ? 'احجز الآن' : 'Book Now'}</span>
-            <span className="sm:hidden">{isAr ? 'احجز' : 'Book'}</span>
+            <span className="hidden sm:inline">{t('common.bookNow')}</span>
+            <span className="sm:hidden">{t('common.book')}</span>
           </Link>
           <button
             type="button"
@@ -96,9 +92,10 @@ export function Navigation({ lang }: NavigationProps) {
                 to={link.to}
                 end={link.to === '/' || link.to === '/ar'}
                 className={({ isActive }) =>
-                  `px-3 py-3 rounded-lg transition-colors font-body-md ${isActive
-                    ? 'bg-[#0F6E56]/10 text-[#0F6E56] font-bold'
-                    : 'text-gray-600 hover:bg-[#0F6E56]/5'
+                  `px-3 py-3 rounded-lg transition-colors font-body-md ${
+                    isActive
+                      ? 'bg-[#0F6E56]/10 text-[#0F6E56] font-bold'
+                      : 'text-gray-600 hover:bg-[#0F6E56]/5'
                   }`
                 }
               >
@@ -109,7 +106,7 @@ export function Navigation({ lang }: NavigationProps) {
               type="button"
               className="px-3 py-3 text-start text-gray-600 hover:bg-[#0F6E56]/5 rounded-lg transition-colors"
             >
-              {isAr ? 'تسجيل الدخول' : 'Login'}
+              {t('common.login')}
             </button>
           </div>
         </nav>

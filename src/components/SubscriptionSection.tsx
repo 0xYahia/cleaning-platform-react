@@ -1,31 +1,28 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Icon } from './Icon'
 import { subscriptionPlans } from '../data/mockData'
+import { useLocale, localePath } from '../hooks/useLocale'
 
-interface Props {
-  lang: 'en' | 'ar'
-}
+export function SubscriptionSection() {
+  const { t } = useTranslation()
+  const locale = useLocale()
 
-export function SubscriptionSection({ lang }: Props) {
-  const isAr = lang === 'ar'
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-xl" id="subscriptions">
       <div className="text-center mb-12 sm:mb-xl">
         <h2 className="text-2xl sm:text-3xl md:text-display-md font-display-md text-primary mb-4">
-          {isAr ? 'باقات الاشتراك' : 'Subscription Plans'}
+          {t('subscriptions.title')}
         </h2>
         <p className="text-base sm:text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-          {isAr
-            ? 'وفّر أكثر بزيارات منتظمة وأولوية الحجز وخدمات إضافية مجانية.'
-            : 'Save more with regular visits, priority booking and free extras.'}
+          {t('subscriptions.description')}
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-md">
         {subscriptionPlans.map((plan) => {
-          const benefits = isAr ? plan.benefitsAr : plan.benefitsEn
-          const title = isAr ? plan.titleAr : plan.titleEn
-          const price = isAr ? plan.priceAr : plan.priceEn
-          const cadence = isAr ? plan.cadenceAr : plan.cadenceEn
+          const benefits = t(`subscriptions.plans.${plan.id}.benefits`, {
+            returnObjects: true,
+          }) as string[]
           return (
             <div
               key={plan.id}
@@ -37,7 +34,7 @@ export function SubscriptionSection({ lang }: Props) {
             >
               {plan.highlight && (
                 <span className="absolute top-4 right-4 bg-secondary-container text-on-secondary-container text-xs font-bold px-3 py-1 rounded-full">
-                  {isAr ? 'الأكثر توفيراً' : 'Best Value'}
+                  {t('subscriptions.bestValue')}
                 </span>
               )}
               <div className="flex items-center gap-3 mb-4">
@@ -55,7 +52,7 @@ export function SubscriptionSection({ lang }: Props) {
                     plan.highlight ? 'text-white' : 'text-primary'
                   }`}
                 >
-                  {title}
+                  {t(`subscriptions.plans.${plan.id}.title`)}
                 </h3>
               </div>
               <div className="flex items-baseline gap-2 mb-6">
@@ -64,14 +61,14 @@ export function SubscriptionSection({ lang }: Props) {
                     plan.highlight ? 'text-white' : 'text-primary'
                   }`}
                 >
-                  {price}
+                  {t(`subscriptions.plans.${plan.id}.price`)}
                 </span>
                 <span
                   className={
                     plan.highlight ? 'text-white/80' : 'text-on-surface-variant'
                   }
                 >
-                  {cadence}
+                  {t(`subscriptions.plans.${plan.id}.cadence`)}
                 </span>
               </div>
               <ul className="flex flex-col gap-3 mb-lg">
@@ -94,14 +91,14 @@ export function SubscriptionSection({ lang }: Props) {
                 ))}
               </ul>
               <Link
-                to={isAr ? '/ar/booking' : '/booking'}
+                to={localePath(locale, '/booking')}
                 className={`block text-center w-full py-3 rounded-full font-bold transition-all active-scale ${
                   plan.highlight
                     ? 'bg-secondary-container text-on-secondary-container'
                     : 'bg-primary text-white'
                 }`}
               >
-                {isAr ? 'اشترك الآن' : 'Subscribe Now'}
+                {t('subscriptions.subscribe')}
               </Link>
             </div>
           )
