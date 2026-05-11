@@ -31,9 +31,14 @@ export function Navigation() {
         <div className="flex items-center gap-4 md:gap-8 min-w-0">
           <Link
             to={localePath(locale, '/')}
-            className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#0F6E56] font-display-md whitespace-nowrap"
+            className="flex items-center gap-2 text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#0F6E56] font-display-md whitespace-nowrap"
           >
-            Medi Clean
+            <img
+              src="/md-logo.png"
+              alt="Medi Clean"
+              className="h-12 sm:h-12 md:h-12 w-12 sm:w-12 md:w-12 object-contain shrink-0"
+            />
+            <span>{t('nav.medi-clean')}</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6">
             {links.map((link) => (
@@ -42,10 +47,9 @@ export function Navigation() {
                 to={link.to}
                 end={link.to === '/' || link.to === '/ar'}
                 className={({ isActive }) =>
-                  `transition-colors font-body-md ${
-                    isActive
-                      ? 'text-[#0F6E56] font-bold'
-                      : 'text-gray-600 hover:text-[#0F6E56]'
+                  `transition-colors font-body-md ${isActive
+                    ? 'text-[#0F6E56] font-bold'
+                    : 'text-gray-600 hover:text-[#0F6E56]'
                   }`
                 }
               >
@@ -92,10 +96,9 @@ export function Navigation() {
                 to={link.to}
                 end={link.to === '/' || link.to === '/ar'}
                 className={({ isActive }) =>
-                  `px-3 py-3 rounded-lg transition-colors font-body-md ${
-                    isActive
-                      ? 'bg-[#0F6E56]/10 text-[#0F6E56] font-bold'
-                      : 'text-gray-600 hover:bg-[#0F6E56]/5'
+                  `px-3 py-3 rounded-lg transition-colors font-body-md ${isActive
+                    ? 'bg-[#0F6E56]/10 text-[#0F6E56] font-bold'
+                    : 'text-gray-600 hover:bg-[#0F6E56]/5'
                   }`
                 }
               >

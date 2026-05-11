@@ -14,7 +14,8 @@
   "nav": {
     "home": "Home",
     "services": "Services",
-    "booking": "Booking"
+    "booking": "Booking",
+    "medi-clean": "Medi Clean"
   },
   "hero": {
     "alt": "Tank cleaning, sanitization & lining",
@@ -24,7 +25,14 @@
     "exploreCta": "Explore Services"
   },
   "slogan": "Cleanliness. Safety. Sanitization. Professional standards.",
-  "cities": ["Dammam", "Khobar", "Dhahran", "Jubail", "Qatif", "Sihat"],
+  "cities": [
+    "Dammam",
+    "Khobar",
+    "Dhahran",
+    "Jubail",
+    "Qatif",
+    "Sihat"
+  ],
   "trustBadges": {
     "shield": "Quality Guaranteed",
     "verified_user": "Advanced Equipment",
