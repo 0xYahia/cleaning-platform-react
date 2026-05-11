@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { PhoneInput } from 'react-international-phone'
@@ -23,41 +23,362 @@ const STEP_ICONS: Record<StepKey, string> = {
 }
 
 const WHATSAPP_NUMBER = '966554918518'
+const BANK_NAME = 'Riyad Bank'
+const BANK_ACCOUNT = '3225519979940'
+const BANK_IBAN = 'SA1720000003225519979940'
+const STORAGE_KEY = 'medi-clean-booking'
+
+interface PersistedBooking {
+  step: 1 | 2 | 3
+  packageId: string
+  selectedAddOns: string[]
+  date: string
+  timeHour: number | null
+  name: string
+  phone: string
+  phoneCountry: CountryCode
+  city: string
+  district: string
+  street: string
+  building: string
+  notes: string
+  paymentMethod: '' | 'qr' | 'cod'
+}
+
+function loadPersistedBooking(): Partial<PersistedBooking> {
+  if (typeof window === 'undefined') return {}
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY)
+    if (!raw) return {}
+    const data = JSON.parse(raw) as Partial<PersistedBooking>
+    if (data.date) {
+      const parsed = parseDateInput(data.date)
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+      if (!parsed || parsed < today) {
+        data.date = ''
+        data.timeHour = null
+      }
+    }
+    return data
+  } catch {
+    return {}
+  }
+}
+
+function clearPersistedBooking() {
+  if (typeof window === 'undefined') return
+  try {
+    window.localStorage.removeItem(STORAGE_KEY)
+  } catch {
+    // ignore
+  }
+}
+
+const BOOKING_HOURS = Array.from({ length: 15 }, (_, i) => i + 8) // 08..22
+
+function toDateInputValue(d: Date) {
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
+function parseDateInput(v: string): Date | null {
+  if (!v) return null
+  const parts = v.split('-').map(Number)
+  if (parts.length !== 3 || parts.some((n) => Number.isNaN(n))) return null
+  return new Date(parts[0], parts[1] - 1, parts[2])
+}
+
+function isSameDay(a: Date, b: Date) {
+  return (
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  )
+}
+
+function formatHour(h: number, isAr: boolean) {
+  const ampm = h < 12 ? (isAr ? 'ص' : 'AM') : (isAr ? 'م' : 'PM')
+  const displayH = h === 0 ? 12 : h > 12 ? h - 12 : h
+  return `${displayH.toString().padStart(2, '0')}:00 ${ampm}`
+}
+
+interface CalendarProps {
+  value: string
+  onChange: (v: string) => void
+  locale: string
+  isAr: boolean
+}
+
+function Calendar({ value, onChange, locale, isAr }: CalendarProps) {
+  const intlLocale = isAr ? 'ar' : 'en'
+  const today = useMemo(() => {
+    const d = new Date()
+    d.setHours(0, 0, 0, 0)
+    return d
+  }, [])
+
+  const [view, setView] = useState(() => {
+    const d = parseDateInput(value) ?? new Date()
+    return new Date(d.getFullYear(), d.getMonth(), 1)
+  })
+
+  const year = view.getFullYear()
+  const month = view.getMonth()
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
+  const firstWeekday = new Date(year, month, 1).getDay()
+
+  const weekdayLabels = useMemo(() => {
+    const fmt = new Intl.DateTimeFormat(intlLocale, { weekday: 'short' })
+    return Array.from({ length: 7 }, (_, i) =>
+      fmt.format(new Date(2024, 0, 7 + i))
+    )
+  }, [intlLocale])
+
+  const monthLabel = useMemo(
+    () =>
+      new Intl.DateTimeFormat(intlLocale, {
+        month: 'long',
+        year: 'numeric',
+      }).format(view),
+    [intlLocale, view]
+  )
+
+  const selected = parseDateInput(value)
+  const cells: ({ day: number; date: Date } | null)[] = []
+  for (let i = 0; i < firstWeekday; i++) cells.push(null)
+  for (let d = 1; d <= daysInMonth; d++) {
+    cells.push({ day: d, date: new Date(year, month, d) })
+  }
+
+  const canGoPrev =
+    new Date(year, month, 1).getTime() >
+    new Date(today.getFullYear(), today.getMonth(), 1).getTime()
+
+  return (
+    <div
+      className="bg-surface-container-lowest rounded-2xl border border-surface-variant/50 p-4 sm:p-5 shadow-soft"
+      lang={locale}
+    >
+      <div className="flex items-center justify-between mb-4">
+        <button
+          type="button"
+          onClick={() => canGoPrev && setView(new Date(year, month - 1, 1))}
+          disabled={!canGoPrev}
+          className={`p-2 rounded-lg transition-colors ${
+            canGoPrev
+              ? 'text-primary hover:bg-primary/10'
+              : 'text-outline/40 cursor-not-allowed'
+          }`}
+          aria-label="prev"
+        >
+          <Icon name={isAr ? 'chevron_right' : 'chevron_left'} />
+        </button>
+        <span className="font-bold text-primary capitalize">{monthLabel}</span>
+        <button
+          type="button"
+          onClick={() => setView(new Date(year, month + 1, 1))}
+          className="p-2 rounded-lg text-primary hover:bg-primary/10 transition-colors"
+          aria-label="next"
+        >
+          <Icon name={isAr ? 'chevron_left' : 'chevron_right'} />
+        </button>
+      </div>
+      <div className="grid grid-cols-7 gap-1 mb-2">
+        {weekdayLabels.map((label, i) => (
+          <span
+            key={i}
+            className="text-center text-xs font-bold text-outline py-1"
+          >
+            {label}
+          </span>
+        ))}
+      </div>
+      <div className="grid grid-cols-7 gap-1">
+        {cells.map((cell, i) => {
+          if (!cell) return <span key={`empty-${i}`} />
+          const isPast = cell.date < today
+          const isToday = isSameDay(cell.date, today)
+          const isSelected = Boolean(selected && isSameDay(cell.date, selected))
+          return (
+            <button
+              key={cell.day}
+              type="button"
+              disabled={isPast}
+              onClick={() => onChange(toDateInputValue(cell.date))}
+              className={`aspect-square rounded-lg text-sm font-medium transition-all ${
+                isSelected
+                  ? 'bg-primary text-white shadow-md ring-2 ring-primary/20'
+                  : isPast
+                    ? 'text-outline/40 cursor-not-allowed line-through decoration-1'
+                    : isToday
+                      ? 'bg-primary/10 text-primary border border-primary/40 hover:bg-primary/20'
+                      : 'text-on-surface hover:bg-primary/5'
+              }`}
+            >
+              {cell.day}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+interface TimeGridProps {
+  date: string
+  value: number | null
+  onChange: (h: number) => void
+  isAr: boolean
+}
+
+function TimeGrid({ date, value, onChange, isAr }: TimeGridProps) {
+  const now = new Date()
+  const selectedDate = parseDateInput(date)
+  const todayDate = new Date()
+  todayDate.setHours(0, 0, 0, 0)
+  const isToday = Boolean(selectedDate && isSameDay(selectedDate, todayDate))
+  const minHour = isToday ? now.getHours() + 1 : 0
+
+  return (
+    <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+      {BOOKING_HOURS.map((h) => {
+        const disabled = !date || h < minHour
+        const active = value === h
+        return (
+          <button
+            key={h}
+            type="button"
+            disabled={disabled}
+            onClick={() => onChange(h)}
+            className={`py-2.5 px-2 rounded-lg text-sm font-medium transition-all ${
+              active
+                ? 'bg-primary text-white shadow-md ring-2 ring-primary/20'
+                : disabled
+                  ? 'bg-surface-container-low/40 text-outline/40 cursor-not-allowed'
+                  : 'bg-surface-container-low text-on-surface hover:bg-primary/10 border border-surface-variant/40'
+            }`}
+          >
+            {formatHour(h, isAr)}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
 
 export function BookingStep1() {
   const { t } = useTranslation()
   const locale = useLocale()
   const isAr = locale === 'ar'
 
-  const timeSlots = t('booking.timeSlots', { returnObjects: true }) as string[]
+  const persisted = useMemo(() => loadPersistedBooking(), [])
 
-  const [step, setStep] = useState<StepNumber>(1)
+  const [step, setStep] = useState<StepNumber>(persisted.step ?? 1)
 
   // Step 1
-  const [packageId, setPackageId] = useState<string>(servicePackages[0].id)
-  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([])
-  const [date, setDate] = useState<string>('')
-  const [time, setTime] = useState<string>(timeSlots[0])
+  const [packageId, setPackageId] = useState<string>(
+    persisted.packageId ?? servicePackages[0].id
+  )
+  const [selectedAddOns, setSelectedAddOns] = useState<string[]>(
+    persisted.selectedAddOns ?? []
+  )
+  const [date, setDate] = useState<string>(persisted.date ?? '')
+  const [timeHour, setTimeHour] = useState<number | null>(
+    persisted.timeHour ?? null
+  )
+
+  useEffect(() => {
+    if (!date || timeHour === null) return
+    const now = new Date()
+    const todayStr = toDateInputValue(now)
+    if (date === todayStr && timeHour <= now.getHours()) {
+      setTimeHour(null)
+    }
+  }, [date, timeHour])
+
+  const timeLabel = timeHour !== null ? formatHour(timeHour, isAr) : ''
 
   // Step 2
-  const [name, setName] = useState('')
-  const [phone, setPhone] = useState('+966')
-  const [phoneCountry, setPhoneCountry] = useState<CountryCode>('SA')
+  const [name, setName] = useState(persisted.name ?? '')
+  const [phone, setPhone] = useState(persisted.phone ?? '+966')
+  const [phoneCountry, setPhoneCountry] = useState<CountryCode>(
+    persisted.phoneCountry ?? 'SA'
+  )
   const [phoneTouched, setPhoneTouched] = useState(false)
-  const [city, setCity] = useState('')
-  const [district, setDistrict] = useState('')
-  const [street, setStreet] = useState('')
-  const [building, setBuilding] = useState('')
-  const [notes, setNotes] = useState('')
+  const [city, setCity] = useState(persisted.city ?? '')
+  const [district, setDistrict] = useState(persisted.district ?? '')
+  const [street, setStreet] = useState(persisted.street ?? '')
+  const [building, setBuilding] = useState(persisted.building ?? '')
+  const [notes, setNotes] = useState(persisted.notes ?? '')
 
   // Step 3
-  const [paymentMethod, setPaymentMethod] = useState<'qr' | 'cod' | ''>('')
+  const [paymentMethod, setPaymentMethod] = useState<'qr' | 'cod' | ''>(
+    persisted.paymentMethod ?? ''
+  )
   const [screenshot, setScreenshot] = useState<File | null>(null)
   const [submitted, setSubmitted] = useState(false)
 
+  useEffect(() => {
+    const data: PersistedBooking = {
+      step,
+      packageId,
+      selectedAddOns,
+      date,
+      timeHour,
+      name,
+      phone,
+      phoneCountry,
+      city,
+      district,
+      street,
+      building,
+      notes,
+      paymentMethod,
+    }
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    } catch {
+      // ignore quota / privacy-mode errors
+    }
+  }, [
+    step,
+    packageId,
+    selectedAddOns,
+    date,
+    timeHour,
+    name,
+    phone,
+    phoneCountry,
+    city,
+    district,
+    street,
+    building,
+    notes,
+    paymentMethod,
+  ])
+  const [copiedField, setCopiedField] = useState<'account' | 'iban' | null>(
+    null
+  )
+
+  const copyToClipboard = async (
+    value: string,
+    field: 'account' | 'iban'
+  ) => {
+    try {
+      await navigator.clipboard.writeText(value)
+      setCopiedField(field)
+      setTimeout(() => setCopiedField(null), 1800)
+    } catch {
+      // ignore — older browsers without clipboard API
+    }
+  }
+
   const [error, setError] = useState('')
 
-  const canContinueStep1 = Boolean(packageId && date && time)
+  const canContinueStep1 = Boolean(packageId && date && timeHour !== null)
   const phoneValid = useMemo(
     () => Boolean(phone) && isValidPhoneNumber(phone, phoneCountry),
     [phone, phoneCountry]
@@ -161,7 +482,7 @@ export function BookingStep1() {
       lines.push(`• ${t(`booking.addOns.${a.id}`)} — ${formatPrice(a.price)}`)
     })
     lines.push(`📅 ${t('booking.date')}: ${date || '—'}`)
-    lines.push(`⏰ ${t('booking.time')}: ${time}`)
+    lines.push(`⏰ ${t('booking.time')}: ${timeLabel || '—'}`)
     lines.push(`💰 ${t('booking.total')}: ${formatPrice(total)}`)
     lines.push('')
     lines.push(
@@ -190,6 +511,7 @@ export function BookingStep1() {
     )}`
     window.open(url, '_blank', 'noopener,noreferrer')
     setSubmitted(true)
+    clearPersistedBooking()
   }
 
   const pageTitle =
@@ -399,37 +721,39 @@ export function BookingStep1() {
                     {t('booking.dateTimeHeading')}
                   </h2>
                 </div>
-                <div className="bg-white rounded-xl p-5 sm:p-6 shadow-soft border border-surface-variant/50 grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <label className={`flex flex-col gap-2 ${textAlign}`}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
+                  <div className={`flex flex-col gap-3 ${textAlign}`}>
                     <span className="font-bold text-primary">
                       {t('booking.chooseDate')}
                     </span>
-                    <input
-                      type="date"
+                    <Calendar
                       value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      className="bg-surface-container-low rounded-lg px-4 py-3 border border-surface-variant/50 focus:border-primary focus:outline-none"
+                      onChange={setDate}
+                      locale={locale}
+                      isAr={isAr}
                     />
-                  </label>
-                  <div className={`flex flex-col gap-2 ${textAlign}`}>
+                  </div>
+                  <div className={`flex flex-col gap-3 ${textAlign}`}>
                     <span className="font-bold text-primary">
                       {t('booking.chooseTime')}
                     </span>
-                    <div className="grid grid-cols-3 gap-2">
-                      {timeSlots.map((slot) => (
-                        <button
-                          key={slot}
-                          type="button"
-                          onClick={() => setTime(slot)}
-                          className={`py-2 px-3 rounded-lg text-sm font-medium transition-all ${
-                            slot === time
-                              ? 'bg-primary text-white'
-                              : 'bg-surface-container-low text-on-surface hover:bg-primary/10'
-                          }`}
-                        >
-                          {slot}
-                        </button>
-                      ))}
+                    <div className="bg-surface-container-lowest rounded-2xl border border-surface-variant/50 p-4 sm:p-5 shadow-soft">
+                      {date ? (
+                        <TimeGrid
+                          date={date}
+                          value={timeHour}
+                          onChange={setTimeHour}
+                          isAr={isAr}
+                        />
+                      ) : (
+                        <div className="flex flex-col items-center justify-center py-10 text-outline text-sm gap-2">
+                          <Icon
+                            name="event"
+                            className="text-3xl text-primary/40"
+                          />
+                          <span>{t('booking.pickDateFirst')}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -666,6 +990,70 @@ export function BookingStep1() {
                       {t('booking.payment.scanQrDesc')}
                     </p>
                   </div>
+
+                  <div className="bg-surface-container-low/60 rounded-xl border border-surface-variant/50 p-4 space-y-3">
+                    <div
+                      className={`flex items-center gap-2 ${textAlign} ${
+                        isAr ? 'flex-row-reverse' : ''
+                      }`}
+                    >
+                      <Icon
+                        name="account_balance"
+                        className="text-primary text-xl"
+                      />
+                      <span className="font-bold text-primary">
+                        {BANK_NAME}
+                      </span>
+                    </div>
+
+                    {(['account', 'iban'] as const).map((field) => {
+                      const value =
+                        field === 'account' ? BANK_ACCOUNT : BANK_IBAN
+                      const label = t(`booking.payment.${field}`)
+                      const isCopied = copiedField === field
+                      return (
+                        <div
+                          key={field}
+                          className={`flex flex-col gap-1 ${textAlign}`}
+                        >
+                          <span className="text-xs text-outline font-medium">
+                            {label}
+                          </span>
+                          <div
+                            className={`flex items-center gap-2 bg-white rounded-lg border border-surface-variant/50 px-3 py-2 ${
+                              isAr ? 'flex-row-reverse' : ''
+                            }`}
+                          >
+                            <span
+                              dir="ltr"
+                              className="flex-1 font-mono text-sm sm:text-base text-on-surface tracking-wider truncate"
+                            >
+                              {value}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => copyToClipboard(value, field)}
+                              className={`shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+                                isCopied
+                                  ? 'bg-emerald-100 text-emerald-700'
+                                  : 'bg-primary text-white hover:opacity-90 active:scale-95'
+                              }`}
+                              aria-label={`${t('booking.payment.copy')} ${label}`}
+                            >
+                              <Icon
+                                name={isCopied ? 'check' : 'content_copy'}
+                                className="text-sm"
+                              />
+                              {isCopied
+                                ? t('booking.payment.copied')
+                                : t('booking.payment.copy')}
+                            </button>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+
                   <div className="flex justify-center">
                     <img
                       src="/pay-way.jpeg"
@@ -761,18 +1149,27 @@ export function BookingStep1() {
                 {t('booking.back')}
               </button>
             )}
-            {step < 3 && (
-              <button
-                type="button"
-                onClick={goNext}
-                className="flex-1 bg-primary-container text-white py-3 rounded-xl font-bold shadow-md hover:opacity-95 active:scale-95 transition-all flex items-center justify-center gap-2"
-              >
-                {step === 1
-                  ? t('booking.continueToDetails')
-                  : t('booking.continueToPayment')}
-                <Icon name={isAr ? 'arrow_back' : 'arrow_forward'} />
-              </button>
-            )}
+            {step < 3 && (() => {
+              const enabled =
+                step === 1 ? canContinueStep1 : canContinueStep2
+              return (
+                <button
+                  type="button"
+                  onClick={goNext}
+                  disabled={!enabled}
+                  className={`flex-1 py-3 rounded-xl font-bold shadow-md transition-all flex items-center justify-center gap-2 ${
+                    enabled
+                      ? 'bg-primary-container text-white hover:opacity-95 active:scale-95 cursor-pointer'
+                      : 'bg-surface-container text-outline cursor-not-allowed'
+                  }`}
+                >
+                  {step === 1
+                    ? t('booking.continueToDetails')
+                    : t('booking.continueToPayment')}
+                  <Icon name={isAr ? 'arrow_back' : 'arrow_forward'} />
+                </button>
+              )
+            })()}
             {step === 3 && (
               <button
                 type="button"
@@ -830,7 +1227,9 @@ export function BookingStep1() {
               </div>
               <div className="flex justify-between">
                 <span>{t('booking.time')}</span>
-                <span className="font-medium text-on-surface">{time}</span>
+                <span className="font-medium text-on-surface">
+                  {timeLabel || '—'}
+                </span>
               </div>
             </div>
 
