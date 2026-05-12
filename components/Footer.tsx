@@ -41,7 +41,9 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Icon name="mail" className="text-secondary text-sm" />
-                <span>ahmedbakre2010@gmail.com</span>
+                <span>support@mediclean2030.com
+
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <Icon name="location_on" className="text-secondary text-sm" />

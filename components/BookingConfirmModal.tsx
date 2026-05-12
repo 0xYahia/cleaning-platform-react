@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Icon } from "./Icon";
 
 const WHATSAPP_NUMBER = "966554918518";
-const EMAIL = "ahmedbakre2010@gmail.com";
+const EMAIL = "support@mediclean2030.com";
 
 export interface BookingPayload {
   packageTitle: string;

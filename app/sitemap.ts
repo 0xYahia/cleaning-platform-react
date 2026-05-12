@@ -4,7 +4,7 @@ import { services } from "@/lib/mockData";
 
 export const dynamic = "force-static";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mediclean2030.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
