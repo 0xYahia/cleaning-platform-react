@@ -14,6 +14,7 @@ import { Icon } from "@/components/Icon";
 import { addOns, servicePackages } from "@/lib/mockData";
 import { localePath } from "@/lib/locale";
 import type { Locale } from "@/i18n/routing";
+import Image from "next/image";
 
 const STEP_KEYS = ["service", "details", "payment"] as const;
 type StepKey = (typeof STEP_KEYS)[number];
@@ -29,54 +30,6 @@ const WHATSAPP_NUMBER = "966554918518";
 const BANK_NAME = "Riyad Bank";
 const BANK_ACCOUNT = "3225519979940";
 const BANK_IBAN = "SA1720000003225519979940";
-const STORAGE_KEY = "medi-clean-booking";
-
-interface PersistedBooking {
-  step: 1 | 2 | 3;
-  packageId: string;
-  selectedAddOns: string[];
-  date: string;
-  timeHour: number | null;
-  name: string;
-  phone: string;
-  phoneCountry: CountryCode;
-  city: string;
-  district: string;
-  street: string;
-  building: string;
-  notes: string;
-  paymentMethod: "" | "qr" | "cod";
-}
-
-function loadPersistedBooking(): Partial<PersistedBooking> {
-  if (typeof window === "undefined") return {};
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return {};
-    const data = JSON.parse(raw) as Partial<PersistedBooking>;
-    if (data.date) {
-      const parsed = parseDateInput(data.date);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      if (!parsed || parsed < today) {
-        data.date = "";
-        data.timeHour = null;
-      }
-    }
-    return data;
-  } catch {
-    return {};
-  }
-}
-
-function clearPersistedBooking() {
-  if (typeof window === "undefined") return;
-  try {
-    window.localStorage.removeItem(STORAGE_KEY);
-  } catch {
-    // ignore
-  }
-}
 
 const BOOKING_HOURS = Array.from({ length: 15 }, (_, i) => i + 8);
 
@@ -170,11 +123,10 @@ function Calendar({ value, onChange, locale, isAr }: CalendarProps) {
           type="button"
           onClick={() => canGoPrev && setView(new Date(year, month - 1, 1))}
           disabled={!canGoPrev}
-          className={`p-2 rounded-lg transition-colors ${
-            canGoPrev
-              ? "text-primary hover:bg-primary/10"
-              : "text-outline/40 cursor-not-allowed"
-          }`}
+          className={`p-2 rounded-lg transition-colors ${canGoPrev
+            ? "text-primary hover:bg-primary/10"
+            : "text-outline/40 cursor-not-allowed"
+            }`}
           aria-label="prev"
         >
           <Icon name={isAr ? "chevron_right" : "chevron_left"} />
@@ -208,15 +160,14 @@ function Calendar({ value, onChange, locale, isAr }: CalendarProps) {
               type="button"
               disabled={isPast}
               onClick={() => onChange(toDateInputValue(cell.date))}
-              className={`aspect-square rounded-lg text-sm font-medium transition-all ${
-                isSelected
-                  ? "bg-primary text-white shadow-md ring-2 ring-primary/20"
-                  : isPast
-                    ? "text-outline/40 cursor-not-allowed line-through decoration-1"
-                    : isToday
-                      ? "bg-primary/10 text-primary border border-primary/40 hover:bg-primary/20"
-                      : "text-on-surface hover:bg-primary/5"
-              }`}
+              className={`aspect-square rounded-lg text-sm font-medium transition-all ${isSelected
+                ? "bg-primary text-white shadow-md ring-2 ring-primary/20"
+                : isPast
+                  ? "text-outline/40 cursor-not-allowed line-through decoration-1"
+                  : isToday
+                    ? "bg-primary/10 text-primary border border-primary/40 hover:bg-primary/20"
+                    : "text-on-surface hover:bg-primary/5"
+                }`}
             >
               {cell.day}
             </button>
@@ -253,13 +204,12 @@ function TimeGrid({ date, value, onChange, isAr }: TimeGridProps) {
             type="button"
             disabled={disabled}
             onClick={() => onChange(h)}
-            className={`py-2.5 px-2 rounded-lg text-sm font-medium transition-all ${
-              active
-                ? "bg-primary text-white shadow-md ring-2 ring-primary/20"
-                : disabled
-                  ? "bg-surface-container-low/40 text-outline/40 cursor-not-allowed"
-                  : "bg-surface-container-low text-on-surface hover:bg-primary/10 border border-surface-variant/40"
-            }`}
+            className={`py-2.5 px-2 rounded-lg text-sm font-medium transition-all ${active
+              ? "bg-primary text-white shadow-md ring-2 ring-primary/20"
+              : disabled
+                ? "bg-surface-container-low/40 text-outline/40 cursor-not-allowed"
+                : "bg-surface-container-low text-on-surface hover:bg-primary/10 border border-surface-variant/40"
+              }`}
           >
             {formatHour(h, isAr)}
           </button>
@@ -274,18 +224,26 @@ export function BookingForm() {
   const locale = useLocale() as Locale;
   const isAr = locale === "ar";
 
-  const persisted = useMemo(() => loadPersistedBooking(), []);
+  const [step, setStep] = useState<StepNumber>(2);
 
-  const [step, setStep] = useState<StepNumber>(persisted.step ?? 1);
+  const [packageId, setPackageId] = useState<string>(servicePackages[0].id);
+  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+  const [date, setDate] = useState<string>("");
+  const [timeHour, setTimeHour] = useState<number | null>(null);
 
-  const [packageId, setPackageId] = useState<string>(
-    persisted.packageId ?? servicePackages[0].id
-  );
-  const [selectedAddOns, setSelectedAddOns] = useState<string[]>(
-    persisted.selectedAddOns ?? []
-  );
-  const [date, setDate] = useState<string>(persisted.date ?? "");
-  const [timeHour, setTimeHour] = useState<number | null>(persisted.timeHour ?? null);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("+966");
+  const [phoneCountry, setPhoneCountry] = useState<CountryCode>("SA");
+  const [phoneTouched, setPhoneTouched] = useState(false);
+  const [city, setCity] = useState("");
+  const [district, setDistrict] = useState("");
+  const [street, setStreet] = useState("");
+  const [building, setBuilding] = useState("");
+  const [notes, setNotes] = useState("");
+
+  const [paymentMethod, setPaymentMethod] = useState<"qr" | "cod" | "">("");
+  const [screenshot, setScreenshot] = useState<File | null>(null);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     if (!date || timeHour === null) return;
@@ -297,63 +255,6 @@ export function BookingForm() {
   }, [date, timeHour]);
 
   const timeLabel = timeHour !== null ? formatHour(timeHour, isAr) : "";
-
-  const [name, setName] = useState(persisted.name ?? "");
-  const [phone, setPhone] = useState(persisted.phone ?? "+966");
-  const [phoneCountry, setPhoneCountry] = useState<CountryCode>(
-    persisted.phoneCountry ?? "SA"
-  );
-  const [phoneTouched, setPhoneTouched] = useState(false);
-  const [city, setCity] = useState(persisted.city ?? "");
-  const [district, setDistrict] = useState(persisted.district ?? "");
-  const [street, setStreet] = useState(persisted.street ?? "");
-  const [building, setBuilding] = useState(persisted.building ?? "");
-  const [notes, setNotes] = useState(persisted.notes ?? "");
-
-  const [paymentMethod, setPaymentMethod] = useState<"qr" | "cod" | "">(
-    persisted.paymentMethod ?? ""
-  );
-  const [screenshot, setScreenshot] = useState<File | null>(null);
-  const [submitted, setSubmitted] = useState(false);
-
-  useEffect(() => {
-    const data: PersistedBooking = {
-      step,
-      packageId,
-      selectedAddOns,
-      date,
-      timeHour,
-      name,
-      phone,
-      phoneCountry,
-      city,
-      district,
-      street,
-      building,
-      notes,
-      paymentMethod,
-    };
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    } catch {
-      // ignore
-    }
-  }, [
-    step,
-    packageId,
-    selectedAddOns,
-    date,
-    timeHour,
-    name,
-    phone,
-    phoneCountry,
-    city,
-    district,
-    street,
-    building,
-    notes,
-    paymentMethod,
-  ]);
 
   const [copiedField, setCopiedField] = useState<"account" | "iban" | null>(null);
 
@@ -382,7 +283,7 @@ export function BookingForm() {
     return parsed?.formatInternational() ?? phone;
   }, [phone, phoneCountry]);
   const canSubmit =
-    paymentMethod === "cod" || (paymentMethod === "qr" && Boolean(screenshot));
+    name.trim() && phoneValid && city.trim() && street.trim() && building.trim();
 
   const currentPackage = useMemo(
     () => servicePackages.find((p) => p.id === packageId)!,
@@ -461,44 +362,49 @@ export function BookingForm() {
         .join(" - ")}`,
     ];
     if (notes.trim()) lines.push(`📝 ${t("booking.modal.notes")}: ${notes}`);
-    lines.push("");
-    lines.push(`📦 ${t("booking.summary")}`);
-    lines.push(
-      `• ${t(`booking.packages.${currentPackage.id}.title`)} — ${formatPrice(currentPackage.price)}`
-    );
-    selectedAddOns.forEach((id) => {
-      const a = addOns.find((x) => x.id === id)!;
-      lines.push(`• ${t(`booking.addOns.${a.id}`)} — ${formatPrice(a.price)}`);
-    });
-    lines.push(`📅 ${t("booking.date")}: ${date || "—"}`);
-    lines.push(`⏰ ${t("booking.time")}: ${timeLabel || "—"}`);
-    lines.push(`💰 ${t("booking.total")}: ${formatPrice(total)}`);
-    lines.push("");
-    lines.push(
-      `💳 ${t("booking.payment.method")}: ${t(
-        paymentMethod === "qr" ? "booking.payment.qr" : "booking.payment.cod"
-      )}`
-    );
-    if (paymentMethod === "qr") {
-      lines.push(`📎 ${t("booking.payment.attachInstruction")}`);
-    }
+    // lines.push("");
+    // lines.push(`📦 ${t("booking.summary")}`);
+    // lines.push(
+    //   `• ${t(`booking.packages.${currentPackage.id}.title`)} — ${formatPrice(currentPackage.price)}`
+    // );
+    // selectedAddOns.forEach((id) => {
+    //   const a = addOns.find((x) => x.id === id)!;
+    //   lines.push(`• ${t(`booking.addOns.${a.id}`)} — ${formatPrice(a.price)}`);
+    // });
+    // lines.push(`📅 ${t("booking.date")}: ${date || "—"}`);
+    // lines.push(`⏰ ${t("booking.time")}: ${timeLabel || "—"}`);
+    // lines.push(`💰 ${t("booking.total")}: ${formatPrice(total)}`);
+    // lines.push("");
+    // lines.push(
+    //   `💳 ${t("booking.payment.method")}: ${t(
+    //     paymentMethod === "qr" ? "booking.payment.qr" : "booking.payment.cod"
+    //   )}`
+    // );
+    // if (paymentMethod === "qr") {
+    //   lines.push(`📎 ${t("booking.payment.attachInstruction")}`);
+    // }
     return lines.join("\n");
   };
 
+  // const handleSubmit = () => {
+  //   setError("");
+  //   if (!paymentMethod) {
+  //     setError(t("booking.payment.choosePaymentFirst"));
+  //     return;
+  //   }
+  //   if (paymentMethod === "qr" && !screenshot) {
+  //     setError(t("booking.payment.screenshotRequired"));
+  //     return;
+  //   }
+  //   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildMessage())}`;
+  //   window.open(url, "_blank", "noopener,noreferrer");
+  //   setSubmitted(true);
+  // };
   const handleSubmit = () => {
     setError("");
-    if (!paymentMethod) {
-      setError(t("booking.payment.choosePaymentFirst"));
-      return;
-    }
-    if (paymentMethod === "qr" && !screenshot) {
-      setError(t("booking.payment.screenshotRequired"));
-      return;
-    }
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildMessage())}`;
     window.open(url, "_blank", "noopener,noreferrer");
     setSubmitted(true);
-    clearPersistedBooking();
   };
 
   const pageTitle =
@@ -518,7 +424,7 @@ export function BookingForm() {
   return (
     <div className="px-4 sm:px-6 max-w-7xl mx-auto pb-xl">
       <div className="mb-lg">
-        <div className="flex items-center justify-between mb-8 max-w-3xl overflow-x-auto">
+        {/* <div className="flex items-center justify-between mb-8 max-w-3xl overflow-x-auto">
           {STEP_KEYS.map((key, idx) => {
             const stepNum = (idx + 1) as StepNumber;
             const isActive = stepNum === step;
@@ -534,40 +440,36 @@ export function BookingForm() {
                   type="button"
                   onClick={() => canClick && goToStep(stepNum)}
                   disabled={!canClick}
-                  className={`flex flex-col items-center gap-2 min-w-0 ${
-                    canClick ? "cursor-pointer" : "cursor-not-allowed"
-                  }`}
+                  className={`flex flex-col items-center gap-2 min-w-0 ${canClick ? "cursor-pointer" : "cursor-not-allowed"
+                    }`}
                 >
                   <div
-                    className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shrink-0 transition-all ${
-                      isActive
+                    className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shrink-0 transition-all ${isActive
                         ? "bg-primary-container text-white shadow-lg ring-4 ring-primary/15"
                         : isCompleted
                           ? "bg-primary text-white shadow-md"
                           : "bg-surface-container text-outline"
-                    }`}
+                      }`}
                   >
                     <Icon name={isCompleted ? "check" : STEP_ICONS[key]} filled={isCompleted} />
                   </div>
                   <span
-                    className={`font-heading-sm text-xs sm:text-sm whitespace-nowrap ${
-                      isActive || isCompleted ? "font-bold text-primary" : "text-outline"
-                    }`}
+                    className={`font-heading-sm text-xs sm:text-sm whitespace-nowrap ${isActive || isCompleted ? "font-bold text-primary" : "text-outline"
+                      }`}
                   >
                     {t(`booking.steps.${key}`)}
                   </span>
                 </button>
                 {idx < STEP_KEYS.length - 1 && (
                   <div
-                    className={`h-[2px] flex-1 mx-2 sm:mx-4 -mt-8 transition-colors ${
-                      stepNum < step ? "bg-primary" : "bg-surface-dim"
-                    }`}
+                    className={`h-[2px] flex-1 mx-2 sm:mx-4 -mt-8 transition-colors ${stepNum < step ? "bg-primary" : "bg-surface-dim"
+                      }`}
                   />
                 )}
               </div>
             );
           })}
-        </div>
+        </div> */}
         <h1 className="font-display-md text-2xl sm:text-3xl md:text-display-md text-primary mb-3 sm:mb-4">
           {pageTitle}
         </h1>
@@ -576,7 +478,7 @@ export function BookingForm() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-lg items-start">
         <div className="lg:col-span-8 space-y-xl">
-          {step === 1 && (
+          {/* {step === 1 && (
             <>
               <section>
                 <div className="flex items-center gap-3 mb-6">
@@ -591,11 +493,10 @@ export function BookingForm() {
                         key={pkg.id}
                         type="button"
                         onClick={() => setPackageId(pkg.id)}
-                        className={`${textAlign} bg-surface-container-lowest p-5 sm:p-6 rounded-xl shadow-soft transition-all cursor-pointer ${
-                          isActive
-                            ? "border-2 border-primary ring-4 ring-primary/5"
-                            : "border border-surface-variant/50 hover:border-primary"
-                        }`}
+                        className={`${textAlign} bg-surface-container-lowest p-5 sm:p-6 rounded-xl shadow-soft transition-all cursor-pointer ${isActive
+                          ? "border-2 border-primary ring-4 ring-primary/5"
+                          : "border border-surface-variant/50 hover:border-primary"
+                          }`}
                       >
                         <div className="flex justify-between items-start mb-4">
                           <Icon name={pkg.icon} className="text-primary text-3xl" />
@@ -643,11 +544,10 @@ export function BookingForm() {
                         key={addOn.id}
                         type="button"
                         onClick={() => toggleAddOn(addOn.id)}
-                        className={`flex items-center justify-between bg-white p-5 rounded-xl border transition-all ${textAlign} ${
-                          isActive
-                            ? "border-primary bg-primary/5"
-                            : "border-surface-variant/50 hover:border-primary"
-                        }`}
+                        className={`flex items-center justify-between bg-white p-5 rounded-xl border transition-all ${textAlign} ${isActive
+                          ? "border-primary bg-primary/5"
+                          : "border-surface-variant/50 hover:border-primary"
+                          }`}
                       >
                         <span className="flex items-center gap-3">
                           <Icon name={addOn.icon} className="text-primary text-2xl" />
@@ -697,7 +597,7 @@ export function BookingForm() {
                 </div>
               </section>
             </>
-          )}
+          )} */}
 
           {step === 2 && (
             <section className="bg-white rounded-2xl p-5 sm:p-8 shadow-soft border border-surface-variant/50 space-y-5">
@@ -809,7 +709,7 @@ export function BookingForm() {
             </section>
           )}
 
-          {step === 3 && (
+          {/* {step === 3 && (
             <section className="space-y-6">
               <div className="flex items-center gap-3">
                 <Icon name="payments" className="text-primary" />
@@ -823,11 +723,10 @@ export function BookingForm() {
                     setPaymentMethod("qr");
                     setError("");
                   }}
-                  className={`${textAlign} bg-white p-5 rounded-xl border transition-all ${
-                    paymentMethod === "qr"
-                      ? "border-2 border-primary ring-4 ring-primary/5"
-                      : "border-surface-variant/50 hover:border-primary"
-                  }`}
+                  className={`${textAlign} bg-white p-5 rounded-xl border transition-all ${paymentMethod === "qr"
+                    ? "border-2 border-primary ring-4 ring-primary/5"
+                    : "border-surface-variant/50 hover:border-primary"
+                    }`}
                 >
                   <div className="flex items-start justify-between mb-3">
                     <Icon name="qr_code_2" className="text-primary text-3xl" />
@@ -847,11 +746,10 @@ export function BookingForm() {
                     setPaymentMethod("cod");
                     setError("");
                   }}
-                  className={`${textAlign} bg-white p-5 rounded-xl border transition-all ${
-                    paymentMethod === "cod"
-                      ? "border-2 border-primary ring-4 ring-primary/5"
-                      : "border-surface-variant/50 hover:border-primary"
-                  }`}
+                  className={`${textAlign} bg-white p-5 rounded-xl border transition-all ${paymentMethod === "cod"
+                    ? "border-2 border-primary ring-4 ring-primary/5"
+                    : "border-surface-variant/50 hover:border-primary"
+                    }`}
                 >
                   <div className="flex items-start justify-between mb-3">
                     <Icon name="local_shipping" className="text-primary text-3xl" />
@@ -891,9 +789,8 @@ export function BookingForm() {
                         <div key={field} className={`flex flex-col gap-1 ${textAlign}`}>
                           <span className="text-xs text-outline font-medium">{label}</span>
                           <div
-                            className={`flex items-center gap-2 bg-white rounded-lg border border-surface-variant/50 px-3 py-2 ${
-                              isAr ? "flex-row-reverse" : ""
-                            }`}
+                            className={`flex items-center gap-2 bg-white rounded-lg border border-surface-variant/50 px-3 py-2 ${isAr ? "flex-row-reverse" : ""
+                              }`}
                           >
                             <span
                               dir="ltr"
@@ -904,11 +801,10 @@ export function BookingForm() {
                             <button
                               type="button"
                               onClick={() => copyToClipboard(value, field)}
-                              className={`shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
-                                isCopied
-                                  ? "bg-emerald-100 text-emerald-700"
-                                  : "bg-primary text-white hover:opacity-90 active:scale-95"
-                              }`}
+                              className={`shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${isCopied
+                                ? "bg-emerald-100 text-emerald-700"
+                                : "bg-primary text-white hover:opacity-90 active:scale-95"
+                                }`}
                               aria-label={`${t("booking.payment.copy")} ${label}`}
                             >
                               <Icon name={isCopied ? "check" : "content_copy"} className="text-sm" />
@@ -921,10 +817,13 @@ export function BookingForm() {
                   </div>
 
                   <div className="flex justify-center">
-                    <img
+                    <Image
                       src="/pay-way.jpeg"
                       alt={t("booking.payment.qr")}
+                      width={500}
+                      height={500}
                       className="w-full max-w-xs rounded-xl border border-surface-variant/50 shadow-soft"
+                      priority={true}
                     />
                   </div>
 
@@ -979,7 +878,7 @@ export function BookingForm() {
                 </div>
               )}
             </section>
-          )}
+          )} */}
 
           {error && (
             <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
@@ -988,7 +887,7 @@ export function BookingForm() {
           )}
 
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
-            {step > 1 && (
+            {/* {step > 1 && (
               <button
                 type="button"
                 onClick={goPrev}
@@ -1006,27 +905,25 @@ export function BookingForm() {
                     type="button"
                     onClick={goNext}
                     disabled={!enabled}
-                    className={`flex-1 py-3 rounded-xl font-bold shadow-md transition-all flex items-center justify-center gap-2 ${
-                      enabled
-                        ? "bg-primary-container text-white hover:opacity-95 active:scale-95 cursor-pointer"
-                        : "bg-surface-container text-outline cursor-not-allowed"
-                    }`}
+                    className={`flex-1 py-3 rounded-xl font-bold shadow-md transition-all flex items-center justify-center gap-2 ${enabled
+                      ? "bg-primary-container text-white hover:opacity-95 active:scale-95 cursor-pointer"
+                      : "bg-surface-container text-outline cursor-not-allowed"
+                      }`}
                   >
                     {step === 1 ? t("booking.continueToDetails") : t("booking.continueToPayment")}
                     <Icon name={isAr ? "arrow_back" : "arrow_forward"} />
                   </button>
                 );
-              })()}
-            {step === 3 && (
+              })()} */}
+            {step === 2 && (
               <button
                 type="button"
                 onClick={handleSubmit}
                 disabled={!canSubmit}
-                className={`flex-1 py-3 rounded-xl font-bold shadow-md transition-all flex items-center justify-center gap-2 ${
-                  canSubmit
-                    ? "bg-primary-container text-white hover:opacity-95 active:scale-95 cursor-pointer"
-                    : "bg-surface-container text-outline cursor-not-allowed"
-                }`}
+                className={`flex-1 py-3 rounded-xl font-bold shadow-md transition-all flex items-center justify-center gap-2 ${canSubmit
+                  ? "bg-primary-container text-white hover:opacity-95 active:scale-95 cursor-pointer"
+                  : "bg-surface-container text-outline cursor-not-allowed"
+                  }`}
               >
                 <Icon name="task_alt" />
                 {t("booking.submit")}
@@ -1038,12 +935,12 @@ export function BookingForm() {
         <aside className="lg:col-span-4">
           <div className="lg:sticky lg:top-32 bg-white rounded-3xl shadow-soft p-6 sm:p-8 border border-surface-container-high">
             <h3 className="font-display-md text-2xl text-primary mb-6">{t("booking.summary")}</h3>
-            <div className="flex justify-between items-start pb-4 border-b border-surface-variant/50">
+            {/* <div className="flex justify-between items-start pb-4 border-b border-surface-variant/50">
               <span className="text-on-surface-variant">
                 {t(`booking.packages.${currentPackage.id}.title`)}
               </span>
               <span className="font-bold text-primary">{formatPrice(currentPackage.price)}</span>
-            </div>
+            </div> */}
             {selectedAddOns.length > 0 && (
               <div className="py-4 border-b border-surface-variant/50 space-y-2">
                 {selectedAddOns.map((id) => {
@@ -1057,7 +954,7 @@ export function BookingForm() {
                 })}
               </div>
             )}
-            <div className="py-4 text-sm text-outline space-y-2 border-b border-surface-variant/50">
+            {/* <div className="py-4 text-sm text-outline space-y-2 border-b border-surface-variant/50">
               <div className="flex justify-between">
                 <span>{t("booking.date")}</span>
                 <span className="font-medium text-on-surface">{date || "—"}</span>
@@ -1066,7 +963,7 @@ export function BookingForm() {
                 <span>{t("booking.time")}</span>
                 <span className="font-medium text-on-surface">{timeLabel || "—"}</span>
               </div>
-            </div>
+            </div> */}
 
             {step >= 2 && (name || phoneValid || city) && (
               <div className="py-4 text-sm text-outline space-y-1 border-b border-surface-variant/50">
@@ -1106,10 +1003,10 @@ export function BookingForm() {
               </div>
             )}
 
-            <div className="flex justify-between items-center pt-6 mb-2">
+            {/* <div className="flex justify-between items-center pt-6 mb-2">
               <span className="text-lg font-bold text-primary">{t("booking.total")}</span>
               <span className="text-2xl font-bold text-primary">{formatPrice(total)}</span>
-            </div>
+            </div> */}
 
             <Link
               href={localePath(locale, "/")}
