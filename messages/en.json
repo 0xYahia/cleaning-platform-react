@@ -1,0 +1,324 @@
+{
+  "seo": {
+    "siteTitle": "Medi Clean — Premium Cleaning Services in Saudi Arabia",
+    "siteDescription": "Professional cleaning, sanitization and tank cleaning services across the Eastern Province. Homes, mosques, AC units, and more. Fully guaranteed."
+  },
+  "common": {
+    "bookNow": "Book Now",
+    "book": "Book",
+    "login": "Login",
+    "backToHome": "Back to home",
+    "startingAt": "Starting at",
+    "startingFrom": "Starting from",
+    "currency": "SAR",
+    "learnMore": "Learn more",
+    "switchLang": "AR",
+    "claimOffer": "Claim Offer"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "booking": "Booking",
+    "medi-clean": "Medi Clean"
+  },
+  "hero": {
+    "alt": "Tank cleaning, sanitization & lining",
+    "title": "Premium Cleaning & Sanitization Across the Eastern Province",
+    "description": "We deliver complete cleaning and sanitization solutions for homes, mosques, AC units, water tanks and upholstery — using advanced equipment and 100% safe materials, fully guaranteed.",
+    "bookCta": "Book Your Service",
+    "exploreCta": "Explore Services"
+  },
+  "slogan": "Cleanliness. Safety. Sanitization. Professional standards.",
+  "cities": [
+    "Dammam",
+    "Khobar",
+    "Dhahran",
+    "Jubail",
+    "Qatif",
+    "Sihat"
+  ],
+  "trustBadges": {
+    "shield": "Quality Guaranteed",
+    "verified_user": "Advanced Equipment",
+    "eco": "100% Safe Products",
+    "engineering": "Trained Staff"
+  },
+  "servicesSection": {
+    "title": "Our Services",
+    "description": "A full catalog of cleaning and sanitization services for homes, mosques and businesses."
+  },
+  "offerBanner": {
+    "title": "Home Cleaning + Full Sanitization Bundle",
+    "description": "Extra discount when you subscribe monthly or yearly."
+  },
+  "whyUs": {
+    "title": "Why choose us?",
+    "description": "We pair the latest equipment with safe, certified materials and fully insured trained crews — so your space gets the highest standard of clean, every time.",
+    "items": [
+      "100% service quality guarantee",
+      "Safe, certified cleaning & sanitization materials",
+      "Full coverage across the Eastern Province",
+      "24/7 premium customer support"
+    ]
+  },
+  "video": {
+    "title": "Medi Clean - Professional Cleaning in Saudi Arabia"
+  },
+  "subscriptions": {
+    "title": "Subscription Plans",
+    "description": "Save more with regular visits, priority booking and free extras.",
+    "bestValue": "Best Value",
+    "subscribe": "Subscribe Now",
+    "plans": {
+      "monthly": {
+        "title": "Monthly Plan",
+        "price": "Up to 20%",
+        "cadence": "off every visit",
+        "benefits": [
+          "Regular visits throughout the month",
+          "Up to 20% discount",
+          "Priority booking on demand"
+        ]
+      },
+      "yearly": {
+        "title": "Yearly Plan",
+        "price": "Up to 20%",
+        "cadence": "off + free services",
+        "benefits": [
+          "Up to 20% off across all services",
+          "Free periodic sanitization",
+          "Free AC & water tank inspection",
+          "Top priority booking"
+        ]
+      }
+    }
+  },
+  "payment": {
+    "title": "Flexible Payment",
+    "description": "Split your payments without pressure — pick whichever method suits you.",
+    "splitNoInterest": "Split with no interest",
+    "options": {
+      "account": "Pay by Account",
+      "tabby": "Tabby",
+      "tamara": "Tamara"
+    }
+  },
+  "loyalty": {
+    "label": "Loyalty Program",
+    "title": "Golden Customer Program",
+    "tagline": "Every order earns points — redeem for free services and gifts.",
+    "join": "Join Now",
+    "benefits": [
+      "Every order earns points",
+      "Redeem points for free services",
+      "Exclusive member-only discounts",
+      "Free gift every 5 orders"
+    ]
+  },
+  "footer": {
+    "tagline": "Cleanliness, safety and sanitization with professional standards across the Eastern Province.",
+    "quickLinks": "Quick Links",
+    "ourServices": "Our Services",
+    "loyaltyProgram": "Loyalty Program",
+    "corporate": "Corporate Solutions",
+    "careers": "Careers",
+    "contactUs": "Contact Us",
+    "address": "Dammam, Al-Firdous Building, Second Floor, Office No. 3",
+    "downloadApp": "Download Our App",
+    "appStorePrefix": "Download on the",
+    "playStorePrefix": "Get it on",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "services": {
+    "home-cleaning": {
+      "title": "Comprehensive Home Cleaning",
+      "description": "Deep cleaning for villas and apartments with safe, certified products and advanced equipment.",
+      "badge": "Most Popular"
+    },
+    "mosques": {
+      "title": "Mosque Cleaning & Sanitization",
+      "description": "Specialized cleaning and sanitization service for mosques and prayer halls."
+    },
+    "ac": {
+      "title": "AC Washing (Split / Window / Central)",
+      "description": "Full deep clean of split, window and central AC units to extend lifetime."
+    },
+    "tanks": {
+      "title": "Water Tank Cleaning, Sanitization, Sealing & Lining",
+      "description": "All-in-one service: cleaning, sanitization, leak sealing and food-grade lining for ground and surface tanks.",
+      "badge": "Featured"
+    },
+    "pest-control": {
+      "title": "Pest Control",
+      "description": "Safe and effective pest extermination for homes and businesses."
+    },
+    "upholstery": {
+      "title": "Sofa, Carpet & Curtain Steam Cleaning",
+      "description": "High-temperature steam cleaning for sofas, carpets and curtains."
+    },
+    "sanitization": {
+      "title": "Full Premise Sanitization",
+      "description": "Hospital-grade sanitization for homes, offices, and commercial facilities."
+    }
+  },
+  "serviceDetail": {
+    "featuredBadge": "Featured Service",
+    "included": "What's included?",
+    "gallery": "Gallery",
+    "summary": "Package Summary",
+    "duration": "Duration",
+    "durationValue": "3-5 hours",
+    "technicians": "Technicians",
+    "techniciansValue": "2-3",
+    "tools": "Tools & supplies",
+    "toolsValue": "Included",
+    "guarantee": "Guarantee",
+    "guaranteeValue": "100%",
+    "bookService": "Book Service",
+    "otherServices": "Other services you might like"
+  },
+  "serviceFeatures": [
+    {
+      "title": "Deep Floor Cleaning",
+      "description": "Vacuuming, mopping and polishing for marble, parquet and ceramic floors.",
+      "icon": "vacuum"
+    },
+    {
+      "title": "Window & Glass Polishing",
+      "description": "Streak-free cleaning of interior and exterior windows and mirrors.",
+      "icon": "window"
+    },
+    {
+      "title": "Kitchen & Bathroom Sanitization",
+      "description": "Hospital-grade disinfectants to keep your family safe.",
+      "icon": "kitchen"
+    },
+    {
+      "title": "Air Freshening & Purifying",
+      "description": "Premium aromatic oils for a lasting clean impression.",
+      "icon": "air"
+    }
+  ],
+  "booking": {
+    "steps": {
+      "service": "Plan",
+      "details": "Details",
+      "payment": "Payment"
+    },
+    "title": "Choose your service & time",
+    "description": "Pick from our luxury cleaning packages that fit your needs and select the most convenient time for our team to visit.",
+    "detailsTitle": "Your contact details",
+    "detailsDescription": "Tell us where to come and how to reach you so our team can confirm your appointment.",
+    "paymentTitle": "Payment method",
+    "paymentDescription": "Choose how you'd like to pay. Bank transfer via QR is reviewed once we receive your payment screenshot on WhatsApp.",
+    "packagesHeading": "Cleaning Packages",
+    "addOnsHeading": "Optional Add-ons",
+    "dateTimeHeading": "Date & Time",
+    "contactHeading": "Contact & Address",
+    "chooseDate": "Choose date",
+    "chooseTime": "Choose time",
+    "pickDateFirst": "Pick a date to see available hours",
+    "mostPopular": "Most Popular",
+    "summary": "Order Summary",
+    "date": "Date",
+    "time": "Time",
+    "total": "Total",
+    "continue": "Continue to details",
+    "continueToDetails": "Continue to details",
+    "continueToPayment": "Continue to payment",
+    "back": "Back",
+    "submit": "Submit booking",
+    "country": "Country",
+    "city": "City",
+    "cityPlaceholder": "e.g. Dammam",
+    "district": "District",
+    "districtPlaceholder": "e.g. Al Faisaliyah",
+    "street": "Street",
+    "streetPlaceholder": "Street name / number",
+    "building": "Building / Unit",
+    "buildingPlaceholder": "Building, floor, apartment",
+    "fillContactFirst": "Please fill in your name, a valid phone, city and street.",
+    "invalidPhone": "Please enter a valid phone number for the selected country.",
+    "payment": {
+      "method": "Payment Method",
+      "qr": "Bank transfer (QR)",
+      "qrDesc": "Scan the QR code and transfer to our bank account.",
+      "cod": "Cash on delivery",
+      "codDesc": "Pay our technician in cash when the service is completed.",
+      "scanQrTitle": "Scan to pay",
+      "scanQrDesc": "Open your bank app, scan the QR code below, and complete the transfer for the full amount.",
+      "account": "Account number",
+      "iban": "IBAN",
+      "copy": "Copy",
+      "copied": "Copied",
+      "uploadScreenshot": "Upload payment screenshot",
+      "screenshotHint": "PNG or JPG up to a few MB. We'll match it with your booking.",
+      "screenshotRequired": "Please upload your payment screenshot to continue.",
+      "choosePaymentFirst": "Please choose a payment method.",
+      "attachInstruction": "After clicking Submit, WhatsApp will open with your booking details — please attach your payment screenshot to the conversation before sending.",
+      "codTitle": "Pay in cash on arrival",
+      "codDetail": "Our technician will collect the payment in cash once the service has been completed at your address."
+    },
+    "success": {
+      "title": "Your booking has been sent!",
+      "description": "WhatsApp opened with your details. If you chose bank transfer, please attach the payment screenshot before sending."
+    },
+    "timeSlots": [
+      "08:00 AM",
+      "10:00 AM",
+      "12:00 PM",
+      "02:00 PM",
+      "04:00 PM",
+      "06:00 PM"
+    ],
+    "packages": {
+      "bundle-home-sanitize": {
+        "title": "Home + Full Sanitization Bundle",
+        "description": "Complete home cleaning paired with full surface and floor sanitization."
+      },
+      "home-cleaning": {
+        "title": "Comprehensive Home Cleaning",
+        "description": "Deep, end-to-end cleaning for homes and apartments using safe products."
+      },
+      "tanks-full": {
+        "title": "Tank: Washing + Sanitization + Sealing",
+        "description": "Full-package cleaning, sanitization, sealing and lining for ground and surface tanks."
+      },
+      "ac-bundle": {
+        "title": "AC Maintenance & Washing",
+        "description": "Professional washing for split, window and central AC units."
+      }
+    },
+    "addOns": {
+      "sanitize": "Extra Full Sanitization",
+      "carpet": "Carpet Steam Cleaning",
+      "pest": "Pest Control",
+      "curtains": "Curtain Steam Cleaning"
+    },
+    "selectDateTimeFirst": "Please choose a date and time to continue",
+    "modal": {
+      "title": "Confirm Your Booking",
+      "subtitle": "Enter your contact details so we can confirm your appointment.",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "e.g. Ahmed Mohammed",
+      "phone": "Phone number",
+      "phonePlaceholder": "05XXXXXXXX",
+      "address": "Full address",
+      "addressPlaceholder": "City, district, street, building, unit",
+      "notes": "Notes (optional)",
+      "notesPlaceholder": "Anything we should know before arriving",
+      "sendWhatsApp": "Send via WhatsApp",
+      "sendEmail": "Send via Email",
+      "cancel": "Cancel",
+      "validation": "Please fill in your name, phone, and address.",
+      "summaryTitle": "Booking Summary"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for doesn't exist. Let's get you back home.",
+    "backHome": "Back to home"
+  }
+}

@@ -1,13 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git add *)",
-      "Bash(git commit *)",
-      "Bash(git push *)",
-      "Bash(npx tsc *)",
+      "WebFetch(domain:github.com)",
+      "Read(//tmp/impeccable-tmp/dist/claude-code/**)",
+      "Read(//tmp/**)",
+      "Read(//tmp/impeccable-tmp/**)",
+      "Bash(mkdir -p \".claude/skills\")",
+      "Bash(cp -r /tmp/impeccable-tmp/.claude/skills/impeccable \".claude/skills/\")",
       "Bash(npm install *)",
-      "Bash(npm run *)",
-      "mcp__ide__getDiagnostics"
+      "Bash(cp \"C:/study/Saudi Cleaning Platform/cleaning-platform-react/src/locales/en.json\" \"C:/study/Saudi Cleaning Platform/cleaning-platform-next/messages/en.json\")",
+      "Bash(cp \"C:/study/Saudi Cleaning Platform/cleaning-platform-react/src/locales/ar.json\" \"C:/study/Saudi Cleaning Platform/cleaning-platform-next/messages/ar.json\")",
+      "Bash(npm run *)"
     ]
   }
 }

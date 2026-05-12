@@ -1,0 +1,12 @@
+# Hostinger / Apache config for Next.js static export
+# Redirect root to /en/ (better SEO than meta-refresh)
+RewriteEngine On
+RewriteRule ^$ /en/ [R=301,L]
+
+# Serve pretty URLs: /en/booking -> /en/booking/index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+?)/?$ $1/index.html [L]
+
+# Custom 404
+ErrorDocument 404 /404.html
