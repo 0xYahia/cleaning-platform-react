@@ -52,14 +52,14 @@
   --spacing-lg: 40px;
   --spacing-xl: 80px;
 
-  --font-label-caps: Inter, sans-serif;
-  --font-display-lg: Tajawal, sans-serif;
-  --font-display-md: Tajawal, sans-serif;
-  --font-heading-sm: Tajawal, sans-serif;
-  --font-body-lg: Inter, sans-serif;
-  --font-body-md: Inter, sans-serif;
-  --font-tajawal: Tajawal, sans-serif;
-  --font-inter: Inter, sans-serif;
+  --font-label-caps: var(--font-inter-self), Inter, sans-serif;
+  --font-display-lg: var(--font-tajawal-self), Tajawal, sans-serif;
+  --font-display-md: var(--font-tajawal-self), Tajawal, sans-serif;
+  --font-heading-sm: var(--font-tajawal-self), Tajawal, sans-serif;
+  --font-body-lg: var(--font-inter-self), Inter, sans-serif;
+  --font-body-md: var(--font-inter-self), Inter, sans-serif;
+  --font-tajawal: var(--font-tajawal-self), Tajawal, sans-serif;
+  --font-inter: var(--font-inter-self), Inter, sans-serif;
 
   --text-label-caps: 12px;
   --text-label-caps--line-height: 1;
@@ -83,7 +83,7 @@
 }
 
 :root {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: var(--font-inter-self), "Inter", system-ui, sans-serif;
   color-scheme: light;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -98,7 +98,7 @@ body {
 }
 
 html[dir="rtl"] body {
-  font-family: "Tajawal", sans-serif;
+  font-family: var(--font-tajawal-self), "Tajawal", sans-serif;
 }
 
 .material-symbols-outlined {

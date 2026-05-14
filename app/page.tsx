@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Medi Clean",
   robots: { index: false, follow: false },
   alternates: { canonical: "/en/" },
-  icons: { icon: "/md-logo.png", apple: "/md-logo.png" },
+  icons: { icon: "/favicon.svg", apple: "/favicon.svg" },
 };
 
 export default function RootIndex() {

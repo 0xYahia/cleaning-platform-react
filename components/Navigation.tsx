@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Icon } from "./Icon";
+import { Logo } from "./Logo";
 import { localePath } from "@/lib/locale";
 import type { Locale } from "@/i18n/routing";
 
@@ -43,10 +44,9 @@ export function Navigation() {
             href={homeHref}
             className="flex items-center gap-2 text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#0F6E56] font-display-md whitespace-nowrap"
           >
-            <img
-              src="/md-logo.png"
-              alt="Medi Clean"
-              className="h-12 sm:h-12 md:h-12 w-12 sm:w-12 md:w-12 object-contain shrink-0"
+            <Logo
+              title="Medi Clean"
+              className="h-12 w-12 object-contain shrink-0"
             />
             <span>{t("nav.medi-clean")}</span>
           </Link>

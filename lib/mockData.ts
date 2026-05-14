@@ -35,8 +35,10 @@ export const services: Service[] = [
     icon: "home",
     startingPrice: 250,
     hasBadge: true,
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBjc8L2t9IX2d15SD8YFnTmD_MXllaDLftlB3Kar4kaZ9La9QPw8nA1_C7PC0AIrEE8QJq55LbV4ebq1pmyE-mlf_SRitoytwWn9oqfqAJdVJPST-AAM24PpxP__KutthzvVZluj3v4pcp4q2S_58XjP589MU4KpqioZ10aWVGGF_hGqNuZ80QDhG_GE1ZTavSBXTCjAgCMJSipKTZUEFsST9-R01yUzOjn1LYChh_p5nRmQ37otFn6-G-GdjHNzHcL11TFvt3THp89",
+    imageAr:
+      "/house-ar.png",
+    imageEn:
+      "/house-en.png",
     span: "large",
   },
   {
@@ -44,17 +46,21 @@ export const services: Service[] = [
     slug: "mosque-cleaning",
     icon: "mosque",
     startingPrice: 400,
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCEBHnDkVTo0ClA6LeuV_gg4sbiXjDJo5iR1RuLG4ZCLCtDN44X2DgUjWs0o1USWnnfMQmYDWDrfpQiDW9hCJdp7OTaAs5SSlqpIRCBYHLTdow6_wyrlajNoWLgJ0XGTwq14TQjkUwRuN-XutjvLCos-Ax_HTYGfGPMjwLvL4bBd5adIRhrIaHSqJFWc5vjEONklwLeqRINrmFsypK4UxoRCyyAJ0l7H_zwcK1Ndzdqu3EzTCgnptRqUnr1ThWPsF0ZSm6b0W2y7B3f",
+    imageAr:
+      "/mosque-ar.png",
+    imageEn:
+      "/mosque-en.png",
     span: "small",
   },
   {
     id: "ac",
-    slug: "ac-cleaning",
+    slug: "air-conditioning-cleaning",
     icon: "ac_unit",
     startingPrice: 120,
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBZBBI1xitrMDD9qBM8XQtj01Pa1TFDjAQ6er8rKUbjQcQswHHjwtSqNap1xe-YxS7uCm77AZE8yR4-qeBiugA3tp62V8m2Wv7VL70GZcLcJjQUJO-OleGAhID4q2Vv63KSJrggcg9E9kn0bUvtDwmwA5YOHG92HdbOIkIfnYXLfxByYN1EfFCYvUAht_XRkZQMBeAbhM0IWOhYSEyd_-FZJom7E1_t8a4faoxmpx3wTIivb4Hfqby_9IbwT34Arr4D9JxbltsqsgQ7",
+    imageAr:
+      "/air-conditioner-cleaning-ar.png",
+    imageEn:
+      "/air-conditioner-cleaning-en.png",
     span: "small",
   },
   {
@@ -63,8 +69,8 @@ export const services: Service[] = [
     icon: "water_drop",
     startingPrice: 350,
     hasBadge: true,
-    imageEn: "/landing-fullwidth-en.png",
-    imageAr: "/landing-fullwidth-ar.png",
+    imageEn: "/tank-cleaning-en.png",
+    imageAr: "/tank-cleaning-ar.png",
     span: "wide",
   },
   {
@@ -72,17 +78,21 @@ export const services: Service[] = [
     slug: "pest-control",
     icon: "pest_control",
     startingPrice: 180,
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC",
+    imageAr:
+      "/pest-control-ar.png",
+    imageEn:
+      "/pest-control-en.png",
     span: "small",
   },
   {
     id: "upholstery",
-    slug: "upholstery-steam",
+    slug: "carpet-cleaning",
     icon: "dry_cleaning",
     startingPrice: 200,
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuB-GIqxH169sGpYzeSK1um5ZMvlIskh4Zlc8c5YPZyrfjyVFJyB5z1Ys9raOG5k2y-6XEzw4ssQyoxXL5cEQePZ5jhDY3TSFHmPA4YkUSiMtw5Pe8QV4kll_3sK9dnedBV4RfSEmYiVW6l4Gyp2wVh-zbJfoqq5ug3A-PPQot6eGtaTzm7NQHaL9Bsgb8GDVHmtCtk1BOBqWvTiz4G5mTeYXUGAg_gTtWF2c1ncUCWbo5L1nOXe1h5XGL5A9ylAMawUge1kPCHnUnDb",
+    imageAr:
+      "/carpets-cleaning-ar.png",
+    imageEn:
+      "/carpets-cleaning-en.png",
     span: "small",
   },
   {
@@ -90,8 +100,10 @@ export const services: Service[] = [
     slug: "full-sanitization",
     icon: "sanitizer",
     startingPrice: 220,
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCBYW_o3oi8VvC_j-hrzqSZwTZsDYXX_-7uaru1AZhiU80lyq15vidy6Hmlmsy4r7P-q1mv_39V1_ML85V52lVNKX_BltYBtDhncMxNNO7AEa3YC8R4x2l-RZqq3ZNEUqkj8jGTvij0-pfj7SL7SiYbPzwKiaa7_VQzN-Aerc7sFsKHUS1-B4SaSJ_WPLLlwZ2pc6iCw9LbRX383WO5FcnoA3XFqJh24jnWFM45-dBAi2MZcnR7fKZ1Zq8e58xGnIMOSGc8zmbAxnMC",
+    imageAr:
+      "/homes-and-facilities-ar.png",
+    imageEn:
+      "/homes-and-facilities-en.png",
     span: "small",
   },
 ];

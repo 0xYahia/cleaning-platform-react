@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Tajawal, Inter } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { locales, type Locale } from "@/i18n/routing";
@@ -9,6 +10,20 @@ import { WhatsAppFAB } from "@/components/WhatsAppFAB";
 import { CallFAB } from "@/components/CallFAB";
 import { MailFAB } from "@/components/MailFAB";
 import "../globals.css";
+
+const tajawal = Tajawal({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+  variable: "--font-tajawal-self",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-inter-self",
+});
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -70,9 +85,9 @@ export async function generateMetadata({
     keywords: isAr ? KEYWORDS_AR : KEYWORDS_EN,
     icons: {
       icon: [
-        { url: "/md-logo.png", type: "image/png" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
       ],
-      apple: "/md-logo.png",
+      apple: "/favicon.svg",
     },
     alternates: {
       canonical: `/${locale}/`,
@@ -107,8 +122,8 @@ function LocalBusinessJsonLd({ locale }: { locale: string }) {
     name: isAr ? "ميدي كلين" : "Medi Clean",
     alternateName: "Medi Clean 2030",
     url: `${SITE_URL}/${locale}/`,
-    logo: `${SITE_URL}/md-logo.png`,
-    image: `${SITE_URL}/md-logo.png`,
+    logo: `${SITE_URL}/favicon.svg`,
+    image: `${SITE_URL}/favicon.svg`,
     description: isAr
       ? "شركة ميدي كلين لخدمات التنظيف والتعقيم ومكافحة الحشرات وتنظيف الخزانات والمكيفات في الدمام والخبر والظهران وسيهات والقطيف."
       : "Medi Clean provides professional cleaning, sanitization, pest control, water tank and AC cleaning services across Dammam, Khobar, Dhahran, Saihat and Qatif.",
@@ -170,14 +185,14 @@ export default async function LocaleLayout({
   const isAr = locale === "ar";
 
   return (
-    <html lang={locale} dir={isAr ? "rtl" : "ltr"} className="h-full antialiased">
+    <html
+      lang={locale}
+      dir={isAr ? "rtl" : "ltr"}
+      className={`h-full antialiased ${tajawal.variable} ${inter.variable}`}
+    >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap"
-        />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
