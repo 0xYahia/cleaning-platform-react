@@ -19,7 +19,7 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!hasLocale(locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "hero" });
-  return { title: t("title"), description: t("description") };
+  return { title: "Medi Clean", description: t("description") };
 }
 
 export default async function Home({

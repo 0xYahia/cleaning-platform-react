@@ -80,7 +80,7 @@ export async function generateMetadata({
   const isAr = locale === "ar";
   return {
     metadataBase: new URL(SITE_URL),
-    title: { default: t("siteTitle"), template: `%s · ${t("siteTitle")}` },
+    title: { default: "Medi Clean", template: "%s · Medi Clean" },
     description: t("siteDescription"),
     keywords: isAr ? KEYWORDS_AR : KEYWORDS_EN,
     icons: {
